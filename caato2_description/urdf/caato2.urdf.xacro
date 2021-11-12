@@ -6,7 +6,7 @@
   <xacro:property name="base_width" value="0.54" />
   <xacro:property name="base_depth" value="0.52" />
   <xacro:property name="base_height" value="0.37" />
-  <xacro:property name="base_mass" value="5" />
+  <xacro:property name="base_mass" value="46.143" />
 
   <!-- Wheel Mounting Positions -->
   <xacro:property name="wheelbase" value="NA since differential drive" />
@@ -81,8 +81,10 @@
     <inertial>
       <mass value="${base_mass}" />
       <!--shifted weight to prevent jerking-->
-      <origin xyz="0 0.011 0"/>
-      <xacro:cuboid_inertia m="${base_mass}" w="${base_width}" h="${base_height}" d="${base_depth}"/>
+      <origin xyz="0 -0.120 0.045"/>
+      <inertia ixx="1.291" ixy = "0" ixz = "0"
+                iyy="1.381" iyz = "0"
+                izz="1.976" /> 
     </inertial> 
   </link>
 
@@ -180,7 +182,7 @@
     <parent link="base_link"/>
     <axis rpy="0 0 0" xyz="0 0 1"/>
     <limit effort="10000" velocity="1000"/>
-    <dynamics damping="0" friction="0.0"/>
+    <dynamics damping="0.5" friction="0.5"/>
   </joint>
 
     <!-- Right caster wheel -->
@@ -210,7 +212,7 @@
     <parent link="base_link"/>
     <axis rpy="0 0 0" xyz="0 0 1"/>
     <limit effort="10000" velocity="1000"/>
-    <dynamics damping="0" friction="0.0"/>
+    <dynamics damping="0.5" friction="0.5"/>
   </joint>
 
   <!-- Lider Sensor 1_Front -->

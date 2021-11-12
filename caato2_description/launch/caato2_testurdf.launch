@@ -59,7 +59,7 @@
 
     <!-- Launch multi laser merger -->
   <arg name="start_delay" default="3" />
-  <node pkg="wio" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen"
+  <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen"
     launch-prefix="bash -c 'sleep $(arg start_delay); $0 $@'">
     <param name="destination_frame" value="base_link"/>
     <param name="cloud_destination_topic" value="/merged_cloud"/>

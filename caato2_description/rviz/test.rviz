@@ -9,7 +9,6 @@ Panels:
         - /Grid1
         - /RobotModel1
         - /RobotModel1/Links1
-        - /RobotModel1/Links1/left_caster_wheel_link1
         - /RobotModel1/Links1/left_wheel_link1
         - /PointCloud21
       Splitter Ratio: 0.5
@@ -91,17 +90,7 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        left_caster_wheel_link:
-          Alpha: 1
-          Show Axes: true
-          Show Trail: true
-          Value: true
         left_wheel_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        right_caster_wheel_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -173,7 +162,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 2.5390894412994385
+      Distance: 0.8951324224472046
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -189,9 +178,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.44020307064056396
+      Pitch: -1.5697963237762451
       Target Frame: <Fixed Frame>
-      Yaw: 6.0316996574401855
+      Yaw: 4.706663608551025
     Saved: ~
 Window Geometry:
   Displays:

@@ -119,11 +119,9 @@
   <link name="inertial_link" >
     <inertial>
       <mass value="${base_mass}" />
-      <!--shifted weight to prevent jerking-->
-      <origin xyz="0 -0.120 0.045"/>
-      <inertia ixx="1.291" ixy = "0" ixz = "0"
-                iyy="1.381" iyz = "0"
-                izz="1.976" /> 
+      <!--shifted weight if needed to prevent jerking-->
+      <origin xyz="0 0 -0.13"/>
+      <xacro:cuboid_inertia m="${base_mass}" w="${base_width}" h="${base_height}" d="${base_depth}"/>
     </inertial> 
   </link>
 
@@ -192,70 +190,6 @@
     <axis rpy="0 0 0" xyz="1 0 0"/>
     <limit effort="10000" velocity="1000"/>
     <dynamics damping="0" friction="1.0"/>
-  </joint>
-
-  <!-- Caster wheel damping and friction macro-->
-  <xacro:macro name="caster_wheel_swivel_joint_damping_friction">
-        <dynamics damping="0.05" friction="0.2"/>
-    </xacro:macro>
-  <!-- Left caster wheel -->
-  <link name="left_caster_wheel_link">
-    <inertial>
-      <mass value="${caster_wheel_mass}"/>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <xacro:cylinder_inertia m="${caster_wheel_mass}" r="${caster_wheel_radius}" h="${caster_wheel_width}" />
-    </inertial>
-    <collision name="left_caster_wheel_collision">
-      <origin xyz="0 0 -0.1" rpy="0 0 0"/>
-      <geometry>
-        <sphere radius="${caster_wheel_radius}"/>
-      </geometry>
-    </collision>
-    <visual name="left_caster_wheel_visual">
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://caato2_description/meshes/wheels/caster_wheel.stl"/>
-      </geometry>
-    </visual>
-  </link>
-				
-  <joint name="left_caster_wheel_joint" type="continuous">
-    <origin xyz="0.184979 -0.22 0.0484" rpy="0 0 0"/>
-    <child link="left_caster_wheel_link"/>
-    <parent link="base_link"/>
-    <axis rpy="0 0 0" xyz="0 0 1"/>
-    <limit effort="10000" velocity="1000"/>
-    <xacro:caster_wheel_swivel_joint_damping_friction />
-  </joint>
-
-    <!-- Right caster wheel -->
-  <link name="right_caster_wheel_link">
-    <inertial>
-      <mass value="${caster_wheel_mass}"/>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <xacro:cylinder_inertia m="${caster_wheel_mass}" r="${caster_wheel_radius}" h="${caster_wheel_width}" />
-    </inertial>
-    <collision name="right_caster_wheel_collision">
-      <origin xyz="0 0 -0.1" rpy="0 0 0"/>
-      <geometry>
-        <sphere radius="${caster_wheel_radius}"/>
-      </geometry>
-    </collision>
-    <visual name="right_caster_wheel_visual">
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://caato2_description/meshes/wheels/caster_wheel.stl"/>
-      </geometry>
-    </visual>
-  </link>
-				
-  <joint name="right_caster_wheel_joint" type="continuous">
-    <origin xyz="-0.184979 -0.22 0.0484" rpy="0 0 0"/>
-    <child link="right_caster_wheel_link"/>
-    <parent link="base_link"/>
-    <axis rpy="0 0 0" xyz="0 0 1"/>
-    <limit effort="10000" velocity="1000"/>
-    <xacro:caster_wheel_swivel_joint_damping_friction />
   </joint>
 
   <!-- Lider Sensor 1_Front -->

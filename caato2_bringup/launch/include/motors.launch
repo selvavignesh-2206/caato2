@@ -1,0 +1,10 @@
+<launch>
+    <arg name="robot_name" default="caato2" />
+  
+    <!-- Launch roboteq motor controller -->
+    <include file="$(find roboteq_diff_driver)/launch/driver.launch" >
+      <arg name="pub_odom_tf" default="true"/>
+    </include>
+  
+  </launch>
+  

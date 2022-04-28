@@ -1,0 +1,53 @@
+<launch>
+  <arg name="frame_id_1" default="hokuyo_laser_scanner_1" />
+  <arg name="frame_id_2" default="hokuyo_laser_scanner_2" />
+  <arg name="cloud_destination_topic" default="merged_cloud" />
+  <arg name="scan_destination_topic" default="scan" />
+  <arg name="laserscan_topics" default="front_left/scan back_right/scan" />
+  <arg name="destination_frame" default="base_link" />
+
+  <!-- Launch two hokuyo lidars -->
+  <group ns="front_left">
+    <node name="urg_node" pkg="urg_node" type="urg_node" output="screen">
+      <param name="ip_address" value="192.168.1.10"/>
+      <param name="serial_port" value="/dev/ttyACM0"/>
+      <param name="serial_baud" value="115200"/>
+      <param name="frame_id" value="$(arg frame_id_1)"/>
+      <param name="calibrate_time" value="true"/>
+      <param name="publish_intensity" value="false"/>
+      <param name="publish_multiecho" value="false"/>
+      <param name="angle_min" value="-2.35"/>
+      <param name="angle_max" value="2.35"/>
+    </node>
+  </group>
+
+  <group ns="back_right">
+    <node name="urg_node" pkg="urg_node" type="urg_node" output="screen">
+      <param name="ip_address" value="192.168.1.11"/>
+      <param name="serial_port" value="/dev/ttyACM0"/>
+      <param name="serial_baud" value="115200"/>
+      <param name="frame_id" value="$(arg frame_id_2)"/>
+      <param name="calibrate_time" value="true"/>
+      <param name="publish_intensity" value="false"/>
+      <param name="publish_multiecho" value="false"/>
+      <param name="angle_min" value="-2.356194"/>
+      <param name="angle_max" value="2.356194"/>
+    </node>
+  </group>
+    
+  <!-- Launch multi laser merger -->
+  <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
+    <param name="destination_frame" value="$(arg destination_frame)"/>
+    <param name="cloud_destination_topic" value="$(arg cloud_destination_topic)"/>
+    <param name="scan_destination_topic" value="$(arg scan_destination_topic)"/>
+    <param name="laserscan_topics" value ="$(arg laserscan_topics)" /> <!-- LIST OF THE LASER SCAN TOPICS TO SUBSCRIBE -->
+
+    <param name="angle_min" value="-3.1415926"/>
+    <param name="angle_max" value="3.1415926"/>
+    <param name="angle_increment" value="0.004358"/>
+    <param name="scan_time" value="0.025"/>
+    <param name="range_min" value="0.10"/>
+    <param name="range_max" value="10.0"/>
+	</node>
+
+</launch>

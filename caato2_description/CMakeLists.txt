@@ -17,7 +17,7 @@ if (catkin_FOUND)
   )
 
   install(
-    DIRECTORY launch meshes urdf
+    DIRECTORY meshes urdf rviz
     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
   )
 

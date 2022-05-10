@@ -18,6 +18,7 @@
   <xacro:property name="wheel_radius" value="0.1" />
   <xacro:property name="wheel_mass" value="1.2" />
 
+
   <!-- Caster Wheel Properties -->
   <xacro:property name="caster_wheel_width" value="0.035" />
   <xacro:property name="caster_wheel_radius" value="0.05" />
@@ -45,7 +46,8 @@
   </link>
 
   <joint name="base_joint" type="fixed">
-    <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0"/>
+  <!-- Rotated to match rviz config -->
+    <origin xyz="0 0 ${wheel_radius}" rpy="0 0 ${pi/2}"/>
     <parent link="base_footprint"/>
     <child link="base_link"/>
     <dynamics damping="0" friction="0"/>
@@ -210,14 +212,14 @@
   <!-- Lider Sensor 1_Front -->
   <link name="hokuyo_laser_scanner_1">
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 -0.06" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://caato2_description/meshes/sensors/hokuyo_laser_scanner.stl"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 -0.06" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://caato2_description/meshes/sensors/hokuyo_laser_scanner.stl"/>
       </geometry>
@@ -226,14 +228,14 @@
       </material>
     </collision>
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0.785"/>
+      <origin xyz="0 0 -0.06" rpy="0 0 3.93"/>
       <mass value="0.2" />
       <inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
     </inertial>
   </link>
 
 	<joint name="hokuyo_laser_scanner_1_joint" type="fixed">
-		<origin xyz="-0.210233 -0.262308 0.143200" rpy="0 0 0.785" />
+		<origin xyz="-0.210233 -0.262308 0.203200" rpy="0 0 3.93" />
 		<parent link="base_link" />
 		<child link="hokuyo_laser_scanner_1" />
 		<axis xyz="0 0 1"/>
@@ -242,14 +244,14 @@
   <!-- Lider Sensor 2_Back -->
   <link name="hokuyo_laser_scanner_2">
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 -0.06" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://caato2_description/meshes/sensors/hokuyo_laser_scanner.stl"/>
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 -0.06" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://caato2_description/meshes/sensors/hokuyo_laser_scanner.stl"/>
       </geometry>
@@ -258,14 +260,14 @@
       </material>
     </collision>
     <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0.785"/>
+      <origin xyz="0 0 -0.06" rpy="0 0 0.785"/>
       <mass value="0.2" />
       <inertia ixx="0" ixy="0"  ixz="0" iyy="0" iyz="0" izz="0" />
     </inertial>
   </link>
 
 	<joint name="hokuyo_laser_scanner_2_joint" type="fixed">
-		<origin xyz="0.213805 0.115872 0.143200" rpy="0 0 0.785" />
+		<origin xyz="0.213805 0.115872 0.203200" rpy="0 0 0.785" />
 		<parent link="base_link" />
 		<child link="hokuyo_laser_scanner_2" />
 		<axis xyz="0 0 1"/>

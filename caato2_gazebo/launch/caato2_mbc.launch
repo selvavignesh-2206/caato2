@@ -68,7 +68,7 @@
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
-          args="-d $(find caato2_gazebo)/rviz/with_realsense.rviz"/>
+          args="-d $(find caato2_gazebo)/rviz/with_tag_detection.rviz"/>
   </group>
 
   <!-- teleop -->

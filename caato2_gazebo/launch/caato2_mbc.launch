@@ -1,8 +1,15 @@
 <launch>
-  <!-- <arg name="world_name" default="worlds/empty.world"/> -->
+
+  <!-- General Configs -->
+
+  <!-- choose from teb/eband/dwa -->
+  <arg name="move_base_planner" default="teb"/>
+  <arg name="move_forward_only" default="false"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="teleop" default="false"/>
   <arg name="world_name" value="$(find caato2_gazebo)/worlds/sam_mbc.world"/>
-  <!-- <arg name="map_file" default="$(find caato2_gazebo)/maps/mbc/lvl10/mbc.yaml"/> -->
-  <arg name="map_file" default="$(find caato2_gazebo)/maps/others/mbc_lvl_10_060522.yaml"/>
+  <arg name="map_file" default="$(find caato2_gazebo)/maps/mbc/mbc_lvl_10_060522.yaml"/>
+  
 
   <!-- for AMCL -->
   <arg name="initial_pose_x" default="0"/>
@@ -10,13 +17,10 @@
   <arg name="initial_pose_a" default="0"/>
 
   <!-- for world spawn -->
-  <arg name="x_pos" default="43"/>
-  <arg name="y_pos" default="-14.5"/>
+  <arg name="x_pos" default="20"/>
+  <arg name="y_pos" default="-22"/>
   <arg name="z_pos" default="0.157"/>
   <arg name="yaw" default="0.5" />
-  <arg name="open_rviz" default="true"/>
-  <arg name="teleop" default="false"/>
-  <arg name="move_forward_only" default="false"/>
 
 
   <!-- IMPORTANT: INCLUDE BELOW SO THAT NO DELAY IN LOADING GAZEBO -->
@@ -41,7 +45,7 @@
     <arg name="debug" value="false"/>
   </include>
 
-  <!-- from turtlebot3_remote.launch -->
+  <!-- Robot State Publisher -->
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
       <param name="publish_frequency" type="double" value="50.0" />
   </node>
@@ -57,15 +61,15 @@
   </include>
 
   <!-- move_base -->
-  <include file="$(find caato2_navigation)/launch/move_base_dwa.launch">
+  <include file="$(find caato2_navigation)/launch/move_base_$(arg move_base_planner).launch">
       <arg name="move_forward_only" value="$(arg move_forward_only)"/>
   </include>
 
-    <!-- rviz -->
-    <group if="$(arg open_rviz)"> 
-      <node pkg="rviz" type="rviz" name="rviz" required="true"
-            args="-d $(find turtlebot3_navigation)/rviz/turtlebot3_navigation.rviz"/>
-    </group>
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find caato2_gazebo)/rviz/with_realsense.rviz"/>
+  </group>
 
   <!-- teleop -->
   <node if="$(arg teleop)" name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
@@ -82,9 +86,12 @@
 
       <param name="angle_min" value="-3.14"/>
       <param name="angle_max" value="3.14"/>
-      <param name="angle_increment" value="0.0058"/>
+      <param name="angle_increment" value="0.005"/>
       <param name="scan_time" value="0.0333333"/>
       <param name="range_min" value="0.30"/>
       <param name="range_max" value="50.0"/>
   </node>
+
+  <!-- Speckle Filter -->
+  <include file="$(find laser_filters)/examples/speckle_filter_example.launch"/>
 </launch>

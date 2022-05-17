@@ -6,13 +6,14 @@
 
   <!-- move_base -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <param name="base_global_planner" value="navfn/NavfnROS" />
     <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+    <rosparam file="$(find caato2_navigation)/param/tb3_default/dwa_local_planner_params_waffle.yaml" command="load" />
     <rosparam file="$(find caato2_navigation)/param/tb3_default/costmap_common_params_waffle.yaml" command="load" ns="global_costmap" />
     <rosparam file="$(find caato2_navigation)/param/tb3_default/costmap_common_params_waffle.yaml" command="load" ns="local_costmap" />
     <rosparam file="$(find caato2_navigation)/param/tb3_default/local_costmap_params.yaml" command="load" />
     <rosparam file="$(find caato2_navigation)/param/tb3_default/global_costmap_params.yaml" command="load" />
     <rosparam file="$(find caato2_navigation)/param/tb3_default/move_base_params.yaml" command="load" />
-    <rosparam file="$(find caato2_navigation)/param/tb3_default/dwa_local_planner_params_waffle.yaml" command="load" />
     <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
     <remap from="odom" to="$(arg odom_topic)"/>
     <param name="DWAPlannerROS/min_vel_x" value="0.0" if="$(arg move_forward_only)" />

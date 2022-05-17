@@ -6,13 +6,13 @@
     <arg name="headless" default="false"/>
     <arg name="debug" default="false"/>
     <arg name="recording" default="false"/>
-    <arg name="teleop" default="true"/>
+    <arg name="teleop" default="false"/>
     <arg name="world_name" default="worlds/empty.world"/>
 
     <arg name="robot_namespace" default="/caato2" />
-    <arg name="x" default="39"/>
-    <arg name="y" default="-14.5"/>
-    <arg name="z" default="0.157"/>
+    <arg name="x" default="0"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0"/>
     <arg name="yaw" default="0" />
     <arg name="rviz" default="true"/>
     <arg name="move_forward_only" default="false"/>
@@ -49,7 +49,6 @@
   
   
     <node if="$(arg teleop)" name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
-  
 
   </launch>
   

@@ -50,4 +50,7 @@
     <param name="range_max" value="10.0"/>
 	</node>
 
+  <!-- Speckle Filter -->
+  <!-- <include file="$(find laser_filters)/examples/speckle_filter_example.launch"/> -->
+
 </launch>

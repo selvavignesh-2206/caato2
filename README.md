@@ -8,7 +8,7 @@ The CAATO is a Autonomous Ground Vehicle (AGV) developed for the testing of ROS2
 ### Installation
 This installation assumes you have the following installed:
  1. [ROS1 Noetic](http://wiki.ros.org/noetic/Installation/Ubuntu)  
- 2. [Github SSH key](https://careerkarma.com/blog/git-permission-denied-publickey/:~:text=Conclusion-,The%20%E2%80%9CPermission%20denied%20%28publickey%29.,add%20your%20key%20to%20Git) is already setup
+ 2. [Github SSH key](https://careerkarma.com/blog/git-permission-denied-publickey/) is already setup
 ```bash
 #depedencies
 sudo apt update && sudo apt install \

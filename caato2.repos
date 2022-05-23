@@ -1,0 +1,49 @@
+repositories:
+  siot/atc_meta_package:
+    type: git
+    url: git@github.com:TRL-RMF/atc_meta_package.git
+    version: master
+  siot/atc_vision_servoing:
+    type: git
+    url: git@github.com:TRL-RMF/atc_vision_servoing.git
+    version: samuel/caato2_devel
+  siot/caato:
+    type: git
+    url: git@github.com:TRL-RMF/caato.git
+    version: master
+  siot/caato2:
+    type: git
+    url: git@github.com:TRL-RMF/caato2.git
+    version: samuel/caato2_devel
+  siot/decada_sim_assets:
+    type: git
+    url: git@github.com:TRL-RMF/decada_sim_assets.git
+    version: master
+  siot/laser_filters:
+    type: git
+    url: git@github.com:TRL-RMF/laser_filters.git
+    version: samuel/caato2_devel
+  siot/plc-rosbridge:
+    type: git
+    url: git@github.com:TRL-RMF/plc-rosbridge.git
+    version: samuel/caato2_devel
+  siot/realsense-ros:
+    type: git
+    url: git@github.com:TRL-RMF/realsense-ros.git
+    version: samuel/caato2_devel
+  siot/realsense_gazebo_plugin:
+    type: git
+    url: git@github.com:TRL-RMF/realsense_gazebo_plugin.git
+    version: samuel/caato2_devel
+  thirdparty/eband_local_planner:
+    type: git
+    url: https://github.com/utexas-bwi/eband_local_planner.git
+    version: master
+  thirdparty/ira_laser_tools:
+    type: git
+    url: https://github.com/iralabdisco/ira_laser_tools
+    version: ros1-master
+  thirdparty/teleop_twist_joy:
+    type: git
+    url: https://github.com/ros-teleop/teleop_twist_joy
+    version: melodic-devel

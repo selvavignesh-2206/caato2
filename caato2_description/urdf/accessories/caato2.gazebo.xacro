@@ -67,7 +67,7 @@
   <gazebo reference="hokuyo_laser_scanner_1">
     <sensor type="ray" name="front_hokuyo_sensor">
       <!-- <pose>0 0 0 0 0 0</pose> -->
-      <visualize>false</visualize>
+      <visualize>true</visualize>
       <update_rate>10</update_rate>
       <ray>
         <scan>
@@ -98,7 +98,7 @@
   <gazebo reference="hokuyo_laser_scanner_2">
     <sensor type="ray" name="back_hokuyo_sensor">
       <!-- <pose>0 0 0 0 0 0</pose> -->
-      <visualize>false</visualize>
+      <visualize>true</visualize>
       <update_rate>10</update_rate>
       <ray>
         <scan>

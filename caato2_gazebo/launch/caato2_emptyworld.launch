@@ -49,6 +49,10 @@
   
   
     <node if="$(arg teleop)" name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
-
+    <group if="$(arg rviz)"> 
+      <node pkg="rviz" type="rviz" name="rviz" required="true"
+            args="-d $(find caato2_gazebo)/rviz/sample.rviz"/>
+    </group>
+  
   </launch>
   

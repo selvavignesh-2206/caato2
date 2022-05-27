@@ -66,8 +66,7 @@
 
   <gazebo reference="hokuyo_laser_scanner_1">
     <sensor type="ray" name="front_hokuyo_sensor">
-      <!-- <pose>0 0 0 0 0 0</pose> -->
-      <visualize>false</visualize>
+      <visualize>true</visualize>
       <update_rate>10</update_rate>
       <ray>
         <scan>
@@ -97,8 +96,7 @@
 
   <gazebo reference="hokuyo_laser_scanner_2">
     <sensor type="ray" name="back_hokuyo_sensor">
-      <!-- <pose>0 0 0 0 0 0</pose> -->
-      <visualize>false</visualize>
+      <visualize>true</visualize>
       <update_rate>10</update_rate>
       <ray>
         <scan>
@@ -106,7 +104,8 @@
             <samples>1080</samples>
             <resolution>0.25</resolution>
             <min_angle>-2.356</min_angle>
-            <max_angle>2.356</max_angle>
+            <!-- accounting for the arm blocking -->
+            <max_angle>0.78</max_angle>
           </horizontal>
         </scan>
         <range>

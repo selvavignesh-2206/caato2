@@ -8,7 +8,11 @@ The CAATO is a Autonomous Ground Vehicle (AGV) developed for the testing of ROS2
 ### Installation
 This installation assumes you have the following installed:
  1. [ROS1 Noetic](http://wiki.ros.org/noetic/Installation/Ubuntu)  
+<<<<<<< HEAD
  2. [Github SSH key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) is already setup
+=======
+ 2. [Github SSH key](https://careerkarma.com/blog/git-permission-denied-publickey/) is already setup
+>>>>>>> 95f198c8071149ff607bc84c99a81490f0d6cc4f
  3. [Realsense SDK 2.0](https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md) - will be covered below in case
 
 #### Realsense Installation 

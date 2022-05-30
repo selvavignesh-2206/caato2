@@ -35,6 +35,10 @@ repositories:
     type: git
     url: git@github.com:TRL-RMF/realsense_gazebo_plugin.git
     version: samuel/caato2_devel
+  siot/roboteq_diff_driver:
+    type: git
+    url: git@github.com:TRL-RMF/roboteq_diff_driver.git
+    version: main
   thirdparty/eband_local_planner:
     type: git
     url: https://github.com/utexas-bwi/eband_local_planner.git

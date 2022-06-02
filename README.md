@@ -29,11 +29,7 @@ sudo apt-get install librealsense2-dkms librealsense2-utils librealsense2-dev li
 sudo apt update && sudo apt install \
   git cmake python3-vcstool curl \
   qt5-default libmodbus-dev python3-colcon*\
-  python3-rosdep python3-pip \
-  ros-noetic-ddynamic-reconfigure\
-  ros-noetic-base-local-planner\
-  ros-noetic-move-base-msgs\
-  -y
+  python3-rosdep python3-pip -y
 ``` 
 ```bash
 python3 -m pip install flask-socketio
@@ -66,9 +62,18 @@ fatal: Could not read from remote repository...
 ```
 If you get the above error, you need to make you sure set up your Github SSH key as mentioned in requirement #2. Once set up, git clone a random repository to test if the ssh works. When prompted with your ECDSA key fingerprint, make sure you click "yes" to wanting to continue connecting. After that the vcs import src < caato2.repos step should work fine.
 
-### Additional dependencies for some systems
+
+
+### Dependencies in case rosdep didn't install them
 ```bash
-sudo apt-get install ros-noetic-desktop-full ros-noetic-map-server ros-noetic-amcl ros-noetic-move-base ros-noetic-dwa-local-planner -y
+sudo apt-get install ros-noetic-desktop-full\
+  ros-noetic-map-server\
+  ros-noetic-amcl\
+  ros-noetic-move-base\
+  ros-noetic-dwa-local-planner\
+  ros-noetic-ddynamic-reconfigure\
+  ros-noetic-base-local-planner\
+  ros-noetic-move-base-msgs -y
 ```
 
 ### Common commands

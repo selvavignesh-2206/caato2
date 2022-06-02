@@ -39,6 +39,10 @@ repositories:
     type: git
     url: https://github.com/TRL-RMF/roboteq_diff_driver.git
     version: main
+  siot/trolley_arm:
+    type: git
+    url: https://github.com/TRL-RMF/trolley_arm.git
+    version: samuel/caato2_devel
   thirdparty/eband_local_planner:
     type: git
     url: https://github.com/utexas-bwi/eband_local_planner.git

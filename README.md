@@ -42,6 +42,14 @@ sudo apt update && sudo apt install \
 ```bash
 python3 -m pip install flask-socketio
 ```
+
+```bash
+#test out your git ssh key
+cd ~/tmp
+git clone git@github.com:TRL-RMF/test_ssh_key.git
+#if no errors, all's good to go!
+```
+
 ```bash
 # creating your workspace
 mkdir -p ~/caato2_ws/src
@@ -64,6 +72,12 @@ colcon build
 ```
 
 ### Potential Errors
+## build error
+```error: ‘MultiUInt16Array’ in namespace ‘plc_modbus_node’ does not name a type; did you mean ‘MultiByteArray’? ```
+
+solution: run ```colcon build``` again
+
+## importing error during VCS step
 ```bash
 Could not determine ref type of version : git@github.com: Permission denied (publickey). 
 fatal: Could not read from remote repository... 

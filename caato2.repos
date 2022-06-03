@@ -47,3 +47,11 @@ repositories:
     type: git
     url: https://github.com/ros-teleop/teleop_twist_joy
     version: melodic-devel
+  thirdparty/ouster-gazebo-simulation:
+    type: git
+    url: https://github.com/Gepetto/ouster-gazebo-simulation
+    version: master
+  thirdparty/ouster_example:
+    type: git
+    url: https://github.com/ouster-lidar/ouster_example
+    version: master

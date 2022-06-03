@@ -1,0 +1,14 @@
+  <!-- Robot Description from URDF -->
+  <launch>
+    <arg name="gui" default="true" />
+    <arg name="model" default="$(find caato2_description)/urdf/caato2_3d.urdf.xacro"/>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg model)'" />
+
+    <!-- Keeps track of positions of joints and publishes to sensor_msgs/JointState -->
+    <node if="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+    <node unless="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+    <!-- Takes in sensor_msgs/JointState and the URDF file to publish position/orientation of robot -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
+
+</launch>

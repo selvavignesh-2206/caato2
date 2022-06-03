@@ -1,6 +1,8 @@
 <launch>
   <arg name="robot_name" default="caato2" />
   
+  <include file="$(find caato2_bringup)/launch/include/description.launch" />
+
   <!-- Launch roboteq motor controller -->
   <include file="$(find caato2_bringup)/launch/include/caato2_motors.launch" />
 

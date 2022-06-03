@@ -1,56 +1,76 @@
 repositories:
   siot/atc_meta_package:
     type: git
-    url: https://github.com/TRL-RMF/atc_meta_package.git
+    url: git@github.com:TRL-RMF/atc_meta_package.git
     version: master
   siot/atc_vision_servoing:
     type: git
-    url: https://github.com/TRL-RMF/atc_vision_servoing.git
+    url: git@github.com:TRL-RMF/atc_vision_servoing.git
     version: samuel/caato2_devel
   siot/caato:
     type: git
-    url: https://github.com/TRL-RMF/caato.git
+    url: git@github.com:TRL-RMF/caato.git
     version: master
   siot/caato2:
     type: git
-    url: https://github.com/TRL-RMF/caato2.git
+    url: git@github.com:TRL-RMF/caato2.git
     version: samuel/caato2_devel
   siot/decada_sim_assets:
     type: git
-    url: https://github.com/TRL-RMF/decada_sim_assets.git
+    url: git@github.com:TRL-RMF/decada_sim_assets.git
+    version: master
+  siot/ds4_driver:
+    type: git
+    url: git@github.com:TRL-RMF/ds4_driver.git
+    version: main
+  siot/flask_ask_ros_caato:
+    type: git
+    url: git@github.com:TRL-RMF/flask_ask_ros_caato.git
+    version: master
+  siot/ira_laser_tools:
+    type: git
+    url: git@github.com:TRL-RMF/ira_laser_tools.git
     version: master
   siot/laser_filters:
     type: git
-    url: https://github.com/TRL-RMF/laser_filters.git
+    url: git@github.com:TRL-RMF/laser_filters.git
     version: samuel/caato2_devel
   siot/plc-rosbridge:
     type: git
-    url: https://github.com/TRL-RMF/plc-rosbridge.git
+    url: git@github.com:TRL-RMF/plc-rosbridge.git
     version: samuel/caato2_devel
   siot/realsense-ros:
     type: git
-    url: https://github.com/TRL-RMF/realsense-ros.git
+    url: git@github.com:TRL-RMF/realsense-ros.git
     version: samuel/caato2_devel
   siot/realsense_gazebo_plugin:
     type: git
-    url: https://github.com/TRL-RMF/realsense_gazebo_plugin.git
+    url: git@github.com:TRL-RMF/realsense_gazebo_plugin.git
     version: samuel/caato2_devel
   siot/roboteq_diff_driver:
     type: git
-    url: https://github.com/TRL-RMF/roboteq_diff_driver.git
+    url: git@github.com:TRL-RMF/roboteq_diff_driver.git
     version: main
   siot/trolley_arm:
     type: git
-    url: https://github.com/TRL-RMF/trolley_arm.git
+    url: git@github.com:TRL-RMF/trolley_arm.git
     version: samuel/caato2_devel
+  siot/xnergy_charger_rcu:
+    type: git
+    url: git@github.com:TRL-RMF/xnergy_charger_rcu.git
+    version: main
   thirdparty/eband_local_planner:
     type: git
     url: https://github.com/utexas-bwi/eband_local_planner.git
     version: master
-  thirdparty/ira_laser_tools:
+  thirdparty/map_server:
     type: git
-    url: https://github.com/iralabdisco/ira_laser_tools
-    version: ros1-master
+    url: https://github.com/HaoQChen/map_server
+    version: master
+  thirdparty/rosserial:
+    type: git
+    url: https://github.com/ros-drivers/rosserial.git
+    version: noetic-devel
   thirdparty/teleop_twist_joy:
     type: git
     url: https://github.com/ros-teleop/teleop_twist_joy

@@ -45,7 +45,7 @@ python3 -m pip install flask-socketio
 
 ```bash
 #test out your git ssh key
-cd ~/tmp
+cd /tmp
 git clone git@github.com:TRL-RMF/test_ssh_key.git
 #if no errors, all's good to go!
 ```

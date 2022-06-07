@@ -40,7 +40,7 @@ sudo apt update && sudo apt install \
   python3-rosdep python3-pip -y
 ``` 
 ```bash
-python3 -m pip install flask-socketio
+python3 -m pip install flask-socketio ds4drv
 ```
 
 ```bash

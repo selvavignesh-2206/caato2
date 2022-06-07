@@ -97,6 +97,7 @@ sudo apt-get install ros-noetic-desktop-full\
   ros-noetic-base-local-planner\
   ros-noetic-move-base-msgs -y
 ```
+### [ROS CARTOGRAPHER INSTALLATION](https://google-cartographer-ros.readthedocs.io/en/latest/compilation.html)
 
 ### Common commands
 ```

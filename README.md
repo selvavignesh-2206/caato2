@@ -40,12 +40,12 @@ sudo apt update && sudo apt install \
   python3-rosdep python3-pip -y
 ``` 
 ```bash
-python3 -m pip install flask-socketio
+python3 -m pip install flask-socketio ds4drv
 ```
 
 ```bash
 #test out your git ssh key
-cd ~/tmp
+cd /tmp
 git clone git@github.com:TRL-RMF/test_ssh_key.git
 #if no errors, all's good to go!
 ```
@@ -97,6 +97,7 @@ sudo apt-get install ros-noetic-desktop-full\
   ros-noetic-base-local-planner\
   ros-noetic-move-base-msgs -y
 ```
+### [ROS CARTOGRAPHER INSTALLATION](https://google-cartographer-ros.readthedocs.io/en/latest/compilation.html)
 
 ### Common commands
 ```

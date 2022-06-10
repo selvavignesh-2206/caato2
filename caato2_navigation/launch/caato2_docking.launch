@@ -1,0 +1,55 @@
+  
+<launch>
+    <!-- choose from teb/eband/dwa -->
+    <arg name="move_base_planner" default="dwa"/>
+    <arg name="open_rviz" default="true"/>
+    <arg name="teleop" default="false"/>
+    <arg name="map_file" value="$(find caato2_navigation)/maps/070622_L9.yaml"/>
+    <!-- <arg name="rviz_config" value="$(find caato2_gazebo)/rviz/with_tag_detection.rviz"/> -->
+    <arg name="rviz_config" value="$(find caato2_navigation)/rviz/atc.rviz"/>
+
+
+
+    <!-- atc -->
+    <include file="$(find atc_stm)/launch/astm.frontbackAT.noGDB.launch"/> 
+  
+    <!-- teleop -->
+    <group if="$(arg teleop)"> 
+        <include file="$(find caato2_bringup)/launch/caato2_teleop.launch" />
+    </group>
+    <group unless="$(arg teleop)"> 
+        <include file="$(find caato2_bringup)/launch/caato2_remote.launch" />
+    </group>
+        
+    <!-- for AMCL -->
+    <arg name="initial_pose_x" default="0"/>
+    <arg name="initial_pose_y" default="0"/>
+    <arg name="initial_pose_a" default="0"/>
+
+    <!-- rviz -->
+    <group if="$(arg open_rviz)"> 
+      <node pkg="rviz" type="rviz" name="rviz" required="true"
+            args="-d $(arg rviz_config)"/>
+    </group>
+  
+  
+    <!-- Map server -->
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)">
+    </node>
+    
+    <!-- AMCL -->
+    <include file="$(find caato2_navigation)/launch/amcl.launch">
+        <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
+        <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
+        <arg name="initial_pose_a" value="$(arg initial_pose_a)"/>
+    </include>
+
+    <!-- move_base -->
+    <include file="$(find caato2_navigation)/launch/move_base_$(arg move_base_planner).launch"/> 
+
+    <!-- waypoints_server -->
+    <node pkg="atc_waypoints" type="waypoints_server" required="true" name="waypoints_server" output="screen" />
+
+
+  </launch>
+  

@@ -1,10 +1,10 @@
   
 <launch>
     <!-- choose from teb/eband/dwa -->
-    <arg name="move_base_planner" default="dwa"/>
+    <arg name="move_base_planner" default="eband"/>
     <arg name="open_rviz" default="true"/>
     <arg name="teleop" default="false"/>
-    <arg name="map_file" value="$(find caato2_navigation)/maps/070622_L9.yaml"/>
+    <arg name="map_file" value="$(find caato2_navigation)/maps/130622_L9.yaml"/>
     <!-- <arg name="rviz_config" value="$(find caato2_gazebo)/rviz/with_tag_detection.rviz"/> -->
     <arg name="rviz_config" value="$(find caato2_navigation)/rviz/atc.rviz"/>
 

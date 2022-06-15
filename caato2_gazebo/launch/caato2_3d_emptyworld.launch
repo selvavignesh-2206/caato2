@@ -1,0 +1,69 @@
+<launch>
+    <!-- these are the arguments you can pass this launch file, for example paused:=true -->
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="headless" default="false"/>
+    <arg name="debug" default="false"/>
+    <arg name="recording" default="false"/>
+    <arg name="teleop" default="false"/>
+    <arg name="world_name" default="worlds/empty.world"/>
+
+    <arg name="robot_namespace" default="/caato2" />
+    <arg name="x" default="0"/>
+    <arg name="y" default="0"/>
+    <arg name="z" default="0"/>
+    <arg name="yaw" default="0" />
+    <arg name="rviz" default="true"/>
+    <arg name="move_forward_only" default="false"/>
+  
+  
+    <!-- IMPORTANT: INCLUDE BELOW SO THAT NO DELAY IN LOADING GAZEBO -->
+    <env name="GAZEBO_MODEL_DATABASE_URI" value="anything" /> 
+    <env name="GAZEBO_MODEL_PATH" value="$(find caato2_gazebo)/models" />
+  
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+      <arg name="world_name" value="$(arg world_name)"/> 
+      <arg name="debug" value="$(arg debug)" />
+      <arg name="gui" value="$(arg gui)" />
+      <arg name="paused" value="$(arg paused)"/>
+      <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+      <arg name="headless" value="$(arg headless)"/>
+      <arg name="recording" value="$(arg recording)"/>
+      
+    </include>
+  <!-- caato2 -->
+  <include file="$(find caato2_bringup)/launch/include/description_caato_3d.launch">
+  </include>
+  
+    <!-- Spawn robot in gazebo -->
+    <node name="spawn_caato2_model" pkg="gazebo_ros" type="spawn_model"
+      args="-x $(arg x)
+      -y $(arg y)
+      -z $(arg z)
+      -Y $(arg yaw)
+      -unpause
+      -urdf
+      -param robot_description
+      -model $(arg robot_namespace)" />
+  
+  
+    <node if="$(arg teleop)" name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
+    <group if="$(arg rviz)"> 
+      <node pkg="rviz" type="rviz" name="rviz" required="true"
+            args="-d $(find caato2_gazebo)/rviz/sample.rviz"/>
+    </group>
+
+        <!-- 3D ouster lidar
+    <include file="$(find ouster_ros)/ouster.launch" >
+      <arg name="sensor_hostname" value="192.168.1.87" />
+      <arg name="udp_dest" value="192.168.1.2" />
+      <arg name="viz" value="false" />
+      <arg name="tf_prefix" value="$(arg tf_prefix)" />
+      <arg name="os_config" value="/caato_0/os_node/os_config"/>
+      <arg name="lidar_packets" value="/caato_0/os_node/lidar_packets"/>
+      <arg name="imu_packets" value="/caato_0/os_node/imu_packets"/>
+    </include> -->
+  
+  </launch>
+  

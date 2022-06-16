@@ -1,6 +1,6 @@
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
-#include "caato2_cmd_mux/change_sub_topic.h"
+#include "caato2_stm/change_sub_topic.h"
 
 ros::Publisher pub;
 ros::Subscriber sub;
@@ -14,8 +14,8 @@ void muxSubCallback(const geometry_msgs::Twist::ConstPtr &incoming_msg)
 
 }
 
-bool change_topic_callback(caato2_cmd_mux::change_sub_topic::Request &req,
-         caato2_cmd_mux::change_sub_topic::Response &res)
+bool change_topic_callback(caato2_stm::change_sub_topic::Request &req,
+         caato2_stm::change_sub_topic::Response &res)
 {
     if (req.a >= cmd_vel_topics_.size())
     {
@@ -43,7 +43,7 @@ bool change_topic_callback(caato2_cmd_mux::change_sub_topic::Request &req,
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "caato2_cmd_mux");
+    ros::init(argc, argv, "caato2_stm");
     ros::NodeHandle nh;
     nh_pointer = &nh;
     

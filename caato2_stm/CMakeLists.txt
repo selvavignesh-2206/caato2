@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(caato2_cmd_mux)
+project(caato2_stm)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -120,13 +120,13 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(caato2_cmd_mux_node src/cmd_vel_mux.cpp)
+add_executable(caato2_stm_node src/cmd_vel_mux.cpp)
 
 # add_dependencies(caato2_mux_node caato2_cmd_mux_generate_messages_cpp)
-add_dependencies(caato2_cmd_mux_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} caato2_cmd_mux_generate_messages_cpp)
+add_dependencies(caato2_stm_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} caato2_stm_generate_messages_cpp)
 
 
-target_link_libraries(caato2_cmd_mux_node ${catkin_LIBRARIES})
+target_link_libraries(caato2_stm_node ${catkin_LIBRARIES})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -174,7 +174,7 @@ target_link_libraries(caato2_cmd_mux_node ${catkin_LIBRARIES})
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
-install(TARGETS caato2_cmd_mux_node
+install(TARGETS caato2_stm_node
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

@@ -22,7 +22,7 @@ if (catkin_FOUND)
   )
 
   install(
-    DIRECTORY launch worlds models rviz maps
+    DIRECTORY launch worlds models rviz maps config
     DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
   )
 

@@ -1,0 +1,105 @@
+<launch>
+
+  <!-- General Configs -->
+
+  <!-- choose from teb/eband/dwa -->
+  <arg name="move_base_planner" default="eband"/>
+  <arg name="move_forward_only" default="false"/>
+  <arg name="open_rviz" default="true"/>
+  <arg name="teleop" default="false"/>
+  <arg name="world_name" value="$(find caato2_gazebo)/worlds/sam_mbc.world"/>
+  <arg name="map_file" value="$(find caato2_gazebo)/maps/mbc/mbc_lvl_10_060522.yaml"/>
+  
+
+  <!-- for AMCL -->
+  <arg name="initial_pose_x" default="29.5"/>
+  <arg name="initial_pose_y" default="11"/>
+  <arg name="initial_pose_a" default="-3"/>
+
+  <!-- for world spawn -->
+  <arg name="x_pos" default="20"/>
+  <arg name="y_pos" default="-22"/>
+  <arg name="z_pos" default="0.157"/>
+  <arg name="yaw" default="0.5" />
+
+
+  <!-- IMPORTANT: INCLUDE BELOW SO THAT NO DELAY IN LOADING GAZEBO -->
+  <env name="GAZEBO_MODEL_DATABASE_URI" value="anything" /> 
+  <env name="GAZEBO_MODEL_PATH" value="$(find caato2_gazebo)/models" />
+
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find caato2_description)/urdf/caato2.urdf.xacro" />
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf"  
+      args="-urdf 
+      -model caato2 
+      -x $(arg x_pos) 
+      -y $(arg y_pos) 
+      -z $(arg z_pos) 
+      -param robot_description" />
+      
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_name)"/> 
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- Robot State Publisher -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+      <param name="publish_frequency" type="double" value="50.0" />
+  </node>
+
+  <!-- Map server -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
+
+  <!-- AMCL -->
+  <include file="$(find caato2_navigation)/launch/move_base/amcl.launch">
+      <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
+      <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
+      <arg name="initial_pose_a" value="$(arg initial_pose_a)"/>
+  </include>
+
+  <!-- move_base -->
+  <include file="$(find caato2_navigation)/launch/move_base/move_base_$(arg move_base_planner).launch">
+      <arg name="move_forward_only" value="$(arg move_forward_only)"/>
+      <arg name="cmd_vel_topic" value="cmd_vel/move_base"/>
+  </include>
+
+  <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find caato2_gazebo)/rviz/with_tag_detection.rviz"/>
+  </group>
+
+  <!-- teleop -->
+  <node if="$(arg teleop)" name="teleop" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
+
+
+  <!-- Launch multi laser merger -->
+    <arg name="start_delay" default="3" />
+    <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger"
+      launch-prefix="bash -c 'sleep $(arg start_delay); $0 $@'">
+      <param name="destination_frame" value="hokuyo_laser_scanner_1"/>
+      <param name="cloud_destination_topic" value="/merged_cloud"/>
+      <param name="scan_destination_topic" value="/scan"/>
+      <param name="laserscan_topics" value ="/back_left/scan /front_right/scan" /> <!-- LIST OF THE LASER SCAN TOPICS TO SUBSCRIBE -->
+
+      <param name="angle_min" value="-3.14"/>
+      <param name="angle_max" value="3.14"/>
+      <param name="angle_increment" value="0.005"/>
+      <param name="scan_time" value="0.0333333"/>
+      <param name="range_min" value="0.30"/>
+      <param name="range_max" value="50.0"/>
+  </node>
+
+  <!-- Speckle Filter -->
+  <include file="$(find laser_filters)/examples/speckle_filter_example.launch"/>
+
+    <!-- STM -->
+  <include file="$(find caato2_stm)/launch/cmd_vel_mux.launch"/>
+
+
+</launch>
+
+

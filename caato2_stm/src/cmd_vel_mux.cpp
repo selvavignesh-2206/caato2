@@ -1,28 +1,48 @@
-#include <ros/ros.h>
-#include <geometry_msgs/Twist.h>
-#include "caato2_stm/change_sub_topic.h"
+#include "caato2_stm/cmd_vel_mux.h"
 
-ros::Publisher pub;
-ros::Subscriber sub;
-geometry_msgs::Twist msg;
-std::vector<std::string> cmd_vel_topics_;
-ros::NodeHandle* nh_pointer;
 
-void muxSubCallback(const geometry_msgs::Twist::ConstPtr &incoming_msg)
+CmdVelMux::CmdVelMux()
 {
-    msg = *incoming_msg;
 
 }
 
-bool change_topic_callback(caato2_stm::change_sub_topic::Request &req,
+CmdVelMux::CmdVelMux(ros::NodeHandle* node_handle_pointer)
+{
+    nh_pointer = node_handle_pointer;
+
+    nh_pointer->getParam("/cmd_vel_topic_list", cmd_vel_topics_);
+
+    sub = nh_pointer->subscribe(cmd_vel_topics_[0], 1000, &CmdVelMux::muxSubCallback, this);
+    pub = nh_pointer->advertise<geometry_msgs::Twist>("cmd_vel", 1000);
+    service = nh_pointer->advertiseService("cmd_vel_mux", &CmdVelMux::change_topic_callback, this);
+}
+
+CmdVelMux::~CmdVelMux()
+{
+}
+
+void CmdVelMux::muxSpin()
+{
+    pub.publish(msg);
+}
+
+void CmdVelMux::muxSubCallback(const geometry_msgs::Twist::ConstPtr &incoming_msg)
+{
+    msg = *incoming_msg;
+    
+}
+
+bool CmdVelMux::change_topic_callback(caato2_stm::change_sub_topic::Request &req,
          caato2_stm::change_sub_topic::Response &res)
 {
+    std::cerr << "line 1 " << cmd_vel_topics_[req.a] << std::endl;
     if (req.a >= cmd_vel_topics_.size())
     {
         res.result = false;
+        std::cerr << "false" << std::endl;
         return false;
     }
-    else if (req.a == 0)
+    else // if (req.a == 0)
     {
         msg.linear.x = 0;
         msg.linear.y = 0;
@@ -31,40 +51,12 @@ bool change_topic_callback(caato2_stm::change_sub_topic::Request &req,
         msg.angular.y = 0;
         msg.angular.z = 0;
         res.result = true;
-        return true;
+        // return true;
     }
     sub.shutdown();
-    sub = nh_pointer->subscribe(cmd_vel_topics_[req.a], 1000, muxSubCallback);
-    // std::cerr << cmd_vel_topics_[req.a] << std::endl;
+    sub = nh_pointer->subscribe(cmd_vel_topics_[req.a], 1000, &CmdVelMux::muxSubCallback, this);
+    std::cerr << "line 2 " <<cmd_vel_topics_[req.a] << std::endl;
     res.result = true;
 
     return true;
-}
-
-int main(int argc, char **argv)
-{
-    ros::init(argc, argv, "caato2_stm");
-    ros::NodeHandle nh;
-    nh_pointer = &nh;
-    
-    nh.getParam("/cmd_vel_topic_list", cmd_vel_topics_);
-
-    ros::ServiceServer service = nh.advertiseService("cmd_vel_mux", change_topic_callback);
-
-    sub = nh.subscribe(cmd_vel_topics_[0], 1000, muxSubCallback);
-
-    pub = nh.advertise<geometry_msgs::Twist>("cmd_vel", 1000);
-
-    ros::Rate loop_rate(10);
-
-    while (ros::ok())
-    {
-        pub.publish(msg);
-
-        ros::spinOnce();
-
-        loop_rate.sleep();
-    }
-
-    return 0;
 }

@@ -35,7 +35,7 @@ void CmdVelMux::muxSubCallback(const geometry_msgs::Twist::ConstPtr &incoming_ms
 bool CmdVelMux::change_topic_callback(caato2_stm::change_sub_topic::Request &req,
          caato2_stm::change_sub_topic::Response &res)
 {
-    std::cerr << "line 1 " << cmd_vel_topics_[req.a] << std::endl;
+    // std::cerr << "line 1 " << cmd_vel_topics_[req.a] << std::endl;
     if (req.a >= cmd_vel_topics_.size())
     {
         res.result = false;
@@ -55,7 +55,7 @@ bool CmdVelMux::change_topic_callback(caato2_stm::change_sub_topic::Request &req
     }
     sub.shutdown();
     sub = nh_pointer->subscribe(cmd_vel_topics_[req.a], 1000, &CmdVelMux::muxSubCallback, this);
-    std::cerr << "line 2 " <<cmd_vel_topics_[req.a] << std::endl;
+    // std::cerr << "line 2 " <<cmd_vel_topics_[req.a] << std::endl;
     res.result = true;
 
     return true;

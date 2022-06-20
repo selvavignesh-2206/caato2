@@ -4,15 +4,17 @@ import os
 import rospy
 import threading
 
+from fastapi import FastAPI
+import uvicorn
+
 
 # Brings in the SimpleActionClient
 import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 
-from flask import Flask, jsonify, request
 import json
 
-app = Flask(__name__)
+app = FastAPI()
 
 threading.Thread(target=lambda: rospy.init_node('fleet_client_node', disable_signals=True)).start()
 
@@ -20,13 +22,11 @@ nav_goal = [
     {'nav_goal_x': 0, 'nav_goal_y': 0, 'nav_goal_z': 0}
 ]
 
-@app.route('/')
-def alive():
-    return '', 204
+@app.get('/')
+async def root():
+    rospy.loginfo("I AM ALIVE!")
+    return {"message": "Hello World"}
 
-@app.route('/navigate')
-def get_nav_goal():
-  return jsonify(nav_goal)
 
 def movebase_client(nav_goal_x, nav_goal_y, nav_goal_z):
 
@@ -75,7 +75,7 @@ def stop():
 
 if __name__ == '__main__':
     try:
-        app.run(host='0.0.0.0', debug=True)
+        uvicorn.run(app, host="127.0.0.1", port=5000, log_level="info")
         rospy.spin()
     except rospy.ROSInterruptException:
         pass

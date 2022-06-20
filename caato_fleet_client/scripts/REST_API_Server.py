@@ -6,13 +6,18 @@ import threading
 
 from fastapi import FastAPI
 import uvicorn
-
+from pydantic import BaseModel
 
 # Brings in the SimpleActionClient
 import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 
 import json
+
+class NavGoal(BaseModel):
+    nav_goal_x: float
+    nav_goal_y: float
+    nav_goal_z: float
 
 app = FastAPI()
 
@@ -25,7 +30,7 @@ nav_goal = [
 @app.get('/')
 async def root():
     rospy.loginfo("move_base!")
-    movebase_client(27.2, 9.90, 0.99)
+    # movebase_client(27.2, 9.90, 0.99)
     return {"message": "Hello World"}
 
 
@@ -62,10 +67,11 @@ def movebase_client(nav_goal_x, nav_goal_y, nav_goal_z):
         return client.get_result()   
 
 @app.post('/navigate')
-def navigate():
-    nav_goal = request.get_json()
-    movebase_client(nav_goal["nav_goal_x"], nav_goal["nav_goal_y"], nav_goal["nav_goal_z"])
-    return '', 204
+def navigate(navgoal: NavGoal):
+    # nav_goal = request.get_json()
+    movebase_client(navgoal.nav_goal_x, navgoal.nav_goal_y, navgoal.nav_goal_z)
+    # movebase_client(nav_goal["nav_goal_x"], nav_goal["nav_goal_y"], nav_goal["nav_goal_z"])
+    return 204
 
 @app.post('/start_process')
 def start_process():

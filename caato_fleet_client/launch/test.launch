@@ -4,6 +4,6 @@
   </node>
 
   <include file="$(find caato2_gazebo)/launch/caato2_mbc.launch">
-  </include?
+  </include>
 
 </launch>

@@ -24,12 +24,14 @@ nav_goal = [
 
 @app.get('/')
 async def root():
-    rospy.loginfo("I AM ALIVE!")
+    rospy.loginfo("move_base!")
+    movebase_client(27.2, 9.90, 0.99)
     return {"message": "Hello World"}
 
 
 def movebase_client(nav_goal_x, nav_goal_y, nav_goal_z):
 
+    rospy.loginfo("move_base starting!")
    # Create an action client called "move_base" with action definition file "MoveBaseAction"
     client = actionlib.SimpleActionClient('move_base',MoveBaseAction)
  
@@ -56,19 +58,20 @@ def movebase_client(nav_goal_x, nav_goal_y, nav_goal_z):
         rospy.signal_shutdown("Action server not available!")
     else:
     # Result of executing the action
+        rospy.loginfo("move_base completed!")
         return client.get_result()   
 
-@app.route('/navigate', methods=['POST'])
+@app.post('/navigate')
 def navigate():
     nav_goal = request.get_json()
     movebase_client(nav_goal["nav_goal_x"], nav_goal["nav_goal_y"], nav_goal["nav_goal_z"])
     return '', 204
 
-@app.route('/start_process', methods=['POST'])
+@app.post('/start_process')
 def start_process():
     return '', 204
 
-@app.route('/stop', methods=['POST'])
+@app.post('/stop')
 def stop():
     return '', 204
 

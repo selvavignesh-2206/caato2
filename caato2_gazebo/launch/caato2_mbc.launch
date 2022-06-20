@@ -55,14 +55,14 @@
   <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
 
   <!-- AMCL -->
-  <include file="$(find caato2_navigation)/launch/amcl.launch">
+  <include file="$(find caato2_navigation)/launch/move_base/amcl.launch">
       <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
       <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
       <arg name="initial_pose_a" value="$(arg initial_pose_a)"/>
   </include>
 
   <!-- move_base -->
-  <include file="$(find caato2_navigation)/launch/move_base_$(arg move_base_planner).launch">
+  <include file="$(find caato2_navigation)/launch/move_base/move_base_$(arg move_base_planner).launch">
       <arg name="move_forward_only" value="$(arg move_forward_only)"/>
       <!-- <arg name="cmd_vel_topic" value="$(arg cmd_vel_topic)" /> -->
   </include>

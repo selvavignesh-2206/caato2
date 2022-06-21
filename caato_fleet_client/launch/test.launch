@@ -3,7 +3,7 @@
   <node pkg="caato_fleet_client" type="REST_API_Server.py" name="caato_fleet_client">
   </node>
 
-  <include file="$(find caato2_gazebo)/launch/caato2_mbc.launch">
+  <include file="$(find caato2_gazebo)/launch/caato2_mbc_stm.launch">
   </include>
 
 </launch>

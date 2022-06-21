@@ -11,6 +11,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   actionlib_msgs
+  caato2_stm
 )
 
 ## System dependencies are found with CMake's conventions
@@ -71,6 +72,7 @@ find_package(catkin REQUIRED COMPONENTS
 # generate_messages(
 #   DEPENDENCIES
 #   std_msgs
+#   caato2_stm
 # )
 
 ################################################

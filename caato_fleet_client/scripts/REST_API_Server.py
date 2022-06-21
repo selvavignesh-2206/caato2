@@ -12,6 +12,8 @@ from pydantic import BaseModel
 import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 
+from caato2_stm.srv import *
+
 import json
 
 class NavGoal(BaseModel):
@@ -22,10 +24,6 @@ class NavGoal(BaseModel):
 app = FastAPI()
 
 threading.Thread(target=lambda: rospy.init_node('fleet_client_node', disable_signals=True)).start()
-
-nav_goal = [
-    {'nav_goal_x': 0, 'nav_goal_y': 0, 'nav_goal_z': 0}
-]
 
 @app.get('/')
 async def root():
@@ -66,12 +64,14 @@ def movebase_client(nav_goal_x, nav_goal_y, nav_goal_z):
         rospy.loginfo("move_base completed!")
         return client.get_result()   
 
+command_robot = rospy.ServiceProxy('cmd_vel_mux', change_robot_state)
+
 @app.post('/navigate')
 def navigate(navgoal: NavGoal):
     # nav_goal = request.get_json()
     movebase_client(navgoal.nav_goal_x, navgoal.nav_goal_y, navgoal.nav_goal_z)
     # movebase_client(nav_goal["nav_goal_x"], nav_goal["nav_goal_y"], nav_goal["nav_goal_z"])
-    return 204
+    return 200
 
 @app.post('/start_process')
 def start_process():
@@ -79,7 +79,33 @@ def start_process():
 
 @app.post('/stop')
 def stop():
-    return '', 204
+    rospy.wait_for_service('cmd_vel_mux')
+    try:
+        resp1 = command_robot(0)
+        return '', 200
+    except rospy.ServiceException as e:
+        print("Service call failed: %s"%e)
+        return "Service call failed: %s"%e,200
+
+@app.post('/pause_navigation')
+def pause():
+    rospy.wait_for_service('cmd_vel_mux')
+    try:
+        resp1 = command_robot(2)
+        return '', 200
+    except rospy.ServiceException as e:
+        print("Service call failed: %s"%e)
+        return "Service call failed: %s"%e,200
+
+@app.post('/resume_navigation')
+def resume():
+    rospy.wait_for_service('cmd_vel_mux')
+    try:
+        resp1 = command_robot(1)
+        return '', 200
+    except rospy.ServiceException as e:
+        print("Service call failed: %s"%e)
+        return "Service call failed: %s"%e,200
 
 
 if __name__ == '__main__':

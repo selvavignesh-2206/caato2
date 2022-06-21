@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   # caato2_cmd_mux
   std_msgs
   message_generation
+  actionlib_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -49,16 +50,15 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+add_message_files(
+  FILES
+  caato_state.msg
+)
 
 # Generate services in the 'srv' folder
 add_service_files(
   FILES
-  change_sub_topic.srv
+  change_robot_state.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -71,7 +71,9 @@ add_service_files(
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
   DEPENDENCIES
-  geometry_msgs#   std_msgs
+  geometry_msgs
+  std_msgs
+  actionlib_msgs
 )
 
 ################################################
@@ -106,7 +108,7 @@ generate_messages(
 catkin_package(
  INCLUDE_DIRS include
  LIBRARIES ${PROJECT_NAME}
- CATKIN_DEPENDS geometry_msgs roscpp std_msgs message_runtime
+ CATKIN_DEPENDS geometry_msgs roscpp std_msgs actionlib_msgs message_runtime
 #  DEPENDS system_lib
 )
 

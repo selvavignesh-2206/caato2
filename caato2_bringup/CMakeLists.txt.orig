@@ -51,12 +51,16 @@ target_link_libraries(static_ouster_broadcaster  ${catkin_LIBRARIES} )
 ################################################################################
 # Install
 ################################################################################
+<<<<<<< HEAD
+install(DIRECTORY launch rviz
+=======
 install(TARGETS static_ouster_broadcaster
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 
 install(DIRECTORY launch 
+>>>>>>> abi/caato2_devel
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 )
 

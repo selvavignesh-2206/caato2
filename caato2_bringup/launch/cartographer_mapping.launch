@@ -1,0 +1,10 @@
+<launch>
+    <include file="$(find caato2_bringup)/launch/include/description_caato_3d.launch" />
+
+    <include file="$(find caato2_bringup)/launch/include/caato2_3d_lasers.launch" />
+
+    <include file="$(find roboteq_diff_driver)/launch/driver.launch" />
+
+    <include file="$(find caato_teleop)/launch/ds4.launch" />
+
+</launch>

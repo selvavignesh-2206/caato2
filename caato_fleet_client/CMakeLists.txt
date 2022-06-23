@@ -10,8 +10,10 @@ project(caato_fleet_client)
 find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
+  geometry_msgs
   actionlib_msgs
   caato2_stm
+  tf_conversions
 )
 
 ## System dependencies are found with CMake's conventions

@@ -11,25 +11,51 @@ from pydantic import BaseModel
 # Brings in the SimpleActionClient
 import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+from geometry_msgs.msg import PoseWithCovarianceStamped
+import tf_conversions
 
 from caato2_stm.srv import *
 
 import json
+
+
 
 class NavGoal(BaseModel):
     nav_goal_x: float
     nav_goal_y: float
     nav_goal_z: float
 
+class PoseResp(BaseModel):
+    pose_x: float
+    pose_y: float
+    pose_theta: float
+
+pose_resp = PoseResp(pose_x='0.0', pose_y='0.0', pose_theta='0.0')
+
 app = FastAPI()
 
 threading.Thread(target=lambda: rospy.init_node('fleet_client_node', disable_signals=True)).start()
 
+def pose_sub_callback(data):
+    pose_resp.pose_x = data.pose.pose.position.x
+    pose_resp.pose_y = data.pose.pose.position.y
+    rpy = tf_conversions.transformations.euler_from_quaternion([data.pose.pose.orientation.x, data.pose.pose.orientation.y, data.pose.pose.orientation.z, data.pose.pose.orientation.w])
+    pose_resp.pose_theta = rpy[2]
+    rospy.loginfo("successfully callback")
+    return
+
+rospy.Subscriber("amcl_pose", PoseWithCovarianceStamped, pose_sub_callback)
+
+
 @app.get('/')
 async def root():
-    rospy.loginfo("move_base!")
+    rospy.loginfo("server test!")
     # movebase_client(27.2, 9.90, 0.99)
-    return {"message": "Hello World"}
+    return {"connected": "True"}
+
+@app.get('/position')
+def position():
+    return pose_resp, 200
 
 
 def movebase_client(nav_goal_x, nav_goal_y, nav_goal_z):
@@ -54,6 +80,7 @@ def movebase_client(nav_goal_x, nav_goal_y, nav_goal_z):
    # Sends the goal to the action server.
     client.send_goal(goal)
    # Waits for the server to finish performing the action.
+    rospy.loginfo("Current State: " + client.get_goal_status_text())
     wait = client.wait_for_result()
    # If the result doesn't arrive, assume the Server is not available
     if not wait:
@@ -65,6 +92,8 @@ def movebase_client(nav_goal_x, nav_goal_y, nav_goal_z):
         return client.get_result()   
 
 command_robot = rospy.ServiceProxy('cmd_vel_mux', change_robot_state)
+
+
 
 @app.post('/navigate')
 def navigate(navgoal: NavGoal):

@@ -1,0 +1,33 @@
+name: check if caato2_ws build is ok after every push
+
+on:
+  push:
+      branches:
+        - main
+  workflow_dispatch:
+  
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+
+jobs:
+  scraper:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install requirements
+        run: pip install -r requirements.txt
+      - name : Set correct time
+        run: sudo timedatectl set-timezone Asia/Singapore
+      - name: Run Scraper
+        run: python script.py
+      - name: Run Data collator
+        run: python data_parser_usingdict.py
+      - name: Commit files
+        uses: EndBug/add-and-commit@v8
+        with:
+          default_author: github_actions

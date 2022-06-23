@@ -1,0 +1,14 @@
+<!-- TODO modify this file for irl robot launches -->
+
+  <launch>
+
+    <arg name="model" default="$(find caato2_description)/urdf/caato2.urdf.xacro"/>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg model)'" />
+
+    <!-- Keeps track of positions of joints and publishes to sensor_msgs/JointState -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+    <!-- Takes in sensor_msgs/JointState and the URDF file to publish position/orientation of robot -->
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
+
+</launch>

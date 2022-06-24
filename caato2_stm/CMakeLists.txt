@@ -106,7 +106,7 @@ generate_messages(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
- INCLUDE_DIRS include
+#  INCLUDE_DIRS include
  LIBRARIES ${PROJECT_NAME}
  CATKIN_DEPENDS geometry_msgs roscpp std_msgs actionlib_msgs message_runtime
 #  DEPENDS system_lib
@@ -128,9 +128,18 @@ add_library(${PROJECT_NAME}
 )
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 
+add_library(navigation_manager
+  src/navigation_manager.cpp
+)
+target_link_libraries(navigation_manager ${catkin_LIBRARIES})
+
 add_executable(caato2_stm_node src/cmd_vel_mux_node.cpp)
 add_dependencies(caato2_stm_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} caato2_stm_generate_messages_cpp)
 target_link_libraries(caato2_stm_node caato2_stm ${catkin_LIBRARIES})
+
+add_executable(navigation_manager_node src/navigation_manager_node.cpp)
+add_dependencies(caato2_stm_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} caato2_stm_generate_messages_cpp)
+target_link_libraries(caato2_stm_node navigation_manager ${catkin_LIBRARIES})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -178,7 +187,7 @@ target_link_libraries(caato2_stm_node caato2_stm ${catkin_LIBRARIES})
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
-install(TARGETS caato2_stm_node
+install(TARGETS caato2_stm_node navigation_manager_node
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

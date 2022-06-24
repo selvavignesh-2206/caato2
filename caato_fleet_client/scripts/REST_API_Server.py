@@ -55,7 +55,7 @@ async def root():
 
 @app.get('/position')
 def position():
-    return pose_resp, 200
+    return pose_resp
 
 
 def movebase_client(nav_goal_x, nav_goal_y, nav_goal_z):
@@ -100,41 +100,41 @@ def navigate(navgoal: NavGoal):
     # nav_goal = request.get_json()
     movebase_client(navgoal.nav_goal_x, navgoal.nav_goal_y, navgoal.nav_goal_z)
     # movebase_client(nav_goal["nav_goal_x"], nav_goal["nav_goal_y"], nav_goal["nav_goal_z"])
-    return 200
+    return ''
 
 @app.post('/start_process')
 def start_process():
-    return '', 204
+    return ''
 
 @app.post('/stop')
 def stop():
     rospy.wait_for_service('cmd_vel_mux')
     try:
         resp1 = command_robot(0)
-        return '', 200
+        return ''
     except rospy.ServiceException as e:
         print("Service call failed: %s"%e)
-        return "Service call failed: %s"%e,200
+        return "Service call failed: %s"%e
 
 @app.post('/pause_navigation')
 def pause():
     rospy.wait_for_service('cmd_vel_mux')
     try:
         resp1 = command_robot(2)
-        return '', 200
+        return ''
     except rospy.ServiceException as e:
         print("Service call failed: %s"%e)
-        return "Service call failed: %s"%e,200
+        return "Service call failed: %s"%e
 
 @app.post('/resume_navigation')
 def resume():
     rospy.wait_for_service('cmd_vel_mux')
     try:
         resp1 = command_robot(1)
-        return '', 200
+        return ''
     except rospy.ServiceException as e:
         print("Service call failed: %s"%e)
-        return "Service call failed: %s"%e,200
+        return "Service call failed: %s"%e
 
 
 if __name__ == '__main__':

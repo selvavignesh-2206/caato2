@@ -57,6 +57,9 @@ async def root():
 def position():
     return pose_resp
 
+@app.get('/device_status')
+def device_status():
+    return 0.8
 
 def movebase_client(nav_goal_x, nav_goal_y, nav_goal_z):
 

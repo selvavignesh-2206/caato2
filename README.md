@@ -63,6 +63,8 @@ vcs import src < caato2.repos
 ```bash
 # more dependencies + building
 sudo rosdep init
+```
+```bash
 rosdep update
 rosdep install --from-paths src --ignore-src --rosdistro noetic -y
 ```

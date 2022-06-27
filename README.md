@@ -35,7 +35,7 @@ curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo ap
 ```bash
 #depedencies
 sudo apt update && sudo apt install \
-  libglfw3 libglfw3-dev
+  libglfw3 libglfw3-dev \
   git cmake python3-vcstool curl \
   qt5-default libmodbus-dev python3-colcon*\
   python3-rosdep python3-pip -y

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(caato2_cmd_mux)
+project(caato2_stm)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -13,6 +13,9 @@ find_package(catkin REQUIRED COMPONENTS
   # caato2_cmd_mux
   std_msgs
   message_generation
+  actionlib_msgs
+  move_base_msgs
+  actionlib
 )
 
 ## System dependencies are found with CMake's conventions
@@ -49,16 +52,17 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+add_message_files(
+  FILES
+  caato_state.msg
+)
 
 # Generate services in the 'srv' folder
 add_service_files(
   FILES
-  change_sub_topic.srv
+  change_robot_state.srv
+  navigate_sequence.srv
+  navigate_goal.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -71,7 +75,9 @@ add_service_files(
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
   DEPENDENCIES
-  geometry_msgs#   std_msgs
+  geometry_msgs
+  std_msgs
+  actionlib_msgs
 )
 
 ################################################
@@ -104,9 +110,9 @@ generate_messages(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES caato2_cmd_mux
- CATKIN_DEPENDS geometry_msgs roscpp std_msgs message_runtime
+ INCLUDE_DIRS include
+ LIBRARIES ${PROJECT_NAME} navigation_manager
+ CATKIN_DEPENDS geometry_msgs roscpp std_msgs actionlib_msgs move_base_msgs actionlib message_runtime
 #  DEPENDS system_lib
 )
 
@@ -117,16 +123,25 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(caato2_cmd_mux_node src/cmd_vel_mux.cpp)
+add_library(${PROJECT_NAME}
+  src/cmd_vel_mux.cpp
+)
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 
-# add_dependencies(caato2_mux_node caato2_cmd_mux_generate_messages_cpp)
-add_dependencies(caato2_cmd_mux_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} caato2_cmd_mux_generate_messages_cpp)
+add_library(navigation_manager src/navigation_manager.cpp)
+target_link_libraries(navigation_manager ${catkin_LIBRARIES})
 
+add_executable(caato2_stm_node src/cmd_vel_mux_node.cpp)
+add_dependencies(caato2_stm_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} caato2_stm_generate_messages_cpp)
+target_link_libraries(caato2_stm_node caato2_stm ${catkin_LIBRARIES})
 
-target_link_libraries(caato2_cmd_mux_node ${catkin_LIBRARIES})
+add_executable(navigation_manager_node src/navigation_manager_node.cpp)
+add_dependencies(navigation_manager_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} caato2_stm_generate_messages_cpp)
+target_link_libraries(navigation_manager_node ${catkin_LIBRARIES} navigation_manager)
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -174,24 +189,24 @@ target_link_libraries(caato2_cmd_mux_node ${catkin_LIBRARIES})
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
-install(TARGETS caato2_cmd_mux_node
+install(TARGETS caato2_stm_node navigation_manager_node
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 ## Mark libraries for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html
-# install(TARGETS ${PROJECT_NAME}
-#   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-#   RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
-# )
+install(TARGETS ${PROJECT_NAME} navigation_manager
+  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
+  RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
+)
 
 ## Mark cpp header files for installation
-# install(DIRECTORY include/${PROJECT_NAME}/
-#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-#   FILES_MATCHING PATTERN "*.h"
+install(DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  FILES_MATCHING PATTERN "*.h"
 #   PATTERN ".svn" EXCLUDE
-# )
+)
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 # install(FILES

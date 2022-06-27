@@ -57,7 +57,7 @@ cd ~/caato2_ws
 ```
 ```bash
 #get list of repositories and import to src
-wget https://raw.githubusercontent.com/TRL-RMF/caato2/samuel/caato2_devel/caato2.repos
+wget https://raw.githubusercontent.com/TRL-RMF/caato2/main/caato2.repos
 vcs import src < caato2.repos
 ```
 ```bash

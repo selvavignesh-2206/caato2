@@ -1,15 +1,7 @@
 repositories:
-  amcl3d/amcl3d:
+  amcl3d_meta:
     type: git
-    url: git@github.com:TRL-RMF/amcl3d.git
-    version: main
-  amcl3d/octomap_mapping:
-    type: git
-    url: git@github.com:TRL-RMF/octomap_mapping.git
-    version: main
-  amcl3d/perception_pcl:
-    type: git
-    url: git@github.com:TRL-RMF/perception_pcl.git
+    url: git@github.com:TRL-RMF/amcl3d_meta.git
     version: main
   atc_meta_package:
     type: git

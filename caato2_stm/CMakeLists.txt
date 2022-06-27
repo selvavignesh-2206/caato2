@@ -14,6 +14,8 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   message_generation
   actionlib_msgs
+  move_base_msgs
+  actionlib
 )
 
 ## System dependencies are found with CMake's conventions
@@ -59,6 +61,8 @@ add_message_files(
 add_service_files(
   FILES
   change_robot_state.srv
+  navigate_sequence.srv
+  navigate_goal.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -106,9 +110,9 @@ generate_messages(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
- LIBRARIES ${PROJECT_NAME}
- CATKIN_DEPENDS geometry_msgs roscpp std_msgs actionlib_msgs message_runtime
+ INCLUDE_DIRS include
+ LIBRARIES ${PROJECT_NAME} navigation_manager
+ CATKIN_DEPENDS geometry_msgs roscpp std_msgs actionlib_msgs move_base_msgs actionlib message_runtime
 #  DEPENDS system_lib
 )
 
@@ -128,9 +132,7 @@ add_library(${PROJECT_NAME}
 )
 target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 
-add_library(navigation_manager
-  src/navigation_manager.cpp
-)
+add_library(navigation_manager src/navigation_manager.cpp)
 target_link_libraries(navigation_manager ${catkin_LIBRARIES})
 
 add_executable(caato2_stm_node src/cmd_vel_mux_node.cpp)
@@ -138,8 +140,8 @@ add_dependencies(caato2_stm_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EX
 target_link_libraries(caato2_stm_node caato2_stm ${catkin_LIBRARIES})
 
 add_executable(navigation_manager_node src/navigation_manager_node.cpp)
-add_dependencies(caato2_stm_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} caato2_stm_generate_messages_cpp)
-target_link_libraries(caato2_stm_node navigation_manager ${catkin_LIBRARIES})
+add_dependencies(navigation_manager_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} caato2_stm_generate_messages_cpp)
+target_link_libraries(navigation_manager_node ${catkin_LIBRARIES} navigation_manager)
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -193,7 +195,7 @@ install(TARGETS caato2_stm_node navigation_manager_node
 
 ## Mark libraries for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html
-install(TARGETS ${PROJECT_NAME}
+install(TARGETS ${PROJECT_NAME} navigation_manager
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}

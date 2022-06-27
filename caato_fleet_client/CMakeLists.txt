@@ -10,7 +10,10 @@ project(caato_fleet_client)
 find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
+  geometry_msgs
   actionlib_msgs
+  caato2_stm
+  tf_conversions
 )
 
 ## System dependencies are found with CMake's conventions
@@ -71,6 +74,7 @@ find_package(catkin REQUIRED COMPONENTS
 # generate_messages(
 #   DEPENDENCIES
 #   std_msgs
+#   caato2_stm
 # )
 
 ################################################
@@ -193,6 +197,11 @@ catkin_install_python(PROGRAMS
 #   # myfile2
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
+
+install(
+  DIRECTORY launch
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
+)
 
 #############
 ## Testing ##

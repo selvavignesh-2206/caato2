@@ -1,0 +1,10 @@
+<launch>
+    <!-- <arg name="source_list" default="[
+        cmd_vel/move_base,
+        cmd_vel_2
+        ]
+    "/> -->
+
+    <node pkg="caato2_stm" type="caato2_stm_node" name="caato2_stm_node" />
+    <!-- <rosparam param="cmd_vel_topic_list" subst_value="True">$(arg source_list)</rosparam> -->
+</launch>

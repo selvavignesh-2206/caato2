@@ -3,8 +3,7 @@
   <!-- General Configs -->
 
   <!-- choose from teb/eband/dwa -->
-  <arg name="move_base_planner" default="dwa"/>
-  <!-- <arg name="cmd_vel_topic" value="/cmd_vel"/> -->
+  <arg name="move_base_planner" default="eband"/>
   <arg name="move_forward_only" default="false"/>
   <arg name="open_rviz" default="true"/>
   <arg name="teleop" default="false"/>
@@ -64,7 +63,7 @@
   <!-- move_base -->
   <include file="$(find caato2_navigation)/launch/move_base/move_base_$(arg move_base_planner).launch">
       <arg name="move_forward_only" value="$(arg move_forward_only)"/>
-      <!-- <arg name="cmd_vel_topic" value="$(arg cmd_vel_topic)" /> -->
+      <arg name="cmd_vel_topic" value="cmd_vel/move_base"/>
   </include>
 
   <!-- rviz -->
@@ -97,5 +96,10 @@
   <!-- Speckle Filter -->
   <include file="$(find laser_filters)/examples/speckle_filter_example.launch"/>
 
-  <!-- <node pkg="atc_waypoints" type="waypoints_server" required="true" name="waypoints_server" output="screen" /> -->
+    <!-- STM -->
+  <include file="$(find caato2_stm)/launch/cmd_vel_mux.launch"/>
+
+
 </launch>
+
+

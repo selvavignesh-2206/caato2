@@ -1,0 +1,5 @@
+float32[] navigation_sequence_x
+float32[] navigation_sequence_y
+float32[] navigation_sequence_theta
+---
+bool success

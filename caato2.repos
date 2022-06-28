@@ -1,7 +1,7 @@
 repositories:
-  amcl3d_meta:
+  amcl3d:
     type: git
-    url: git@github.com:TRL-RMF/amcl3d_meta.git
+    url: git@github.com:TRL-RMF/amcl3d.git
     version: main
   atc_meta_package:
     type: git
@@ -50,7 +50,7 @@ repositories:
   ouster-gazebo-simulation:
     type: git
     url: git@github.com:TRL-RMF/ouster-gazebo-simulation.git
-    version: master
+    version: main
   ouster_example:
     type: git
     url: git@github.com:TRL-RMF/ouster_example.git

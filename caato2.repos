@@ -2,7 +2,7 @@ repositories:
   amcl3d:
     type: git
     url: git@github.com:TRL-RMF/amcl3d.git
-    version: main
+    version: master
   atc_meta_package:
     type: git
     url: git@github.com:TRL-RMF/atc_meta_package.git

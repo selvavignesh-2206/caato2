@@ -1,0 +1,7 @@
+image: /home/abilash/caato_ws/src/caato2/caato2_gazebo/maps/TRL/TRL_L2.pgm
+resolution: 0.050000
+origin: [-10.316603, -33.809076, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

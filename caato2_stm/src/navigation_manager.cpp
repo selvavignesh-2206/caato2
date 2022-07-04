@@ -8,14 +8,41 @@ NavigationManager::NavigationManager(ros::NodeHandle* nh_pointer) : ac("move_bas
 {
   nh = nh_pointer;
   nav_goal_service = nh->advertiseService("caato_nav_goal", &NavigationManager::navGoal, this);
+  nav_state_pub = nh->advertise<caato2_stm::navigation_state>("navigation_state", 100);
 }
 
 NavigationManager::~NavigationManager()
 {
 }
 
-void NavigationManager::spinManager(){
-  ros::spin();
+void NavigationManager::spinManager()
+{
+
+  ROS_INFO("Hello, this is the spin call");
+  goal_state = ac.getState();
+  if (goal_state == actionlib::SimpleClientGoalState::PENDING)
+  {
+    nav_state_msg.state_code = 0;
+    nav_state_msg.state_description = "PENDING";
+  }
+  else if (goal_state == actionlib::SimpleClientGoalState::ACTIVE)
+  {
+    nav_state_msg.state_code = 0;
+    nav_state_msg.state_description = "ACTIVE";
+  }
+  else if (goal_state == actionlib::SimpleClientGoalState::SUCCEEDED)
+  {
+    nav_state_msg.state_code = 1;
+    nav_state_msg.state_description = "SUCCEEDED";
+  }
+  else
+  {
+    nav_state_msg.state_code = 2;
+    nav_state_msg.state_description = "ERROR";
+  }
+
+  nav_state_pub.publish(nav_state_msg);
+
 }
 
 void NavigationManager::actionClientRun(const move_base_msgs::MoveBaseGoal& input_goal)
@@ -66,8 +93,6 @@ bool NavigationManager::navGoal(caato2_stm::navigate_goal::Request& req, caato2_
     res.success = true;
     return true;
   }
-  
+
   return false;
 }
-
-

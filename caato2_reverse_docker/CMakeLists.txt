@@ -1,21 +1,20 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(caato2_stm)
+project(caato2_reverse_docker)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-add_compile_options(-std=c++11)
+# add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  actionlib
+  actionlib_msgs
   geometry_msgs
   roscpp
-  # caato2_cmd_mux
+  rospy
   std_msgs
-  message_generation
-  actionlib_msgs
-  move_base_msgs
-  actionlib
+  caato2_stm
 )
 
 ## System dependencies are found with CMake's conventions
@@ -45,40 +44,38 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add "message_generation" and every package in MSG_DEP_SET to
 ##     find_package(catkin REQUIRED COMPONENTS ...)
 ##   * add "message_runtime" and every package in MSG_DEP_SET to
-    # catkin_package(CATKIN_DEPENDS roscpp message_runtime geometry_msgs)
+##     catkin_package(CATKIN_DEPENDS ...)
 ##   * uncomment the add_*_files sections below as needed
 ##     and list every .msg/.srv/.action file to be processed
 ##   * uncomment the generate_messages entry below
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-add_message_files(
-  FILES
-  caato_state.msg
-  navigation_state.msg
-)
+# add_message_files(
+#   FILES
+#   Message1.msg
+#   Message2.msg
+# )
 
-# Generate services in the 'srv' folder
-add_service_files(
-  FILES
-  change_robot_state.srv
-  navigate_sequence.srv
-  navigate_goal.srv
-)
+## Generate services in the 'srv' folder
+# add_service_files(
+#   FILES
+#   Service1.srv
+#   Service2.srv
+# )
 
 ## Generate actions in the 'action' folder
-# add_action_files(
-#   FILES
+add_action_files(
+  FILES
+  ReverseDock.action
 #   Action1.action
 #   Action2.action
-# )
+)
 
 ## Generate added messages and services with any dependencies listed here
 generate_messages(
   DEPENDENCIES
-  geometry_msgs
-  std_msgs
-  actionlib_msgs
+  actionlib_msgs geometry_msgs std_msgs caato2_stm
 )
 
 ################################################
@@ -111,9 +108,9 @@ generate_messages(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
- INCLUDE_DIRS include
- LIBRARIES ${PROJECT_NAME} navigation_manager
- CATKIN_DEPENDS geometry_msgs roscpp std_msgs actionlib_msgs move_base_msgs actionlib message_runtime
+#  INCLUDE_DIRS include
+#  LIBRARIES caato2_reverse_docker
+ CATKIN_DEPENDS actionlib actionlib_msgs geometry_msgs roscpp rospy std_msgs caato2_stm
 #  DEPENDS system_lib
 )
 
@@ -123,30 +120,39 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
+
+
 include_directories(
-  include
+include
   ${catkin_INCLUDE_DIRS}
 )
 
-add_library(${PROJECT_NAME}
-  src/cmd_vel_mux.cpp
+add_library(PID src/PID.cpp)
+target_link_libraries(
+  PID
+  ${catkin_LIBRARIES}
 )
-target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 
-add_library(navigation_manager src/navigation_manager.cpp)
-target_link_libraries(navigation_manager ${catkin_LIBRARIES})
+add_library(reverse_docker src/reverse_docker.cpp)
+target_link_libraries(reverse_docker ${catkin_LIBRARIES})
+add_dependencies(
+  reverse_docker
+  ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} PID
+)
 
-add_executable(caato2_stm_node src/cmd_vel_mux_node.cpp)
-add_dependencies(caato2_stm_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} caato2_stm_generate_messages_cpp)
-target_link_libraries(caato2_stm_node caato2_stm ${catkin_LIBRARIES})
-
-add_executable(navigation_manager_node src/navigation_manager_node.cpp)
-add_dependencies(navigation_manager_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} caato2_stm_generate_messages_cpp)
-target_link_libraries(navigation_manager_node ${catkin_LIBRARIES} navigation_manager)
+add_executable(reverse_docking_server src/reverse_docking_node.cpp)
+target_link_libraries(
+  reverse_docking_server
+  ${catkin_LIBRARIES}
+)
+add_dependencies(
+  reverse_docking_server
+  ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} reverse_docker
+)
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/caato2_cmd_mux.cpp
+#   src/${PROJECT_NAME}/caato2_reverse_docker.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -157,7 +163,7 @@ target_link_libraries(navigation_manager_node ${catkin_LIBRARIES} navigation_man
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/caato2_cmd_mux_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/caato2_reverse_docker_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -190,13 +196,13 @@ target_link_libraries(navigation_manager_node ${catkin_LIBRARIES} navigation_man
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
-install(TARGETS caato2_stm_node navigation_manager_node
+install(TARGETS reverse_docking_server
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
 ## Mark libraries for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html
-install(TARGETS ${PROJECT_NAME} navigation_manager
+install(TARGETS reverse_docker PID
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_GLOBAL_BIN_DESTINATION}
@@ -206,7 +212,7 @@ install(TARGETS ${PROJECT_NAME} navigation_manager
 install(DIRECTORY include/${PROJECT_NAME}/
   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
   FILES_MATCHING PATTERN "*.h"
-#   PATTERN ".svn" EXCLUDE
+  PATTERN ".svn" EXCLUDE
 )
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
@@ -216,15 +222,12 @@ install(DIRECTORY include/${PROJECT_NAME}/
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
 # )
 
-install(DIRECTORY launch
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-
 #############
 ## Testing ##
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_caato2_cmd_mux.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_caato2_reverse_docker.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

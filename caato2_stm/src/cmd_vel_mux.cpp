@@ -31,7 +31,7 @@ bool CmdVelMux::change_topic_callback(caato2_stm::change_robot_state::Request &r
          caato2_stm::change_robot_state::Response &res)
 {
     // std::cerr << "line 1 " << cmd_vel_topics_[req.a] << std::endl;
-    if (req.request_state_code >= (sizeof(cmd_vel_topics)/sizeof(cmd_vel_topics[0])))
+    if (req.request_state_code >= ((sizeof(cmd_vel_topics)/sizeof(cmd_vel_topics[0])) + 1))
     {
         res.result = false;
         std::cerr << "false" << std::endl;

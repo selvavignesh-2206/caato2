@@ -1,6 +1,27 @@
 #ifndef PID_H
 #define PID_H
-class PIDImpl;
+
+class PIDImpl
+{
+public:
+  PIDImpl(double dt, double max, double min, double Kp, double Kd, double Ki);
+  PIDImpl();
+  ~PIDImpl();
+  double calculate(double setpoint, double pv);
+  double getDt();
+  void setValues(double dt, double max, double min, double Kp, double Kd, double Ki);
+
+private:
+  double _dt;
+  double _max;
+  double _min;
+  double _Kp;
+  double _Kd;
+  double _Ki;
+  double _pre_error;
+  double _integral;
+};
+
 class PID
 {
 public:
@@ -14,10 +35,12 @@ public:
 
     // Returns the manipulated variable given a setpoint and current process value
     double calculate( double setpoint, double pv );
+    double getDt();
     ~PID();
+    void setValues(double dt, double max, double min, double Kp, double Kd, double Ki );
 
 private:
-    PIDImpl *pimpl;
+    PIDImpl pimpl{0.0,0.0,0.0,0.0,0.0,0.0};
 };
 
 

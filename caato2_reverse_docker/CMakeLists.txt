@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(caato2_reverse_docker)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -15,10 +15,12 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   caato2_stm
+  dynamic_reconfigure
+  tf
 )
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+find_package(Boost REQUIRED COMPONENTS system)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -93,10 +95,9 @@ generate_messages(
 ##     and list every .cfg file to be processed
 
 ## Generate dynamic reconfigure parameters in the 'cfg' folder
-# generate_dynamic_reconfigure_options(
-#   cfg/DynReconf1.cfg
-#   cfg/DynReconf2.cfg
-# )
+generate_dynamic_reconfigure_options(
+  cfg/PID.cfg
+)
 
 ###################################
 ## catkin specific configuration ##
@@ -110,7 +111,7 @@ generate_messages(
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES caato2_reverse_docker
- CATKIN_DEPENDS actionlib actionlib_msgs geometry_msgs roscpp rospy std_msgs caato2_stm
+ CATKIN_DEPENDS actionlib actionlib_msgs geometry_msgs roscpp rospy std_msgs caato2_stm tf
 #  DEPENDS system_lib
 )
 
@@ -125,6 +126,7 @@ catkin_package(
 include_directories(
 include
   ${catkin_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIRS}
 )
 
 add_library(PID src/PID.cpp)
@@ -134,20 +136,21 @@ target_link_libraries(
 )
 
 add_library(reverse_docker src/reverse_docker.cpp)
-target_link_libraries(reverse_docker ${catkin_LIBRARIES})
+target_link_libraries(reverse_docker ${catkin_LIBRARIES} PID)
 add_dependencies(
   reverse_docker
-  ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} PID
+  ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS}
 )
 
 add_executable(reverse_docking_server src/reverse_docking_node.cpp)
 target_link_libraries(
   reverse_docking_server
   ${catkin_LIBRARIES}
+  reverse_docker
 )
 add_dependencies(
   reverse_docking_server
-  ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS} reverse_docker
+  ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS}
 )
 
 ## Declare a C++ library

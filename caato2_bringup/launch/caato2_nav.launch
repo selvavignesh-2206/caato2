@@ -1,0 +1,67 @@
+<launch>
+
+    <!-- General Bring up for caato2-->
+    <include file="$(find caato2_bringup)/launch/include/description_caato_3d.launch" />
+
+    <include file="$(find caato2_bringup)/launch/include/caato2_3d_lasers.launch" />
+
+    <include file="$(find roboteq_diff_driver)/launch/driver.launch" >
+    <arg name="base_frame" value="base_footprint"/>
+    <arg name="pub_odom_tf" value="true"/>
+    </include>
+
+    <include file="$(find caato_teleop)/launch/ds4.launch" />
+
+    <param name="use_sim_time" value="false"/>
+    
+    <node pkg="caato2_bringup" type="odom_to_tfstamped" name="odom_to_tfstamped" />
+    
+<!-- Mod by Selva, July 6 2022 (To troubleshoot map transform to os_sensor)
+    <node pkg="tf2_ros" type="static_transform_publisher" name="mapOS_broadcaster" args="1 0 0 0 0 0 1 map os_sensor" /> -->
+
+
+    <!-- Visualization 
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find amcl3d)/rviz/amcl3d.rviz"/> -->
+
+  <!-- AMCL3D Launch-->  
+  <!-- Mod by Selva, 23 June (To make amcl3d to work) -->
+    <include file="$(find amcl3d)/launch/amcl3d.launch">
+        <arg name="map_name_path" value="/media/caato2/data/lvlM/lvlM.bt" />
+        <!-- <arg name="init_x"          value="2.62246605422"/>
+        <arg name="init_y"          value="1.79965136483"/>
+        <arg name="init_z"          value="1.01354973057"/>
+        <arg name="init_a"          value="-0.043"/> -->
+        <arg name="base_frame_id" value="base_link" />
+        <arg name="odom_frame_id" value="odom" /> 
+        <arg name="global_frame_id" value="map" />
+        <arg name="init_x"          value="0.0"/>
+        <arg name="init_y"          value="0.0"/>
+        <arg name="init_z"          value="0.0"/>
+        <arg name="init_a"          value="0.0"/>
+        <arg name="num_particles"   value="600"/>
+        <arg name="alpha"           value="0.5"/>
+        <arg name="take_off_height" value="0.0"/>
+    </include>
+
+    <!-- Arguments for move_base -->
+    <arg name="cmd_vel_topic" default="cmd_vel" />
+    <arg name="odom_topic" default="odom" />
+    <arg name="move_forward_only" default="true"/>
+
+    <!-- move_base -->
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <param name="base_global_planner" value="navfn/NavfnROS" />
+        <param name="base_local_planner" value="eband_local_planner/EBandPlannerROS" />
+        
+        <rosparam file="$(find caato2_navigation)/param/caato1/eband_local_planner_params.yaml" command="load" />
+        <rosparam file="$(find caato2_navigation)/param/caato1/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find caato2_navigation)/param/caato1/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find caato2_navigation)/param/caato1/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find caato2_navigation)/param/caato1/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find caato2_navigation)/param/caato1/move_base_params.yaml" command="load" />
+
+        <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
+        <remap from="odom" to="$(arg odom_topic)"/>
+    </node>
+
+</launch>

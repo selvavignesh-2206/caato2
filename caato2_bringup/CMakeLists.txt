@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf2
   tf2_ros
   geometry_msgs
+  nav_msgs
 )
 
 ################################################################################
@@ -31,7 +32,7 @@ find_package(catkin REQUIRED COMPONENTS
 # Declare catkin specific configuration to be passed to dependent projects
 ################################################################################
 catkin_package(
-  CATKIN_DEPENDS geometry_msgs roscpp std_msgs tf2 tf2_ros
+  CATKIN_DEPENDS geometry_msgs roscpp std_msgs tf2 tf2_ros nav_msgs
 )
 
 include_directories(
@@ -47,11 +48,16 @@ add_dependencies(static_ouster_broadcaster ${${PROJECT_NAME}_EXPORTED_TARGETS} $
 
 target_link_libraries(static_ouster_broadcaster  ${catkin_LIBRARIES} )
 
+add_executable(odom_to_tfstamped src/odomTfTransform.cpp)
+
+add_dependencies(odom_to_tfstamped ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(odom_to_tfstamped  ${catkin_LIBRARIES} )
 
 ################################################################################
 # Install
 ################################################################################
-install(TARGETS static_ouster_broadcaster
+install(TARGETS static_ouster_broadcaster odom_to_tfstamped
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

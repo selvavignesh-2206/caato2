@@ -5,6 +5,8 @@
 
     <include file="$(find caato2_bringup)/launch/include/caato2_3d_lasers.launch" />
 
+    <include file="$(find caato2_bringup)/launch/include/caato2_lasers.launch" />
+
     <include file="$(find roboteq_diff_driver)/launch/driver.launch" >
     <arg name="base_frame" value="base_footprint"/>
     <arg name="pub_odom_tf" value="true"/>
@@ -14,20 +16,17 @@
 
     <param name="use_sim_time" value="false"/>
     
+    <!-- Message type convert for Odom -->
     <node pkg="caato2_bringup" type="odom_to_tfstamped" name="odom_to_tfstamped" />
-    
-<!-- Mod by Selva, July 6 2022 (To troubleshoot map transform to os_sensor)
-    <node pkg="tf2_ros" type="static_transform_publisher" name="mapOS_broadcaster" args="1 0 0 0 0 0 1 map os_sensor" /> -->
-
 
     <!-- Visualization 
-    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find amcl3d)/rviz/amcl3d.rviz"/> -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find amcl3d)/rviz/amcl3d.rviz"/>  -->
 
-  <!-- AMCL3D Launch-->  
-  <!-- Mod by Selva, 23 June (To make amcl3d to work) -->
+    <!-- AMCL3D Launch-->  
+    <!-- Mod by Selva, 23 June (To make amcl3d to work) -->
     <include file="$(find amcl3d)/launch/amcl3d.launch">
         <arg name="map_name_path" value="/media/caato2/data/lvlM/lvlM.bt" />
-        <!-- <arg name="init_x"          value="2.62246605422"/>
+   <!-- <arg name="init_x"          value="2.62246605422"/>
         <arg name="init_y"          value="1.79965136483"/>
         <arg name="init_z"          value="1.01354973057"/>
         <arg name="init_a"          value="-0.043"/> -->
@@ -46,7 +45,7 @@
     <!-- Arguments for move_base -->
     <arg name="cmd_vel_topic" default="cmd_vel" />
     <arg name="odom_topic" default="odom" />
-    <arg name="move_forward_only" default="true"/>
+    <arg name="move_forward_only" default="false"/>
 
     <!-- move_base -->
     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
@@ -62,6 +61,7 @@
 
         <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
         <remap from="odom" to="$(arg odom_topic)"/>
+        <!-- <remap from="map" to="$(arg map_topic)"/>  -->
     </node>
 
 </launch>

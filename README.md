@@ -87,8 +87,6 @@ fatal: Could not read from remote repository...
 ```
 If you get the above error, you need to make you sure set up your Github SSH key as mentioned in requirement #2. Once set up, git clone a random repository to test if the ssh works. When prompted with your ECDSA key fingerprint, make sure you click "yes" to wanting to continue connecting. After that the vcs import src < caato2.repos step should work fine.
 
-
-
 ### Dependencies in case rosdep didn't install them
 ```bash
 sudo apt-get install ros-noetic-desktop-full\
@@ -107,3 +105,79 @@ sudo apt-get install ros-noetic-desktop-full\
 roslaunch caato2_gazebo caato2_mbc.launch
 roslaunch atc_stm astm.frontbackAT.noGDB.launch
 ```
+
+## 3D Mapping 
+
+You will need cartographer package in another workspace.
+
+### Initial Mapping
+
+```bash
+roslaunch caato2_bringup cartographer_mapping.launch
+```
+
+Remember to record bag in a seperate terminal window
+```bash
+rosbag record -a
+```
+
+### Obtain the pbstream file
+In order to modify the configurations of the cartographer, please edit the .lua file [cart_3d.lua] under the configuration_files folder in cartographer_ros
+Under the cartographer_ws. 
+
+```bash
+roslaunch cartopgraher_ros offline_cart_3d.launch bag_filenames:="/media/caato2/data/<name_of_pbstream>.pbstream"
+```
+
+.pbstream file would be created under the same location 
+
+### Obtain PCD file
+
+Under the cartographer_ws.
+```bash
+roslaunch cartographer_ros assets_writer_cart_3d.launch bag_filenames:="/media/caato2/data.<name_of_bag>.bag" pose_graph_filename:="/media/caato2/data/<name_of_pbstream>.bag.pbstream"
+```
+
+### Convert PCD to BT ot OT file
+
+You will need the octomap package.
+
+```bash
+roslaunch octomap_server pcdTopointcloud.launch  
+```
+
+Remember to change the file name in the pcdTopointcloud.launch and build again
+
+In another terminal;
+
+```bash
+rosrun octomap_server octomap_tracking_server_node
+```
+
+After launching the server for few seconds, run this:
+
+```bash
+rosrun octomap_server octomap_saver -f <name_of_map>.bt octomap_full:=octomap_full
+```
+
+Important:
+For BT file, the process can take >40 mins, so be patient
+
+### Convert BT file to grid 
+
+Remember to change the path address of the BT file in the launch file
+
+```bash
+roslaunch amcl3d amcl3d_rosin.launch
+```
+
+This process will take >15 mins, so be patient
+
+
+
+
+
+
+
+
+

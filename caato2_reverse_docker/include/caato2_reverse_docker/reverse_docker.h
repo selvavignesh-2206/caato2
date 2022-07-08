@@ -34,6 +34,13 @@ private:
   ros::Publisher coarse_cmd_vel_pub;
   PID angle_pid = PID(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
   PID vel_x_pid = PID(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+  double yaw_current;
+
+  double calculateAngularVel(double orientationGoal);
+  double calculateLinearVel(double distToGoal);
+  void stopVel();
+  double calculateOrientationGoal();
+  double calculateDistanceToGoal();
 
 public:
   ReverseDocker(std::string name);

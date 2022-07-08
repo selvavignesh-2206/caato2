@@ -6,3 +6,5 @@ bool success
 ---
 #feedback
 bool executing
+uint8 stage
+string description

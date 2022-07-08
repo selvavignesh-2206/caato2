@@ -54,18 +54,18 @@ double PIDImpl::calculate(double setpoint, double pv)
 
   // Total output
   double output = Pout + Iout + Dout;
-  ROS_INFO("output = %f", output);
+  // ROS_INFO("output = %f", output);
 
   // Limit to max/min
   if (output > _max)
   {
     output = _max;
-    ROS_INFO("more than max %f", _max);
+    // ROS_INFO("more than max %f", _max);
   }
   else if (output < _min)
   {
+    // ROS_INFO("less than min %f, actual value %f", _min, output);
     output = _min;
-    ROS_INFO("less than min %f", _min);
   }
 
   // Save error to previous error
@@ -80,7 +80,7 @@ PIDImpl::~PIDImpl()
 
 double PIDImpl::getDt()
 {
-  return _max;
+  return _min;
 }
 
 void PIDImpl::setValues(double dt, double max, double min, double Kp, double Kd, double Ki)

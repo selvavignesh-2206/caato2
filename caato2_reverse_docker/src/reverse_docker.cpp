@@ -21,11 +21,17 @@ ReverseDocker::~ReverseDocker(void)
 
 void ReverseDocker::executeCB(const caato2_reverse_docker::ReverseDockGoalConstPtr& goal)
 {
-  ros::Rate r(100);
+  ros::Rate r(10);
   bool success = false;
   geometry_msgs::Twist cmd_vel_msg;
+  goal_pose = goal->goal_pose;
 
-  while (!success)
+  double yaw_goal = calculateOrientationGoal();
+  feedback_.stage = 1;
+  feedback_.description = "Stage 1: Angular rotation to backwards face goal";
+  feedback_.executing = true;
+
+  while (feedback_.stage == 1)
   {
     if (as_.isPreemptRequested() || !ros::ok())
     {
@@ -33,34 +39,60 @@ void ReverseDocker::executeCB(const caato2_reverse_docker::ReverseDockGoalConstP
       as_.setPreempted();
       break;
     }
-    feedback_.executing = true;
+
     as_.publishFeedback(feedback_);
-
-    tf::Quaternion quat_current;
-    double roll, pitch, yaw_current;
-    tf::quaternionMsgToTF(current_pose.orientation, quat_current);
-    tf::Matrix3x3(quat_current).getRPY(roll, pitch, yaw_current);
-    double yaw_goal =
-        atan2((goal_pose.position.y - current_pose.position.y), (goal_pose.position.x - current_pose.position.x));
-    yaw_goal += 3.14;
-
-    cmd_vel_msg.angular.z = angle_pid.calculate(yaw_goal, yaw_current);
-    ROS_INFO("Angular z = %f", cmd_vel_msg.angular.z);
+    cmd_vel_msg.angular.z = calculateAngularVel(yaw_goal);
 
     if (abs(yaw_goal - yaw_current) > 0.05)
     {
       // geometry_msgs::Twist cmd_vel_msg;
-      ROS_INFO("yaw_goal = %f, yaw_current= %f", yaw_goal, yaw_current);
+      // ROS_INFO("angular velocity is: %f", cmd_vel_msg.angular.z);
       coarse_cmd_vel_pub.publish(cmd_vel_msg);
       ros::spinOnce();
+      r.sleep();
     }
     else
     {
-      success = true;
+      stopVel();
+      feedback_.stage = 2;
+      feedback_.description = "Stage 2: Translational Movement to goal";
     }
   }
 
-  result_.success = success;
+  double dist_to_goal = 0;
+
+  while (feedback_.stage == 2)
+  {
+    if (as_.isPreemptRequested() || !ros::ok())
+    {
+      ROS_INFO("%s: Preempted", action_name_.c_str());
+      as_.setPreempted();
+      break;
+    }
+    as_.publishFeedback(feedback_);
+
+    dist_to_goal = calculateDistanceToGoal();
+    yaw_goal = calculateOrientationGoal();
+    // cmd_vel_msg.angular.z = calculateAngularVel(yaw_goal);
+    cmd_vel_msg.linear.x = calculateLinearVel(dist_to_goal);
+    // ROS_INFO("cmd vel msg x = %f, z = %f", cmd_vel_msg.linear.x, cmd_vel_msg.angular.z);
+
+    if (dist_to_goal > 0.05)
+    {
+      coarse_cmd_vel_pub.publish(cmd_vel_msg);
+      ros::spinOnce();
+      r.sleep();
+    }
+    else
+    {
+      stopVel();
+      feedback_.stage = 3;
+      feedback_.description = "Stage 3: Completed all goals";
+    }
+  }
+
+  result_.success = true;
+  success = true;
   // result_.success = true;
   ROS_INFO(success ? "true" : "false");
   as_.setSucceeded(result_);
@@ -78,6 +110,50 @@ void ReverseDocker::dynamicReconfigureCB(caato2_reverse_docker::PIDConfig& confi
   vel_x_pid.setValues(config.XVelPID_dt, config.XVelPID_max_x_vel, config.XVelPID_min_x_vel, config.XVelPID_Kp,
                       config.XVelPID_Kd, config.XVelPID_Ki);
   ROS_INFO("Kp is %f", angle_pid.getDt());
+  ROS_INFO("Kp for X is %f", vel_x_pid.getDt());
+}
+
+void ReverseDocker::stopVel()
+{
+  geometry_msgs::Twist cmd_vel_msg;
+  cmd_vel_msg.angular.z = 0;
+  cmd_vel_msg.linear.x = 0;
+  coarse_cmd_vel_pub.publish(cmd_vel_msg);
+  ros::spinOnce();
+}
+
+double ReverseDocker::calculateAngularVel(double orientationGoal)
+{
+  double roll, pitch;
+  tf::Quaternion quat_current;
+  tf::quaternionMsgToTF(current_pose.orientation, quat_current);
+  tf::Matrix3x3(quat_current).getRPY(roll, pitch, yaw_current);
+  return angle_pid.calculate(orientationGoal, yaw_current);
+}
+
+double ReverseDocker::calculateOrientationGoal()
+{
+  double yaw_goal =
+      atan2((current_pose.position.y - goal_pose.position.y), (current_pose.position.x - goal_pose.position.x));
+  // (yaw_goal > 0) ? yaw_goal -= 3.14 : yaw_goal += 3.14;
+  return yaw_goal;
+}
+
+double ReverseDocker::calculateDistanceToGoal()
+{
+  double dist_to_goal = sqrt(pow((current_pose.position.x - goal_pose.position.x), 2) +
+                             pow((current_pose.position.y - goal_pose.position.y), 2));
+  // ROS_INFO("current x,y pose is (%f, %f) and goal pose is (%f,%f)", current_pose.position.x, current_pose.position.y,
+          //  goal_pose.position.x, goal_pose.position.y);
+  ROS_INFO("dist to goal is %f", dist_to_goal);
+  return dist_to_goal;
+}
+
+double ReverseDocker::calculateLinearVel(double distToGoal)
+{
+  double vel = vel_x_pid.calculate(0.00, distToGoal);
+  ROS_INFO("cmd_vel is %f", vel_x_pid.calculate(0.05, distToGoal));
+  return vel;
 }
 
 // #include "caato2_reverse_docker/reverse_docker.h"

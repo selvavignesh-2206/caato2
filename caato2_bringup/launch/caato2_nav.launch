@@ -1,5 +1,9 @@
 <launch>
-
+	
+    <!-- Tag Rviz -->
+    <arg name="rviz_config" value="$(find caato2_navigation)/rviz/atc.rviz"/>
+    
+    
     <!-- General Bring up for caato2-->
     <include file="$(find caato2_bringup)/launch/include/description_caato_3d.launch" />
 
@@ -11,7 +15,13 @@
     <arg name="base_frame" value="base_footprint"/>
     <arg name="pub_odom_tf" value="false"/>
     </include>
-
+    
+    <!-- Launch realsense -->
+    <include file="$(find caato2_bringup)/launch/include/caato2_realsense.launch" />
+    
+    <!-- atc -->
+    <include file="$(find atc_stm)/launch/astm.frontbackAT.noGDB.launch"/> 
+    
     <include file="$(find caato_teleop)/launch/ds4.launch" />
 
     <param name="use_sim_time" value="false"/>
@@ -23,8 +33,8 @@
     <!-- Message type convert for Odom -->
     <node pkg="caato2_bringup" type="odom_to_tfstamped" name="odom_to_tfstamped" />
 
-    <!-- Visualization 
-    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find amcl3d)/rviz/amcl3d.rviz"/>  -->
+    <!-- Visualization -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(arg rviz_config)"/>  
 
     <!-- AMCL3D Launch-->  
     <!-- Mod by Selva, 23 June (To make amcl3d to work) -->

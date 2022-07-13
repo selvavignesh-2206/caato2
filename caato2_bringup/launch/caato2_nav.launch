@@ -2,7 +2,7 @@
 	
     <!-- Tag Rviz -->
     <arg name="rviz_config" value="$(find caato2_navigation)/rviz/atc.rviz"/>
-    
+    <arg name="map_file" value="/media/caato2/data/lvlM/lvlM.yaml"/>
     
     <!-- General Bring up for caato2-->
     <include file="$(find caato2_bringup)/launch/include/description_caato_3d.launch" />
@@ -10,19 +10,15 @@
     <include file="$(find caato2_bringup)/launch/include/caato2_3d_lasers.launch" />
 
     <include file="$(find caato2_bringup)/launch/include/caato2_lasers.launch" />
+    
+     <!-- Map server -->
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)">
+    </node>
 
     <include file="$(find roboteq_diff_driver)/launch/driver.launch" >
     <arg name="base_frame" value="base_footprint"/>
     <arg name="pub_odom_tf" value="false"/>
     </include>
-    
-    <!-- Launch realsense -->
-    <include file="$(find caato2_bringup)/launch/include/caato2_realsense.launch" />
-    
-    <!-- atc -->
-    <include file="$(find atc_stm)/launch/astm.frontbackAT.noGDB.launch"/> 
-    
-    <include file="$(find caato_teleop)/launch/ds4.launch" />
 
     <param name="use_sim_time" value="false"/>
 
@@ -41,6 +37,7 @@
     <include file="$(find amcl3d)/launch/amcl3d.launch">
         <arg name="map_name_path" value="/media/caato2/data/lvlM/lvlM.bt" />
    <!-- <arg name="init_x"          value="2.62246605422"/>
+   
         <arg name="init_y"          value="1.79965136483"/>
         <arg name="init_z"          value="1.01354973057"/>
         <arg name="init_a"          value="-0.043"/> -->
@@ -78,5 +75,11 @@
         <remap from="odom" to="$(arg odom_topic)"/>
         <!-- <remap from="map" to="$(arg map_topic)"/>  -->
     </node>
+    
+    <!-- Launch realsense -->
+    <include file="$(find caato2_bringup)/launch/include/caato2_realsense.launch" />
+    
+    <!-- atc -->
+    <include file="$(find atc_stm)/launch/astm.frontbackAT.noGDB.launch"/> 
 
 </launch>

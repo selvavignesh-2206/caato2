@@ -1,14 +1,5 @@
 <launch>
-  <arg name="robot_name" default="caato2" />
-  <!-- Description File (Loads URDF) -->
-  <include file="$(find caato2_bringup)/launch/include/description.launch" />
-
-  <!-- Launch roboteq motor controller -->
-  <include file="$(find caato2_bringup)/launch/include/caato2_motors.launch" />
-
-  <!-- Launch lasers + merger -->
-  <include file="$(find caato2_bringup)/launch/include/caato2_lasers.launch" />
-
-  <!-- Launch realsense -->
-  <include file="$(find caato2_bringup)/launch/include/caato2_realsense.launch" />
+  <arg name="rviz_config" value="$(find caato2_navigation)/rviz/atc.rviz"/>
+  <node pkg="rviz" type="rviz" name="rviz" required="true"
+            args="-d $(arg rviz_config)"/>
 </launch>

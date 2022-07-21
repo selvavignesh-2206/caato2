@@ -2,7 +2,9 @@
 	
     <!-- Tag Rviz -->
     <arg name="rviz_config" value="$(find caato2_navigation)/rviz/atc.rviz"/>
-    <arg name="map_file" value="/media/caato2/data/lvlM/lvlM.yaml"/>
+    <!-- <arg name="map_file" value="/media/caato2/data/Mezzanine_new/Mezzanine_downsampled.yaml"/> -->
+    <arg name="map_file" value="/media/caato2/data/lvl10/lvl10v3.yaml"/> 
+    
     
     <!-- General Bring up for caato2-->
     <include file="$(find caato2_bringup)/launch/include/description_caato_3d.launch" />
@@ -25,9 +27,7 @@
     <!--Mod by Selva, July 7 for laser filter-->
     <include file="$(find laser_filters)/examples/speckle_filter_example.launch">
     </include>
-    
-    <!-- Message type convert for Odom -->
-    <node pkg="caato2_bringup" type="odom_to_tfstamped" name="odom_to_tfstamped" />
+        <node pkg="rviz" type="rviz" name="rviz" args="-d $(arg rviz_config)"/>  
 
     <!-- Visualization -->
     <node pkg="rviz" type="rviz" name="rviz" args="-d $(arg rviz_config)"/>  
@@ -35,7 +35,7 @@
     <!-- AMCL3D Launch-->  
     <!-- Mod by Selva, 23 June (To make amcl3d to work) -->
     <include file="$(find amcl3d)/launch/amcl3d.launch">
-        <arg name="map_name_path" value="/media/caato2/data/lvlM/lvlM.bt" />
+        <arg name="map_name_path" value="/media/caato2/data/lvl10/lvl10v3.bt" />
    <!-- <arg name="init_x"          value="2.62246605422"/>
    
         <arg name="init_y"          value="1.79965136483"/>
@@ -63,6 +63,7 @@
     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
         <param name="base_global_planner" value="navfn/NavfnROS" />
         <param name="base_local_planner" value="eband_local_planner/EBandPlannerROS" />
+        <param name="GlobalPlanner/use_dijkstra" value="True" />
         
         <rosparam file="$(find caato2_navigation)/param/caato1/eband_local_planner_params.yaml" command="load" />
         <rosparam file="$(find caato2_navigation)/param/caato1/costmap_common_params.yaml" command="load" ns="global_costmap" />

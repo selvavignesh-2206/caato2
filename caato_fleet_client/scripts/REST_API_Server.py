@@ -93,6 +93,7 @@ def navigate_goal(nav_goal_x, nav_goal_y, nav_goal_theta):
 
 @app.post('/navigate')
 def navigate(navgoal: NavGoal):
+    command_robot(1)
     resp = navigate_goal(navgoal.nav_goal_x, navgoal.nav_goal_y, navgoal.nav_goal_z)
     return resp
 

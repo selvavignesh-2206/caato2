@@ -9,6 +9,8 @@ void odomCallback(const nav_msgs::Odometry &msg) {
    nav_msgs::Odometry odometry_ = msg;
 
    tf_stamped.header = odometry_.header;
+// sam: tried this bottom line to fix the atc_stm transform but didn't work
+//    tf_stamped.header.stamp = ros::Time(0) + ros::Duration(0.2);
    tf_stamped.child_frame_id = odometry_.child_frame_id;
    tf_stamped.transform.translation.x = odometry_.pose.pose.position.x;
    tf_stamped.transform.translation.y = odometry_.pose.pose.position.y;

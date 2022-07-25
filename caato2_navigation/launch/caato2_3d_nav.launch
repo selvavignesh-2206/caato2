@@ -3,7 +3,7 @@
     <!-- Tag Rviz -->
     <arg name="rviz_config" value="$(find caato2_navigation)/rviz/atc.rviz"/>
     <!-- <arg name="map_file" value="/media/caato2/data/Mezzanine_new/Mezzanine_downsampled.yaml"/> -->
-    <arg name="map_file" value="/media/caato2/data/lvl10/lvl10v3.yaml"/> 
+    <arg name="map_file" value="/media/caato2/data/lvl10/lvl10v3.yaml"/>
     
     
     <!-- General Bring up for caato2-->
@@ -27,20 +27,25 @@
     <!--Mod by Selva, July 7 for laser filter-->
     <include file="$(find laser_filters)/examples/speckle_filter_example.launch">
     </include>
-        <node pkg="rviz" type="rviz" name="rviz" args="-d $(arg rviz_config)"/>  
+
+    <!-- Most Impt-->
+    <node pkg="caato2_bringup" type="odom_to_tfstamped" name="odom_to_tfstamped" />
 
     <!-- Visualization -->
-    <node pkg="rviz" type="rviz" name="rviz" args="-d $(arg rviz_config)"/>  
+    <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(arg rviz_config)"/> -->
 
     <!-- AMCL3D Launch-->  
     <!-- Mod by Selva, 23 June (To make amcl3d to work) -->
     <include file="$(find amcl3d)/launch/amcl3d.launch">
-        <arg name="map_name_path" value="/media/caato2/data/lvl10/lvl10v3.bt" />
+        <arg name="map_name_path" value="/media/caato2/data/lvl10/lvl10v3.bt" /> 
+        <!-- <arg name="map_name_path" value="/media/caato2/data/Mezzanine_new/Mezzanine_downsampled.bt" /> --> 
+
    <!-- <arg name="init_x"          value="2.62246605422"/>
    
         <arg name="init_y"          value="1.79965136483"/>
         <arg name="init_z"          value="1.01354973057"/>
         <arg name="init_a"          value="-0.043"/> -->
+
         <!-- Mod by Selva, 8 July (orginal working one was base_link)-->
         <arg name="base_frame_id" value="base_footprint" />
         <arg name="odom_frame_id" value="odom" /> 
@@ -82,5 +87,8 @@
     
     <!-- atc -->
     <include file="$(find atc_stm)/launch/astm.frontbackAT.noGDB.launch"/> 
+
+    <!-- Arm launch -->
+    <include file="$(find caato2_bringup)/launch/include/arm.launch"/>
 
 </launch>

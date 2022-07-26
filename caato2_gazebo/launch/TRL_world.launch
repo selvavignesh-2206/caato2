@@ -1,0 +1,21 @@
+<launch>
+  <!-- IMPORTANT: INCLUDE BELOW SO THAT NO DELAY IN LOADING GAZEBO -->
+  <arg name="world_name" value="$(find caato2_gazebo)/worlds/trl.world"/>
+
+  <env name="GAZEBO_MODEL_DATABASE_URI" value="anything" /> 
+  <env name="GAZEBO_MODEL_PATH" value="$(find caato2_gazebo)/models" />
+  <env name="GAZEBO_PLUGIN_PATH" value="$(find decada_sim_assets)/lib/decada_sim_assets"/>
+  <env name="LD_LIBRARY_PATH" value="$(find decada_sim_assets)/lib/decada_sim_assets"/>
+ 
+      
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(arg world_name)"/> 
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+    <arg name="output" value="screen"/>
+  </include>
+
+</launch>

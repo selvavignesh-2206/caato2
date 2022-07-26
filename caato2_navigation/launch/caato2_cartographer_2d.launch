@@ -1,0 +1,7 @@
+ <launch>
+    <!-- Launch lasers + merger -->
+    <include file="$(find caato2_bringup)/launch/caato2_teleop.launch" />
+
+    <!-- Launch lasers + merger -->
+    <include file="$(find cartographer_ros)/launch/caato2_2d_mapping.launch" />
+</launch>

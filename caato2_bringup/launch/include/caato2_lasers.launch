@@ -1,13 +1,26 @@
 <launch>
   <arg name="frame_id_1" default="hokuyo_laser_scanner_1" />
   <arg name="frame_id_2" default="hokuyo_laser_scanner_2" />
-  <arg name="cloud_destination_topic" default="merged_cloud" />
-  <arg name="scan_destination_topic" default="scan" />
-  <arg name="laserscan_topics" default="front_left/scan back_right/scan" />
+  <arg name="cloud_destination_topic" default="/merged_cloud" />
+  <arg name="scan_destination_topic" default="/scan" />
+  <arg name="laserscan_topics" default="/front_right/scan /back_left/scan" />
   <arg name="destination_frame" default="base_link" />
+  <arg name="standalone" default="false" />
+  <arg name="open_rviz" default="false" />
+
+  <!-- required for standalone launch file testing -->
+  <group if="$(arg standalone)"> 
+    <include file="$(find caato2_bringup)/launch/include/description.launch" />
+  </group>
+
+    <!-- rviz -->
+  <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find caato2_bringup)/rviz/bringup.rviz"/>
+  </group>
 
   <!-- Launch two hokuyo lidars -->
-  <group ns="front_left">
+  <group ns="front_right">
     <node name="urg_node" pkg="urg_node" type="urg_node" output="screen">
       <param name="ip_address" value="192.168.1.10"/>
       <param name="serial_port" value="/dev/ttyACM0"/>
@@ -21,7 +34,7 @@
     </node>
   </group>
 
-  <group ns="back_right">
+  <group ns="back_left">
     <node name="urg_node" pkg="urg_node" type="urg_node" output="screen">
       <param name="ip_address" value="192.168.1.11"/>
       <param name="serial_port" value="/dev/ttyACM0"/>
@@ -36,12 +49,13 @@
   </group>
     
   <!-- Launch multi laser merger -->
-  <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen">
+  <arg name="start_delay" default="3" />
+  <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger" output="screen" 
+  launch-prefix="bash -c 'sleep $(arg start_delay); $0 $@'">
     <param name="destination_frame" value="$(arg destination_frame)"/>
     <param name="cloud_destination_topic" value="$(arg cloud_destination_topic)"/>
     <param name="scan_destination_topic" value="$(arg scan_destination_topic)"/>
-    <param name="laserscan_topics" value ="$(arg laserscan_topics)" /> <!-- LIST OF THE LASER SCAN TOPICS TO SUBSCRIBE -->
-
+    <param name="laserscan_topics" value ="$(arg laserscan_topics)" /> 
     <param name="angle_min" value="-3.1415926"/>
     <param name="angle_max" value="3.1415926"/>
     <param name="angle_increment" value="0.004358"/>

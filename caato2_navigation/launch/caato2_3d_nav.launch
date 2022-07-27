@@ -2,8 +2,8 @@
 	
     <!-- Tag Rviz -->
     <arg name="rviz_config" value="$(find caato2_navigation)/rviz/atc.rviz"/>
-    <!-- <arg name="map_file" value="/media/caato2/data/Mezzanine_new/Mezzanine_downsampled.yaml"/> -->
-    <arg name="map_file" value="/media/caato2/data/lvl10/lvl10v3.yaml"/>
+    <arg name="map_file" value="/media/caato2/data/Mezzanine_new/Mezzanine_downsampled.yaml"/>
+    <!-- <arg name="map_file" value="/media/caato2/data/lvl10/lvl10v3.yaml"/> -->
     
     
     <!-- General Bring up for caato2-->
@@ -37,8 +37,8 @@
     <!-- AMCL3D Launch-->  
     <!-- Mod by Selva, 23 June (To make amcl3d to work) -->
     <include file="$(find amcl3d)/launch/amcl3d.launch">
-        <arg name="map_name_path" value="/media/caato2/data/lvl10/lvl10v3.bt" /> 
-        <!-- <arg name="map_name_path" value="/media/caato2/data/Mezzanine_new/Mezzanine_downsampled.bt" /> --> 
+        <!-- <arg name="map_name_path" value="/media/caato2/data/lvl10/lvl10v3.bt" /> -->
+        <arg name="map_name_path" value="/media/caato2/data/Mezzanine_new/Mezzanine_downsampled.bt" />
 
    <!-- <arg name="init_x"          value="2.62246605422"/>
    

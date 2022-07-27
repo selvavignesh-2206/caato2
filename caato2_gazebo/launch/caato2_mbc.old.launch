@@ -20,7 +20,7 @@
   <arg name="x_pos" default="22.0"/>
   <arg name="y_pos" default="-17.0"/>
   <arg name="z_pos" default="0.15"/>
-  <arg name="yaw" default="1.57" />
+  <arg name="yaw" default="1.5708" />
 
 
   <!-- IMPORTANT: INCLUDE BELOW SO THAT NO DELAY IN LOADING GAZEBO -->

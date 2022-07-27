@@ -79,7 +79,7 @@
         </scan>
         <range>
           <min>0.1</min>
-          <max>12</max>
+          <max>10</max>
         </range>
         <noise>
           <type>gaussian</type>
@@ -104,13 +104,12 @@
             <samples>1080</samples>
             <resolution>0.25</resolution>
             <min_angle>-2.356</min_angle>
-            <!-- accounting for the arm blocking -->
-            <max_angle>0.78</max_angle>
+            <max_angle>2.356</max_angle>
           </horizontal>
         </scan>
         <range>
           <min>0.1</min>
-          <max>12</max>
+          <max>10</max>
         </range>
         <noise>
           <type>gaussian</type>

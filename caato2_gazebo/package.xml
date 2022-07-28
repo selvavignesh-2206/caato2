@@ -16,4 +16,8 @@
   <exec_depend>gazebo</exec_depend>
   <exec_depend>caato2_description</exec_depend>
 
+  <export>
+      <gazebo_ros plugin_path="${prefix}/lib" gazebo_media_path="${prefix}" />
+  </export>
+
 </package>

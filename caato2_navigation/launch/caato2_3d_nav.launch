@@ -91,4 +91,6 @@
     <!-- Arm launch -->
     <include file="$(find caato2_bringup)/launch/include/arm.launch"/>
 
+    <!-- Xneryg RCU launch -->
+    <include file="$(find xnergy_charger_rcu)/launch/xnergy_charger_modbus.launch"/>
 </launch>

@@ -95,6 +95,7 @@
 
   <!-- Speckle Filter -->
   <include file="$(find laser_filters)/examples/speckle_filter_example.launch"/>
+  
 
   <!-- <node pkg="atc_waypoints" type="waypoints_server" required="true" name="waypoints_server" output="screen" /> -->
 </launch>

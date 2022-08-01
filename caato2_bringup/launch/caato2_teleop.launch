@@ -14,7 +14,10 @@
   <include file="$(find caato2_bringup)/launch/include/caato2_lasers.launch" />
 
    <!-- Launch realsense -->
-  <include file="$(find caato2_bringup)/launch/include/caato2_realsense.launch" />
+   <!-- <include file="$(find caato2_bringup)/launch/include/caato2_realsense.launch" /> -->
+  
+  <!-- launch 3d lidars -->
+  <include file="$(find caato2_bringup)/launch/include/caato2_3d_lasers.launch" />
 
 
 </launch>

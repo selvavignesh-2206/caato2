@@ -1,6 +1,6 @@
   <!-- Robot Description from URDF -->
   <launch>
-    <arg name="gui" default="true" />
+    <arg name="gui" default="false" />
     <arg name="model" default="$(find caato2_description)/urdf/caato2_3d.urdf.xacro"/>
     <param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg model)'" />
 

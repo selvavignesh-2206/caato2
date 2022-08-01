@@ -1,0 +1,18 @@
+<launch>
+
+<include file="$(find ouster_ros)/ouster.launch" >
+	<arg name="sensor_hostname" value="192.168.1.100" />
+	<arg name="udp_dest" value="192.168.1.6" />
+	<arg name="viz" value="false" />
+	<arg name="metadata" value="meta.json" />
+	<!--
+	<arg name="os_config" value="os_node/os_config" />
+	<arg name="lidar_packets" value="os_node/lidar_packets"/>
+	<arg name="imu_packets" value="os_node/imu_packets"/>
+	http://os-122040000170.local
+	-->
+</include>
+
+<node pkg="caato2_bringup" type="static_ouster_broadcaster" name="static_ouster_broadcaster" />
+
+</launch>

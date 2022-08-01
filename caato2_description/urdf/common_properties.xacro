@@ -2,9 +2,6 @@
 
 <robot name="xacro_properties" xmlns:xacro="http://ros.org/wiki/xacro">
 
-  <!--degree to radians-->
-  <xacro:property name="pi" value="3.14259"/>
-  
   <!-- Init colour -->  
   <material name="black">
       <color rgba="0.0 0.0 0.0 1.0"/>

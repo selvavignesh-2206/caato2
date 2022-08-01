@@ -1,6 +1,6 @@
 EBandPlannerROS:
-   xy_goal_tolerance: 0.1
-   yaw_goal_tolerance: 0.05
+   xy_goal_tolerance: 0.2
+   yaw_goal_tolerance: 0.1
    rot_stopped_vel: 0.07
    trans_stopped_vel: 0.07
    marker_lifetime: 0.2

@@ -35,6 +35,7 @@ curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo ap
 ```bash
 #depedencies
 sudo apt update && sudo apt install \
+  libglfw3 libglfw3-dev \
   git cmake python3-vcstool curl \
   qt5-default libmodbus-dev python3-colcon*\
   python3-rosdep python3-pip -y
@@ -57,12 +58,14 @@ cd ~/caato2_ws
 ```
 ```bash
 #get list of repositories and import to src
-wget https://raw.githubusercontent.com/TRL-RMF/caato2/samuel/caato2_devel/caato2.repos
+wget https://raw.githubusercontent.com/TRL-RMF/caato2/main/caato2.repos
 vcs import src < caato2.repos
 ```
 ```bash
 # more dependencies + building
 sudo rosdep init
+```
+```bash
 rosdep update
 rosdep install --from-paths src --ignore-src --rosdistro noetic -y
 ```

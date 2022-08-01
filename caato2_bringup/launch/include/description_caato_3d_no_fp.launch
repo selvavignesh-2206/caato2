@@ -1,7 +1,7 @@
   <!-- Robot Description from URDF -->
   <launch>
     <arg name="gui" default="false" />
-    <arg name="model" default="$(find caato2_description)/urdf/caato2.urdf.xacro"/>
+    <arg name="model" default="$(find caato2_description)/urdf/caato2_3d_nb.urdf.xacro"/>
     <param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg model)'" />
 
     <!-- Keeps track of positions of joints and publishes to sensor_msgs/JointState -->

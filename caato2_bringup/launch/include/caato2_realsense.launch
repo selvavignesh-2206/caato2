@@ -23,7 +23,7 @@
     <arg name="camera1"              			value="d435_front"/>		<!-- Note: Replace with camera name -->
     <arg name="camera2"              			value="d435"/>		<!-- Note: Replace with camera name -->
     <arg name="camera3"              			value=""/>		<!-- Note: Replace with camera name -->
-    <arg name="initial_reset"                   value="false"/>
+    <arg name="initial_reset"                   value="true"/>
   </include>
 </launch>
   

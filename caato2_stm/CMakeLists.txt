@@ -55,6 +55,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   caato_state.msg
+  navigation_state.msg
 )
 
 # Generate services in the 'srv' folder

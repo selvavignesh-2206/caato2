@@ -12,13 +12,18 @@ int main(int argc, char** argv)
 
   ros::Rate loop_rate(10);
 
+   ROS_INFO("starting action_server 1");
+
   NavigationManager navigation_manager{&nh};
 
-  ROS_INFO("starting action_server");
+  ROS_INFO("starting action_server 2");
 
   while (ros::ok())
   {
-    ros::spin();
+    ros::spinOnce();
+
+    navigation_manager.spinManager();
+
     loop_rate.sleep();
   }
 

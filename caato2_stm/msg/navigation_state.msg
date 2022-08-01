@@ -1,0 +1,2 @@
+uint8 state_code
+string state_description

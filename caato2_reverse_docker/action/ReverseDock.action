@@ -1,0 +1,10 @@
+#goal definition
+geometry_msgs/Pose goal_pose
+---
+#result definition
+bool success
+---
+#feedback
+bool executing
+uint8 stage
+string description

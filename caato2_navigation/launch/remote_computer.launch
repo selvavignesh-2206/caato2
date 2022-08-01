@@ -1,0 +1,13 @@
+<launch>
+
+<arg name="rviz_config" value="$(find caato2_navigation)/rviz/atc.rviz"/>
+<arg name="open_rviz" default="true"/>
+
+    <!-- rviz -->
+    <group if="$(arg open_rviz)"> 
+      <node pkg="rviz" type="rviz" name="rviz" required="true"
+            args="-d $(arg rviz_config)"/>
+    </group>
+
+  </launch>
+  

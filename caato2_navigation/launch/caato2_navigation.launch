@@ -32,3 +32,12 @@
           args="-d $(find caato2_navigation)/rviz/caato2_navigation.rviz"/>
   </group>
 </launch>
+
+<!--Mod by Selva, To quick start for testing, Aug 1 2022-->
+<!--Reverse docking-->
+<include file="$(find caato2_bringup)/launch/include/caato2_reverse_dock.launch" >
+</include>
+
+<!--RMF client-->
+<include file="$(find caato2_bringup)/launch/include/caato2_rmf_client.launch" >
+</include>

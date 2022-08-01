@@ -33,7 +33,7 @@
       
     </include>
   <!-- caato2 -->
-  <include file="$(find caato2_bringup)/launch/include/description_caato_3d.launch">
+  <include file="$(find caato2_bringup)/launch/include/description_caato_3d_no_fp.launch">
   </include>
   
     <!-- Spawn robot in gazebo -->

@@ -268,19 +268,19 @@
   <xacro:include filename="$(find realsense2_description)/urdf/_d435.2.front.urdf.xacro"/>
   <xacro:include filename="$(find realsense2_description)/urdf/_d435.front.gazebo.xacro"/>
   <xacro:d435_front parent="base_link">
-      <origin xyz="-0 -0.34 0.46" rpy="0 0 -1.57" />
+      <origin xyz="-0 -0.34 0.35" rpy="0 0 -1.57" />
   </xacro:d435_front> 
 
   <!-- back realsense sensor -->
   <xacro:include filename="$(find realsense2_description)/urdf/_d435.2.urdf.xacro"/>
   <xacro:include filename="$(find realsense2_description)/urdf/_d435.gazebo.xacro"/>
   <xacro:sensor_d435 parent="base_link">
-      <origin xyz="0 0.197 0.46" rpy="0 0 1.57" />
+      <origin xyz="0 0.28 0.46" rpy="0 0 1.57" />
   </xacro:sensor_d435>   
 
-  <xacro:include filename="$(find ouster_os1_64)/urdf/os1_64.urdf.xacro"/>
+  <!-- <xacro:include filename="$(find ouster_os1_64)/urdf/os1_64.urdf.xacro"/>
   <xacro:os1_64 parent="base" name="ouster" prefix="/os1_cloud_node" hz="10" samples="512">
     <origin xyz="0 -0.135 1.2537" rpy="0 0 0" />
-  </xacro:os1_64>
+  </xacro:os1_64> -->
   
 </robot>

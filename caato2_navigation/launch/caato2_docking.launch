@@ -52,6 +52,14 @@
     <!-- waypoints_server -->
     <node pkg="atc_waypoints" type="waypoints_server" required="true" name="waypoints_server" output="screen" />
 
+<!--Mod by Selva, To quick start for testing, Aug 1 2022-->
+<!--Reverse docking-->
+<include file="$(find caato2_bringup)/launch/include/caato2_reverse_dock.launch" >
+</include>
 
-  </launch>
+<!--RMF client-->
+<include file="$(find caato2_bringup)/launch/include/caato2_rmf_client.launch" >
+</include>
+
+</launch>
   

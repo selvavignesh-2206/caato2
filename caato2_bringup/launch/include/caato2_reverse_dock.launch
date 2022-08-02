@@ -1,7 +1,7 @@
 <launch>
 
     <!-- Reverse Docking Node for CAATO2 to allow it to reverse -->
-    <node pkg="caato2_reverse_" type="reverse_docking_server" name="caato2_reverse_docker">
+    <node pkg="caato2_reverse_docker" type="reverse_docking_server" name="caato2_reverse_docker">
     </node>
 
 

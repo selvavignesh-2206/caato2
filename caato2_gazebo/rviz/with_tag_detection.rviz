@@ -7,7 +7,6 @@ Panels:
         - /RobotModel1
         - /TF1/Frames1
         - /TF1/Tree1
-        - /LaserScan1
         - /Global Map1/Costmap1
         - /Global Map1/Planner1
         - /Local Map1
@@ -248,8 +247,8 @@ Visualization Manager:
       Queue Size: 10
       Selectable: true
       Size (Pixels): 3
-      Size (m): 0.20000000298023224
-      Style: Spheres
+      Size (m): 0.030000001192092896
+      Style: Flat Squares
       Topic: /scan
       Unreliable: false
       Use Fixed Frame: true
@@ -501,7 +500,7 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Angle: 0.019203394651412964
+      Angle: 0.1042034700512886
       Class: rviz/TopDownOrtho
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
@@ -511,10 +510,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Scale: 42.541507720947266
+      Scale: 113.3399658203125
       Target Frame: <Fixed Frame>
-      X: 22.421682357788086
-      Y: -16.105186462402344
+      X: 21.77239418029785
+      Y: -19.19768714904785
     Saved: ~
 Window Geometry:
   Displays:
@@ -539,7 +538,7 @@ Window Geometry:
     collapsed: true
   Width: 1920
   X: 0
-  Y: 24
+  Y: 0
   back_image:
     collapsed: false
   front_image:

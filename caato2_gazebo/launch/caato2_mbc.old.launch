@@ -68,7 +68,8 @@
 
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
-    <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find caato2_gazebo)/rviz/with_tag_detection.rviz" output="screen"/>
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find caato2_gazebo)/rviz/with_tag_detection.rviz"/>
   </group>
 
   <!-- teleop -->
@@ -79,13 +80,13 @@
     <arg name="start_delay" default="3" />
     <node pkg="ira_laser_tools" name="laserscan_multi_merger" type="laserscan_multi_merger"
       launch-prefix="bash -c 'sleep $(arg start_delay); $0 $@'">
-      <param name="destination_frame" value="base_footprint"/>
+      <param name="destination_frame" value="hokuyo_laser_scanner_1"/>
       <param name="cloud_destination_topic" value="/merged_cloud"/>
       <param name="scan_destination_topic" value="/scan"/>
       <param name="laserscan_topics" value ="/back_left/scan /front_right/scan" /> <!-- LIST OF THE LASER SCAN TOPICS TO SUBSCRIBE -->
 
-      <param name="angle_min" value="-2.1"/>
-      <param name="angle_max" value="2.1"/>
+      <param name="angle_min" value="-3.14"/>
+      <param name="angle_max" value="3.14"/>
       <param name="angle_increment" value="0.005"/>
       <param name="scan_time" value="0.0333333"/>
       <param name="range_min" value="0.30"/>

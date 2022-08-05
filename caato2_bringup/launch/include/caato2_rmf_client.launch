@@ -1,0 +1,14 @@
+<launch>
+
+    <!-- State Transition Manager to control state of CAATO -->
+    <node pkg="caato2_stm" type="caato2_stm_node" name="caato2_stm_node" />
+
+    <!-- Navigation Manager to allow RMF to send commands to CAATO2 -->
+    <node pkg="caato2_stm" type="navigation_manager_node" name="navigation_manager_node" />
+
+    <!-- RESTful Server for CAATO2 to communicate with RMF -->
+    <node pkg="caato_fleet_client" type="REST_API_Server.py" name="caato_fleet_client">
+    </node>
+
+
+</launch>

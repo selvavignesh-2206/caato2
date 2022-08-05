@@ -1,10 +1,13 @@
+<!-- To launch 3D nagivation -->
+
 <launch>
 	
+    <!-- Map arguments-->
+    <arg name="map_file" default="/media/caato2/data/Mezzanine_new/Mezzanine_downsampled.yaml"/>
+    <arg name="map_name_path" default="/media/caato2/data/Mezzanine_new/Mezzanine_downsampled.bt" />
+
     <!-- Tag Rviz -->
-    <arg name="rviz_config" value="$(find caato2_navigation)/rviz/atc.rviz"/>
-    <arg name="map_file" value="/media/caato2/data/Mezzanine_new/Mezzanine_downsampled.yaml"/>
-    <!-- <arg name="map_file" value="/media/caato2/data/lvl10/lvl10v3.yaml"/> -->
-    
+    <arg name="rviz_config" value="$(find caato2_navigation)/rviz/atc.rviz"/>    
     
     <!-- General Bring up for caato2-->
     <include file="$(find caato2_bringup)/launch/include/description_caato_3d.launch" />
@@ -28,7 +31,7 @@
     <include file="$(find laser_filters)/examples/speckle_filter_example.launch">
     </include>
 
-    <!-- Most Impt-->
+    <!-- Mod by Selva, convert data type of odom (Very Impt)-->
     <node pkg="caato2_bringup" type="odom_to_tfstamped" name="odom_to_tfstamped" />
 
     <!-- Visualization -->
@@ -37,16 +40,7 @@
     <!-- AMCL3D Launch-->  
     <!-- Mod by Selva, 23 June (To make amcl3d to work) -->
     <include file="$(find amcl3d)/launch/amcl3d.launch">
-        <!-- <arg name="map_name_path" value="/media/caato2/data/lvl10/lvl10v3.bt" /> -->
-        <arg name="map_name_path" value="/media/caato2/data/Mezzanine_new/Mezzanine_downsampled.bt" />
-
-   <!-- <arg name="init_x"          value="2.62246605422"/>
-   
-        <arg name="init_y"          value="1.79965136483"/>
-        <arg name="init_z"          value="1.01354973057"/>
-        <arg name="init_a"          value="-0.043"/> -->
-
-        <!-- Mod by Selva, 8 July (orginal working one was base_link)-->
+        <arg name="map_name_path" value="$(arg map_name_path)" />
         <arg name="base_frame_id" value="base_footprint" />
         <arg name="odom_frame_id" value="odom" /> 
         <arg name="global_frame_id" value="map" />
@@ -79,7 +73,6 @@
 
         <remap from="cmd_vel" to="$(arg cmd_vel_topic)"/>
         <remap from="odom" to="$(arg odom_topic)"/>
-        <!-- <remap from="map" to="$(arg map_topic)"/>  -->
     </node>
     
     <!-- Launch realsense -->

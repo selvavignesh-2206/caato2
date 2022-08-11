@@ -3,8 +3,9 @@
 <launch>
 	
     <!-- Map arguments-->
-    <arg name="map_file" default="/media/caato2/data/Mezzanine_new/Mezzanine_downsampled.yaml"/>
-    <arg name="map_name_path" default="/media/caato2/data/Mezzanine_new/Mezzanine_downsampled.bt" />
+    <arg name="map_name" default="Mezzanine_downsampled"/>
+    <arg name="map_file" default="/media/caato2/data/$(arg map_name)/$(arg map_name).yaml"/>
+    <arg name="map_name_path" default="/media/caato2/data/$(arg map_name)/$(arg map_name).bt" />
 
     <!-- Tag Rviz -->
     <arg name="rviz_config" value="$(find caato2_navigation)/rviz/atc.rviz"/>    
@@ -79,10 +80,16 @@
     <include file="$(find caato2_bringup)/launch/include/caato2_realsense.launch" />
     
     <!-- atc -->
-    <include file="$(find atc_stm)/launch/astm.frontbackAT.noGDB.launch"/> 
+    <!-- <include file="$(find atc_stm)/launch/astm.frontbackAT.noGDB.launch"/> -->
 
     <!-- Arm launch -->
-    <include file="$(find caato2_bringup)/launch/include/arm.launch"/>
+    <!-- <include file="$(find caato2_bringup)/launch/include/arm.launch"/> -->
+    
+    <!-- RESTful API Server launch -->
+    <include file="$(find caato2_bringup)/launch/include/caato2_rmf_client.launch"/>
+    
+    <!-- Reverse Docker launch -->
+    <include file="$(find caato2_bringup)/launch/include/caato2_reverse_dock.launch"/>
 
     <!-- Xneryg RCU launch -->
     <include file="$(find xnergy_charger_rcu)/launch/xnergy_charger_modbus.launch"/>

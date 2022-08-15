@@ -31,10 +31,6 @@ repositories:
     type: git
     url: git@github.com:TRL-RMF/eband_local_planner.git
     version: master
-  flask_ask_ros_caato:
-    type: git
-    url: git@github.com:TRL-RMF/flask_ask_ros_caato.git
-    version: master
   ira_laser_tools:
     type: git
     url: git@github.com:TRL-RMF/ira_laser_tools.git
@@ -43,10 +39,6 @@ repositories:
     type: git
     url: git@github.com:TRL-RMF/laser_filters.git
     version: samuel/caato2_devel
-  map_server:
-    type: git
-    url: git@github.com:TRL-RMF/map_server.git
-    version: master
   ouster-gazebo-simulation:
     type: git
     url: git@github.com:TRL-RMF/ouster-gazebo-simulation.git

@@ -1,0 +1,31 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/caato2/caato2_ws/install/xnergy_charger_rcu/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/trolley_arm/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/rosserial_xbee/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/rosserial_vex_v5/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/rosserial_vex_cortex/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/rosserial_arduino/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/rosserial_python/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/rosserial_mbed/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/rosserial_client/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/rosserial_msgs/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/roboteq_diff_msgs/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/realsense2_camera/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/plc_modbus_node/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/laser_filters/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/ira_laser_tools/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/eband_local_planner/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/ds4_driver/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/device_diagnostics/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/caato2_reverse_docker/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/caato2_stm/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/atc_waypoints/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/atc_msgs/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/apriltag_ros/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/ouster_example/lib/python3/dist-packages",
+        "/home/caato2/caato2_ws/install/Project/lib/python3/dist-packages",
+        "/home/caato2/cartographer_ws/install_isolated/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ]
+}

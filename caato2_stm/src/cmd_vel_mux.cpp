@@ -77,6 +77,10 @@ bool CmdVelMux::change_topic_callback(caato2_stm::change_robot_state::Request &r
             cmd_vel_sub = nh_pointer->subscribe(cmd_vel_topics[3], 1000, &CmdVelMux::muxSubCallback, this);
             return true;
             break;
+        case 5: //to dock to charger
+            subscriber_checker();
+            return true;
+            break;
         default:
             return false;
             break; 

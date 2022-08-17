@@ -32,7 +32,7 @@ private:
     geometry_msgs::Twist msg;
     const actionlib_msgs::GoalID cancel_goal{};
     // std::vector<std::string> cmd_vel_topics_;
-    const std::string cmd_vel_topics[4] = {"cmd_vel/move_base", "cmd_vel/telejoy", "cmd_vel/coarse_guidance", "cmd_vel/reverse_docking"};
+    const std::string cmd_vel_topics[5] = {"cmd_vel/move_base", "cmd_vel/telejoy", "cmd_vel/coarse_guidance", "cmd_vel/reverse_docking", "cmd_vel/docking"};
     ros::NodeHandle* nh_pointer;
 
     void subscriber_checker();

@@ -1,6 +1,7 @@
 <launch>
   <!-- Arguments -->
-  <arg name="map_file" default="$(find caato2_navigation)/maps/map.yaml"/>
+  <arg name="map_name" default="MBC10_lv10"/>
+  <arg name="map_file" default="/media/caato2/data/$(arg map_name)/$(arg map_name).yaml"/>
   <arg name="open_rviz" default="true"/>
   <arg name="move_forward_only" default="false"/>
   <arg name="initial_pose_x" default="0"/>
@@ -10,6 +11,13 @@
   <!-- caato2 -->
   <include file="$(find caato2_bringup)/launch/include/description.launch">
   </include>
+  
+  <include file="$(find caato2_bringup)/launch/include/caato2_lasers.launch" />
+  
+  <include file="$(find laser_filters)/examples/speckle_filter_example.launch">
+    </include>
+  
+  <include file="$(find caato2_bringup)/launch/include/caato2_motors.launch" />
 
   <!-- Map server -->
   <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
@@ -25,10 +33,13 @@
   <include file="$(find caato2_navigation)/launch/move_base/move_base_eband.launch">
     <arg name="move_forward_only" value="$(arg move_forward_only)"/>
   </include>
+  
+  <!-- Launch realsense -->
+    <include file="$(find caato2_bringup)/launch/include/caato2_realsense.launch" />
 
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
-    <node pkg="rviz" type="rviz" name="rviz" required="true"
+    <node pkg="rviz" type="rviz" name="rviz" required="false"
           args="-d $(find caato2_navigation)/rviz/caato2_navigation.rviz"/>
   </group>
 

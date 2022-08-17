@@ -1,0 +1,49 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/caato2/caato2_ws/install/xnergy_charger_rcu/include/**",
+        "/home/caato2/caato2_ws/install/trolley_arm/include/**",
+        "/home/caato2/caato2_ws/install/teleop_twist_joy/include/**",
+        "/home/caato2/caato2_ws/install/rosserial_server/include/**",
+        "/home/caato2/caato2_ws/install/rosserial_arduino/include/**",
+        "/home/caato2/caato2_ws/install/rosserial_mbed/include/**",
+        "/home/caato2/caato2_ws/install/rosserial_msgs/include/**",
+        "/home/caato2/caato2_ws/install/roboteq_diff_driver/include/**",
+        "/home/caato2/caato2_ws/install/roboteq_diff_msgs/include/**",
+        "/home/caato2/caato2_ws/install/realsense2_camera/include/**",
+        "/home/caato2/caato2_ws/install/plc_modbus_node/include/**",
+        "/home/caato2/caato2_ws/install/map_server/include/**",
+        "/home/caato2/caato2_ws/install/laser_filters/include/**",
+        "/home/caato2/caato2_ws/install/ira_laser_tools/include/**",
+        "/home/caato2/caato2_ws/install/eband_local_planner/include/**",
+        "/home/caato2/caato2_ws/install/ds4_driver/include/**",
+        "/home/caato2/caato2_ws/install/device_diagnostics/include/**",
+        "/home/caato2/caato2_ws/install/caato2_reverse_docker/include/**",
+        "/home/caato2/caato2_ws/install/caato2_stm/include/**",
+        "/home/caato2/caato2_ws/install/atc_waypoints/include/**",
+        "/home/caato2/caato2_ws/install/atc_utils/include/**",
+        "/home/caato2/caato2_ws/install/atc_msgs/include/**",
+        "/home/caato2/caato2_ws/install/apriltag_ros/include/**",
+        "/home/caato2/caato2_ws/install/apriltag/include/**",
+        "/home/caato2/caato2_ws/install/ouster_example/include/**",
+        "/home/caato2/caato2_ws/install/ouster-gazebo-simulation/include/**",
+        "/home/caato2/caato2_ws/install/Project/include/**",
+        "/home/caato2/cartographer_ws/install_isolated/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/caato2/caato2_ws/install/realsense_gazebo_plugin/share/realsense_gazebo_plugin/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

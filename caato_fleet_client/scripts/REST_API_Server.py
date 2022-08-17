@@ -74,6 +74,8 @@ def device_status():
 
 command_robot = rospy.ServiceProxy('cmd_vel_mux', change_robot_state)
 command_navigation_robot = rospy.ServiceProxy('caato_nav_goal', navigate_goal)
+#commands added by Selva for docking 
+#command_dock = rospy.ServiceProxy('start_dock', )
 
 def navigate_goal(nav_goal_x, nav_goal_y, nav_goal_theta):
     pose_goal = Pose()
@@ -139,11 +141,18 @@ def get_navigation_status():
         print("call failed: %s"%e)
         return "call failed: %s"%e
 
-
+@app.post('/start_docking')
+def start_docking():
+    try:
+        #resp1 = command_robot(5)
+        return ''
+    except rospy.ServiceException as e:
+        print("Service call to dock failed: %s"%e)
+        return "Service call to dock failed: %s"%e
 
 if __name__ == '__main__':
     try:
-        uvicorn.run(app, host="127.0.0.1", port=3030, log_level="info")
+        uvicorn.run(app, host="0.0.0.0", port=3030, log_level="info")
         # rospy.spin()
     except rospy.ROSInterruptException:
         pass

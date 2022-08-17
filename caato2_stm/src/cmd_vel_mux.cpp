@@ -78,7 +78,6 @@ bool CmdVelMux::change_topic_callback(caato2_stm::change_robot_state::Request &r
             return true;
             break;
         case 5: //to dock to charger
-            subscriber_checker();
             return true;
             break;
         default:

@@ -1,0 +1,2 @@
+uint8 _docking_state_code
+string docking_state_description

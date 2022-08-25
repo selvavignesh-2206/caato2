@@ -1,6 +1,9 @@
 #include <stdlib.h>  
 #include <ros/ros.h>
 #include <move_base_msgs/MoveBaseAction.h>
+#include "geometry_msgs/PoseStamped.h"
+#include "geometry_msgs/Pose.h"
+#include "geometry_msgs/Point.h"
 #include <actionlib/client/simple_action_client.h>
 #include "caato2_stm/docking_manager.h"
 

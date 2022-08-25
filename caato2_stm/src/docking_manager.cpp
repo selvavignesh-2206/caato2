@@ -54,26 +54,8 @@ void NavigationManager::actionClientRun(const move_base_msgs::MoveBaseGoal& inpu
   ac.sendGoal(input_goal);
   goal_state = ac.getState();
 
-  // std::threaHi A
-
   return;
 
-  // while (goal_state == actionlib::SimpleClientGoalState::PENDING ||
-  //        goal_state == actionlib::SimpleClientGoalState::ACTIVE)
-  // {
-  //   goal_state = ac.getState();
-  //   // ROS_INFO("%s", goal_state.toString());
-  // }
-
-  // if (ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
-  //   ROS_INFO("Hooray, the action client was successful");
-  // else
-  //   ROS_INFO("The base failed to complete action for some reason");
-
-  // goal_state = ac.getState();
-  // spin_thread.join();
-
-  // return;
 }
 
 bool NavigationManager::navGoal(caato2_stm::navigate_goal::Request& req, caato2_stm::navigate_goal::Response& res)

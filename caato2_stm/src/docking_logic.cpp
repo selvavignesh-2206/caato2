@@ -1,4 +1,14 @@
+   /*
+    * Docking Mechanism Logic
+    * Based on Autonomous Docking with Optical 
+    * Positioning Thesis paper by Kolja Poreski
+    * Auther: Selva
+    * Date: 28 Aug 2022
+    */
+
 #include "caato2_stm/docking_logic.h"
+
+void move()
 
 void driveForward (double distance) {
 
@@ -6,7 +16,12 @@ void driveForward (double distance) {
 
     time_to_wait = distance/velocity;
 
-    error = m * log(distance * 100) - 
+   /*
+    * @m the gradient of the line after using
+    * standard square method
+    * @c is the y-intercept of the line
+    */
+    error = m * log(distance * 100) - c
 
     dt = error/(velocity*100);
 
@@ -30,7 +45,8 @@ void driveForward (double distance) {
 
         while ((Time::now() - startTime) < time_to_wait) 
         {
-            drive_forward 
+            drive_forward(velocity)
+            Duration(0.5).sleep()
         }
     }
 }

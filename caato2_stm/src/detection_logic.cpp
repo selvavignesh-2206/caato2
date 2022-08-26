@@ -29,6 +29,9 @@ void getAvgPositionAngle (const aprilTags_ros::AprilTagDetectionArray& msg) {
             float z2 = base_tag.getOrigin().y();
             float yaw = tf::getYaw (base_tag.getRoatiion();
             float yy =
+
+
+            // TODO: Port over the rest of code
         }
     }
 }

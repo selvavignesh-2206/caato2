@@ -6,10 +6,28 @@
     * Date: 28 Aug 2022
     */
 
+#include "ros/ros.h"
+#include <nav_msgs/Odometry.h>
+#include <geometry_msgs/PoseStamped.h>
+#include <tf2/LinearMath/Quaternion.h>
+#include <cmath>
 #include "caato2_stm/docking_logic.h"
+
 
 void move()
 
+// ---------------------------------------------------------------------
+void actual_angle (const nav_msgs::Odometry& msg) {
+
+    tf2::Quaternion q;
+
+    geometery_msgs::Twist odom_reading;
+
+    odom_reading.angular.x = 
+    msg->pose.pose.orientation.x
+}
+
+// ---------------------------------------------------------------------
 void driveForward (double distance) {
 
     velocity = 0.15;
@@ -51,6 +69,7 @@ void driveForward (double distance) {
     }
 }
 
+// ---------------------------------------------------------------------
 void linearApproach (const ) {
 
     geometry_msgs::Pose current_pose = 
@@ -90,6 +109,7 @@ void linearApproach (const ) {
 
 }
 
+// ---------------------------------------------------------------------
 void frontalDocking (....) {
 
     alpha_boundary = 2.0 * (M_PI/180.0);

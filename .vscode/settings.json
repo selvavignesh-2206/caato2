@@ -27,5 +27,6 @@
         "/home/caato2/caato2_ws/install/Project/lib/python3/dist-packages",
         "/home/caato2/cartographer_ws/install_isolated/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages"
-    ]
+    ],
+    "ros.distro": "noetic"
 }

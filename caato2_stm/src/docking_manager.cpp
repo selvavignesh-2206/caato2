@@ -7,7 +7,7 @@ DockingManager::DockingManager(ros::NodeHandle* nh_pointer) : ac("move_base", tr
 {
   nh = nh_pointer;
   docking_goal_service = nh->advertiseService("caato_docking_goal", &DockingManager::navGoal, this);
-  docking_state_pub = nh->advertise<caato2_stm::docking_state>("navigation_state", 100);
+  docking_state_pub = nh->advertise<caato2_stm::docking_state>("docking_state", 100);
 }
 
 DockingManager::~DockingManager()
@@ -44,7 +44,7 @@ void DockingManager::spinManager()
 
 }
 
-void NavigationManager::actionClientRun(const move_base_msgs::MoveBaseGoal& input_goal)
+void DockingManager::actionClientRun(const move_base_msgs::MoveBaseGoal& input_goal)
 {
   // wait for the action server to come up
   while (!ac.waitForServer(ros::Duration(5.0)))
@@ -58,7 +58,7 @@ void NavigationManager::actionClientRun(const move_base_msgs::MoveBaseGoal& inpu
 
 }
 
-bool NavigationManager::navGoal(caato2_stm::navigate_goal::Request& req, caato2_stm::navigate_goal::Response& res)
+bool DockingManager::navGoal(caato2_stm::navigate_goal::Request& req, caato2_stm::navigate_goal::Response& res)
 {
   move_base_msgs::MoveBaseGoal goal;
   goal.target_pose.header.frame_id = "map";

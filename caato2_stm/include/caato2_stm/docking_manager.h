@@ -3,6 +3,7 @@
 
 #include <ros/ros.h>
 #include <move_base_msgs/MoveBaseAction.h>
+#include <move_base_msgs/MoveBaseGoal.h>
 #include <actionlib/client/simple_action_client.h>
 #include <geometry_msgs/Pose.h>
 #include "caato2_stm/navigate_goal.h"

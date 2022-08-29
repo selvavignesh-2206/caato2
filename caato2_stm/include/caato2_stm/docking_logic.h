@@ -1,3 +1,6 @@
+#ifndef DOCKING_LOGIC_H
+#define DOCKING_LOGIC_H
+
 #include <math.h>
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
@@ -5,16 +8,23 @@
 #include "geometry_msgs/Pose.h"
 #include "geometry_msgs/Point.h"
 #include <bits/stdc++.h>
+#include <nav_msgs/Odometry.h>
+#include <tf2/LinearMath/Quaternion.h>
+#include <cmath>
 
 class DockingLogic 
 {
 public:
 
-    void linearApproach();
+    void move();
+
+    void actual_angle (const nav_msgs::Odometry& msg);
+
+    void linearApproach(const );
 
     void driveForward (double distance);
 
-    void frontalDocking();
+    void frontalDocking(....);
 
     // TODO: More functions
 

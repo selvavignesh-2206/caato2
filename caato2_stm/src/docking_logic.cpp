@@ -13,11 +13,60 @@
 #include <cmath>
 #include "caato2_stm/docking_logic.h"
 
+void DockingLogic::moveForward(ros::Publisher& cmd_vel_pub) {
+    
+    geometry_msgs::Pose base;
 
-void move()
+    base.linear.x = 
+}
+void DockingLogic::moveAngular(ros::Publisher& cmd_vel_pub) {
+
+    if (alpha_rad != 0.0)
+    {
+        goal_angle = odom_angle + alpha_rad;
+
+        N = (int) goal_angle/M_PI;
+
+        rest = goal_angle - ((float)N * M_PI);
+
+        if ((rest > 0) && (N >0)) 
+        {
+
+
+        }
+
+        rad_velocity = (alpha_rad < 0) ? -0.5 : 0.5;
+
+        weiter = true;
+
+        while (weiter) {
+
+            geometry_msgs::Twist base;
+
+            base.linear.x = 0.0;
+            base.angular.z = rad_velocity;
+
+            cmd_vel_pub.publish(base);
+
+            ros::Duration(0.5).sleep();
+            
+            epsilon = goal_angle - angle;
+
+            if (epsilon > 0.1)
+            {
+                weither = true;
+            } 
+            else 
+            {
+                weither = false;
+            }
+        }
+
+    }
+}
 
 // ---------------------------------------------------------------------
-void actual_angle (const nav_msgs::Odometry& msg) {
+void DockingLogic::actualAngle (const nav_msgs::Odometry& msg) {
 
     tf2::Quaternion q;
 
@@ -28,7 +77,7 @@ void actual_angle (const nav_msgs::Odometry& msg) {
 }
 
 // ---------------------------------------------------------------------
-void driveForward (double distance) {
+void DockingLogic::driveForward (double distance) {
 
     velocity = 0.15;
 
@@ -70,7 +119,7 @@ void driveForward (double distance) {
 }
 
 // ---------------------------------------------------------------------
-void linearApproach (const ) {
+void DockingLogic::linearApproach (const ) {
 
     geometry_msgs::Pose current_pose = 
     geometry_msgs::Point current_point = p.position;
@@ -110,7 +159,7 @@ void linearApproach (const ) {
 }
 
 // ---------------------------------------------------------------------
-void frontalDocking (....) {
+void DockingLogic::frontalDocking (....) {
 
     alpha_boundary = 2.0 * (M_PI/180.0);
 

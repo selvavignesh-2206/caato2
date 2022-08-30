@@ -150,6 +150,14 @@ def start_docking():
         print("Service call to dock failed: %s"%e)
         return "Service call to dock failed: %s"%e
 
+@app.get('/docking_status')
+def get_docking_status():
+    try:
+        return {"docking_status_code"}
+    except rospy.ServiceException as e:
+        print("docking status call failed: %s"%e)
+        return "docking status call failed: %s"%e
+
 if __name__ == '__main__':
     try:
         uvicorn.run(app, host="0.0.0.0", port=3030, log_level="info")

@@ -1,0 +1,18 @@
+make[1]: *** wait: No child processes.  Stop.
+make[1]: *** Waiting for unfinished jobs....
+make[1]: *** wait: No child processes.  Stop.
+make[1]: *** [CMakeFiles/Makefile2:382: CMakeFiles/actionlib_generate_messages_cpp.dir/all] Interrupt
+make[1]: *** [CMakeFiles/Makefile2:436: CMakeFiles/roscpp_generate_messages_lisp.dir/all] Interrupt
+make[1]: *** [CMakeFiles/Makefile2:651: CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all] Error 2
+make[1]: *** [CMakeFiles/Makefile2:490: CMakeFiles/actionlib_generate_messages_lisp.dir/all] Interrupt
+make[1]: *** [CMakeFiles/Makefile2:1803: CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/all] Interrupt
+make[2]: *** [CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build.make:70: CMakeFiles/diagnostic_msgs_generate_messages_py.dir/depend] Interrupt
+make[2]: *** [CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make:70: CMakeFiles/nav_msgs_generate_messages_nodejs.dir/depend] Interrupt
+make[1]: *** [CMakeFiles/Makefile2:517: CMakeFiles/std_msgs_generate_messages_lisp.dir/all] Interrupt
+make[1]: *** [CMakeFiles/Makefile2:623: CMakeFiles/diagnostic_msgs_generate_messages_py.dir/all] Interrupt
+make[1]: *** [CMakeFiles/Makefile2:677: CMakeFiles/nav_msgs_generate_messages_nodejs.dir/all] Interrupt
+make[1]: *** [CMakeFiles/Makefile2:355: CMakeFiles/actionlib_msgs_generate_messages_py.dir/all] Interrupt
+make[2]: *** [CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make:70: CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend] Interrupt
+make[1]: *** [CMakeFiles/Makefile2:328: CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all] Interrupt
+make[1]: *** [CMakeFiles/Makefile2:569: CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all] Interrupt
+make: *** [Makefile:141: all] Interrupt

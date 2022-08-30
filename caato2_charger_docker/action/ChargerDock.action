@@ -1,0 +1,10 @@
+# End Goal Definition
+geometry_msgs/Pose goal_pose
+---
+# End result Definition
+bool success
+---
+# Mid Feedback
+bool executing
+uint8 stage
+string description

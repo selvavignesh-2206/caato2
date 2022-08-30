@@ -1,0 +1,171 @@
+[0.026s] Invoking command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_stm': /usr/bin/cmake /home/dimsum/caato2_ws/src/caato2/caato2_stm -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/dimsum/caato2_ws/src/caato2/install/caato2_stm
+[0.095s] -- The C compiler identification is GNU 9.4.0
+[0.149s] -- The CXX compiler identification is GNU 9.4.0
+[0.156s] -- Check for working C compiler: /usr/bin/cc
+[0.207s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.208s] -- Detecting C compiler ABI info
+[0.261s] -- Detecting C compiler ABI info - done
+[0.274s] -- Detecting C compile features
+[0.274s] -- Detecting C compile features - done
+[0.277s] -- Check for working CXX compiler: /usr/bin/c++
+[0.335s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.337s] -- Detecting CXX compiler ABI info
+[0.399s] -- Detecting CXX compiler ABI info - done
+[0.410s] -- Detecting CXX compile features
+[0.411s] -- Detecting CXX compile features - done
+[0.416s] -- Using CATKIN_DEVEL_PREFIX: /home/dimsum/caato2_ws/src/caato2/build/caato2_stm/devel
+[0.416s] -- Using CMAKE_PREFIX_PATH: /home/dimsum/caato2_ws/install/xnergy_charger_rcu;/home/dimsum/caato2_ws/install/trolley_arm;/home/dimsum/caato2_ws/install/teleop_twist_joy;/home/dimsum/caato2_ws/install/rviz_atc_plugins;/home/dimsum/caato2_ws/install/rosserial_xbee;/home/dimsum/caato2_ws/install/rosserial_windows;/home/dimsum/caato2_ws/install/rosserial_vex_v5;/home/dimsum/caato2_ws/install/rosserial_vex_cortex;/home/dimsum/caato2_ws/install/rosserial_tivac;/home/dimsum/caato2_ws/install/rosserial_test;/home/dimsum/caato2_ws/install/rosserial_server;/home/dimsum/caato2_ws/install/rosserial_arduino;/home/dimsum/caato2_ws/install/rosserial_python;/home/dimsum/caato2_ws/install/rosserial_mbed;/home/dimsum/caato2_ws/install/rosserial_embeddedlinux;/home/dimsum/caato2_ws/install/rosserial_chibios;/home/dimsum/caato2_ws/install/rosserial_client;/home/dimsum/caato2_ws/install/rosserial_msgs;/home/dimsum/caato2_ws/install/caato_teleop;/home/dimsum/caato2_ws/install/caato_slam;/home/dimsum/caato2_ws/install/caato_navigation;/home/dimsum/caato2_ws/install/caato_bringup;/home/dimsum/caato2_ws/install/caato2_navigation;/home/dimsum/caato2_ws/install/caato2_examples;/home/dimsum/caato2_ws/install/caato2_bringup;/home/dimsum/caato2_ws/install/roboteq_diff_driver;/home/dimsum/caato2_ws/install/roboteq_diff_msgs;/home/dimsum/caato2_ws/install/realsense_gazebo_plugin;/home/dimsum/caato2_ws/install/realsense2_description;/home/dimsum/caato2_ws/install/realsense2_camera;/home/dimsum/caato2_ws/install/plc_modbus_node;/home/dimsum/caato2_ws/install/ouster_example;/home/dimsum/caato2_ws/install/ouster-gazebo-simulation;/home/dimsum/caato2_ws/install/map_server;/home/dimsum/caato2_ws/install/laser_filters;/home/dimsum/caato2_ws/install/ira_laser_tools;/home/dimsum/caato2_ws/install/eband_local_planner;/home/dimsum/caato2_ws/install/ds4_driver;/home/dimsum/caato2_ws/install/device_diagnostics;/home/dimsum/caato2_ws/install/decada_sim_assets;/home/dimsum/caato2_ws/install/caato_gazebo;/home/dimsum/caato2_ws/install/caato_fleet_client;/home/dimsum/caato2_ws/install/caato_description;/home/dimsum/caato2_ws/install/caato_alexa;/home/dimsum/caato2_ws/install/caato2_reverse_docker;/home/dimsum/caato2_ws/install/caato2_stm;/home/dimsum/caato2_ws/install/caato2_gazebo;/home/dimsum/caato2_ws/install/caato2_description;/home/dimsum/caato2_ws/install/atc_waypoints;/home/dimsum/caato2_ws/install/atc_stm;/home/dimsum/caato2_ws/install/atc_utils;/home/dimsum/caato2_ws/install/atc_msgs;/home/dimsum/caato2_ws/install/apriltag_ros;/home/dimsum/caato2_ws/install/apriltag;/home/dimsum/caato2_ws/install/Project;/opt/ros/noetic
+[0.417s] -- This workspace overlays: /home/dimsum/caato2_ws/install/xnergy_charger_rcu;/home/dimsum/caato2_ws/install/trolley_arm;/home/dimsum/caato2_ws/install/teleop_twist_joy;/home/dimsum/caato2_ws/install/rviz_atc_plugins;/home/dimsum/caato2_ws/install/rosserial_xbee;/home/dimsum/caato2_ws/install/rosserial_windows;/home/dimsum/caato2_ws/install/rosserial_vex_v5;/home/dimsum/caato2_ws/install/rosserial_vex_cortex;/home/dimsum/caato2_ws/install/rosserial_tivac;/home/dimsum/caato2_ws/install/rosserial_test;/home/dimsum/caato2_ws/install/rosserial_server;/home/dimsum/caato2_ws/install/rosserial_arduino;/home/dimsum/caato2_ws/install/rosserial_python;/home/dimsum/caato2_ws/install/rosserial_mbed;/home/dimsum/caato2_ws/install/rosserial_embeddedlinux;/home/dimsum/caato2_ws/install/rosserial_chibios;/home/dimsum/caato2_ws/install/rosserial_client;/home/dimsum/caato2_ws/install/rosserial_msgs;/home/dimsum/caato2_ws/install/caato_teleop;/home/dimsum/caato2_ws/install/caato_slam;/home/dimsum/caato2_ws/install/caato_navigation;/home/dimsum/caato2_ws/install/caato_bringup;/home/dimsum/caato2_ws/install/caato2_navigation;/home/dimsum/caato2_ws/install/caato2_examples;/home/dimsum/caato2_ws/install/caato2_bringup;/home/dimsum/caato2_ws/install/roboteq_diff_driver;/home/dimsum/caato2_ws/install/roboteq_diff_msgs;/home/dimsum/caato2_ws/install/realsense_gazebo_plugin;/home/dimsum/caato2_ws/install/realsense2_description;/home/dimsum/caato2_ws/install/realsense2_camera;/home/dimsum/caato2_ws/install/plc_modbus_node;/home/dimsum/caato2_ws/install/ouster_example;/home/dimsum/caato2_ws/install/ouster-gazebo-simulation;/home/dimsum/caato2_ws/install/map_server;/home/dimsum/caato2_ws/install/laser_filters;/home/dimsum/caato2_ws/install/ira_laser_tools;/home/dimsum/caato2_ws/install/eband_local_planner;/home/dimsum/caato2_ws/install/ds4_driver;/home/dimsum/caato2_ws/install/device_diagnostics;/home/dimsum/caato2_ws/install/decada_sim_assets;/home/dimsum/caato2_ws/install/caato_gazebo;/home/dimsum/caato2_ws/install/caato_fleet_client;/home/dimsum/caato2_ws/install/caato_description;/home/dimsum/caato2_ws/install/caato_alexa;/home/dimsum/caato2_ws/install/caato2_reverse_docker;/home/dimsum/caato2_ws/install/caato2_stm;/home/dimsum/caato2_ws/install/caato2_gazebo;/home/dimsum/caato2_ws/install/caato2_description;/home/dimsum/caato2_ws/install/atc_waypoints;/home/dimsum/caato2_ws/install/atc_stm;/home/dimsum/caato2_ws/install/atc_utils;/home/dimsum/caato2_ws/install/atc_msgs;/home/dimsum/caato2_ws/install/apriltag_ros;/home/dimsum/caato2_ws/install/Project;/opt/ros/noetic
+[0.439s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.439s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.439s] -- Using Debian Python package layout
+[0.473s] -- Found PY_em: /usr/lib/python3/dist-packages/em.py  
+[0.473s] -- Using empy: /usr/lib/python3/dist-packages/em.py
+[0.589s] -- Using CATKIN_ENABLE_TESTING: ON
+[0.589s] -- Call enable_testing()
+[0.603s] -- Using CATKIN_TEST_RESULTS_DIR: /home/dimsum/caato2_ws/src/caato2/build/caato2_stm/test_results
+[0.857s] -- Forcing gtest/gmock from source, though one was otherwise available.
+[0.857s] -- Found gtest sources under '/usr/src/googletest': gtests will be built
+[0.857s] -- Found gmock sources under '/usr/src/googletest': gmock will be built
+[0.880s] -- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+[0.881s] -- Found Threads: TRUE  
+[0.886s] -- Using Python nosetests: /usr/bin/nosetests3
+[0.939s] -- catkin 0.8.10
+[0.939s] -- BUILD_SHARED_LIBS is on
+[1.197s] -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+[1.423s] -- caato2_stm: 2 messages, 3 services
+[1.616s] -- Configuring done
+[1.660s] -- Generating done
+[1.669s] -- Build files have been written to: /home/dimsum/caato2_ws/src/caato2/build/caato2_stm
+[1.691s] Invoked command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_stm' returned '0': /usr/bin/cmake /home/dimsum/caato2_ws/src/caato2/caato2_stm -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/dimsum/caato2_ws/src/caato2/install/caato2_stm
+[1.693s] Invoking command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_stm': /usr/bin/cmake --build /home/dimsum/caato2_ws/src/caato2/build/caato2_stm -- -j12 -l12
+[1.735s] [35m[1mScanning dependencies of target _caato2_stm_generate_messages_check_deps_navigation_state[0m
+[1.736s] [35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_nodejs[0m
+[1.738s] [35m[1mScanning dependencies of target geometry_msgs_generate_messages_nodejs[0m
+[1.739s] [35m[1mScanning dependencies of target _caato2_stm_generate_messages_check_deps_navigate_sequence[0m
+[1.739s] [35m[1mScanning dependencies of target actionlib_generate_messages_cpp[0m
+[1.743s] [35m[1mScanning dependencies of target _caato2_stm_generate_messages_check_deps_change_robot_state[0m
+[1.743s] [35m[1mScanning dependencies of target actionlib_msgs_generate_messages_nodejs[0m
+[1.743s] [35m[1mScanning dependencies of target std_msgs_generate_messages_nodejs[0m
+[1.743s] [35m[1mScanning dependencies of target actionlib_msgs_generate_messages_py[0m
+[1.743s] [35m[1mScanning dependencies of target _caato2_stm_generate_messages_check_deps_caato_state[0m
+[1.744s] [35m[1mScanning dependencies of target _caato2_stm_generate_messages_check_deps_navigate_goal[0m
+[1.747s] [35m[1mScanning dependencies of target actionlib_generate_messages_py[0m
+[1.750s] [  0%] Built target rosgraph_msgs_generate_messages_nodejs
+[1.750s] [  0%] Built target geometry_msgs_generate_messages_nodejs
+[1.759s] [  0%] Built target actionlib_generate_messages_cpp
+[1.759s] [  0%] Built target std_msgs_generate_messages_nodejs
+[1.760s] [  0%] Built target actionlib_msgs_generate_messages_nodejs
+[1.768s] [35m[1mScanning dependencies of target actionlib_msgs_generate_messages_eus[0m
+[1.769s] [  0%] Built target actionlib_generate_messages_py
+[1.769s] [  0%] Built target actionlib_msgs_generate_messages_py
+[1.779s] [35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_lisp[0m
+[1.786s] [35m[1mScanning dependencies of target std_msgs_generate_messages_eus[0m
+[1.786s] [35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_eus[0m
+[1.795s] [  0%] Built target actionlib_msgs_generate_messages_eus
+[1.803s] [35m[1mScanning dependencies of target roscpp_generate_messages_py[0m
+[1.808s] [35m[1mScanning dependencies of target navigation_manager[0m
+[1.808s] [  0%] Built target _caato2_stm_generate_messages_check_deps_navigation_state
+[1.808s] [  0%] Built target _caato2_stm_generate_messages_check_deps_navigate_sequence
+[1.809s] [  0%] Built target std_msgs_generate_messages_eus
+[1.809s] [35m[1mScanning dependencies of target geometry_msgs_generate_messages_eus[0m
+[1.815s] [  0%] Built target rosgraph_msgs_generate_messages_eus
+[1.822s] [  0%] Built target rosgraph_msgs_generate_messages_lisp
+[1.822s] [35m[1mScanning dependencies of target move_base_msgs_generate_messages_py[0m
+[1.830s] [  0%] Built target _caato2_stm_generate_messages_check_deps_caato_state
+[1.830s] [  0%] Built target roscpp_generate_messages_py
+[1.830s] [35m[1mScanning dependencies of target std_msgs_generate_messages_py[0m
+[1.831s] [35m[1mScanning dependencies of target roscpp_generate_messages_cpp[0m
+[1.834s] [  0%] Built target _caato2_stm_generate_messages_check_deps_change_robot_state
+[1.834s] [35m[1mScanning dependencies of target roscpp_generate_messages_eus[0m
+[1.835s] [  0%] Built target geometry_msgs_generate_messages_eus
+[1.836s] [  0%] Built target _caato2_stm_generate_messages_check_deps_navigate_goal
+[1.840s] [35m[1mScanning dependencies of target geometry_msgs_generate_messages_py[0m
+[1.845s] [  0%] Built target roscpp_generate_messages_cpp
+[1.847s] [  2%] [32mBuilding CXX object CMakeFiles/navigation_manager.dir/src/navigation_manager.cpp.o[0m
+[1.847s] [  2%] Built target move_base_msgs_generate_messages_py
+[1.847s] [  2%] Built target roscpp_generate_messages_eus
+[1.853s] [  2%] Built target std_msgs_generate_messages_py
+[1.854s] [35m[1mScanning dependencies of target roscpp_generate_messages_lisp[0m
+[1.855s] [35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_py[0m
+[1.857s] [35m[1mScanning dependencies of target actionlib_generate_messages_lisp[0m
+[1.859s] [35m[1mScanning dependencies of target geometry_msgs_generate_messages_cpp[0m
+[1.859s] [35m[1mScanning dependencies of target std_msgs_generate_messages_cpp[0m
+[1.859s] [35m[1mScanning dependencies of target roscpp_generate_messages_nodejs[0m
+[1.864s] [  2%] Built target geometry_msgs_generate_messages_py
+[1.869s] [35m[1mScanning dependencies of target geometry_msgs_generate_messages_lisp[0m
+[1.871s] [  2%] Built target roscpp_generate_messages_lisp
+[1.871s] [  2%] Built target rosgraph_msgs_generate_messages_py
+[1.874s] [  2%] Built target std_msgs_generate_messages_cpp
+[1.875s] [  2%] Built target roscpp_generate_messages_nodejs
+[1.876s] [  2%] Built target actionlib_generate_messages_lisp
+[1.876s] [35m[1mScanning dependencies of target actionlib_generate_messages_eus[0m
+[1.877s] [35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_cpp[0m
+[1.880s] [  2%] Built target geometry_msgs_generate_messages_cpp
+[1.882s] [35m[1mScanning dependencies of target caato2_stm_generate_messages_py[0m
+[1.882s] [35m[1mScanning dependencies of target actionlib_msgs_generate_messages_lisp[0m
+[1.891s] [35m[1mScanning dependencies of target actionlib_msgs_generate_messages_cpp[0m
+[1.892s] [  2%] Built target geometry_msgs_generate_messages_lisp
+[1.892s] [  2%] Built target rosgraph_msgs_generate_messages_cpp
+[1.892s] [35m[1mScanning dependencies of target move_base_msgs_generate_messages_cpp[0m
+[1.892s] [  2%] Built target actionlib_generate_messages_eus
+[1.893s] [35m[1mScanning dependencies of target std_msgs_generate_messages_lisp[0m
+[1.897s] [35m[1mScanning dependencies of target move_base_msgs_generate_messages_lisp[0m
+[1.897s] [35m[1mScanning dependencies of target move_base_msgs_generate_messages_eus[0m
+[1.901s] [35m[1mScanning dependencies of target move_base_msgs_generate_messages_nodejs[0m
+[1.901s] [  5%] [34m[1mGenerating Python from MSG caato2_stm/caato_state[0m
+[1.902s] [  5%] Built target actionlib_msgs_generate_messages_lisp
+[1.912s] [  5%] Built target std_msgs_generate_messages_lisp
+[1.912s] [  5%] Built target move_base_msgs_generate_messages_cpp
+[1.912s] [  5%] Built target actionlib_msgs_generate_messages_cpp
+[1.912s] [  5%] Built target move_base_msgs_generate_messages_eus
+[1.913s] [35m[1mScanning dependencies of target actionlib_generate_messages_nodejs[0m
+[1.915s] [  5%] Built target move_base_msgs_generate_messages_lisp
+[1.921s] [  8%] [34m[1mGenerating Python from MSG caato2_stm/navigation_state[0m
+[1.922s] [  8%] Built target move_base_msgs_generate_messages_nodejs
+[1.925s] [35m[1mScanning dependencies of target caato2_stm_generate_messages_nodejs[0m
+[1.926s] [35m[1mScanning dependencies of target caato2_stm_generate_messages_eus[0m
+[1.928s] [35m[1mScanning dependencies of target caato2_stm_generate_messages_lisp[0m
+[1.929s] [ 11%] [34m[1mGenerating Python code from SRV caato2_stm/change_robot_state[0m
+[1.929s] [35m[1mScanning dependencies of target caato2_stm_generate_messages_cpp[0m
+[1.933s] [ 13%] [34m[1mGenerating Python code from SRV caato2_stm/navigate_sequence[0m
+[1.933s] [35m[1mScanning dependencies of target caato2_stm[0m
+[1.935s] [ 13%] Built target actionlib_generate_messages_nodejs
+[1.943s] [ 16%] [34m[1mGenerating Python code from SRV caato2_stm/navigate_goal[0m
+[1.949s] [ 19%] [34m[1mGenerating EusLisp code from caato2_stm/navigation_state.msg[0m
+[1.953s] [ 22%] [34m[1mGenerating Javascript code from caato2_stm/caato_state.msg[0m
+[1.956s] [ 27%] [34m[1mGenerating Lisp code from caato2_stm/caato_state.msg[0m
+[1.956s] [ 27%] [34m[1mGenerating C++ code from caato2_stm/caato_state.msg[0m
+[1.962s] [ 30%] [34m[1mGenerating EusLisp code from caato2_stm/caato_state.msg[0m
+[1.975s] [ 33%] [32mBuilding CXX object CMakeFiles/caato2_stm.dir/src/cmd_vel_mux.cpp.o[0m
+[2.011s] ERROR:  /home/dimsum/caato2_ws/src/caato2/caato2_stm/msg/docking_state.msg: _docking_state_code is not a legal message field name
+[2.023s] ERROR:  /home/dimsum/caato2_ws/src/caato2/caato2_stm/msg/docking_state.msg: _docking_state_code is not a legal message field name
+[2.024s] make[2]: *** [CMakeFiles/caato2_stm_generate_messages_lisp.dir/build.make:66: devel/share/common-lisp/ros/caato2_stm/msg/caato_state.lisp] Error 1
+[2.024s] make[1]: *** [CMakeFiles/Makefile2:1822: CMakeFiles/caato2_stm_generate_messages_lisp.dir/all] Error 2
+[2.024s] make[1]: *** Waiting for unfinished jobs....
+[2.030s] make[2]: *** [CMakeFiles/caato2_stm_generate_messages_nodejs.dir/build.make:66: devel/share/gennodejs/ros/caato2_stm/msg/caato_state.js] Error 1
+[2.030s] make[2]: *** Waiting for unfinished jobs....
+[2.035s] [ 36%] [34m[1mGenerating Javascript code from caato2_stm/navigation_state.msg[0m
+[2.047s] [ 38%] [34m[1mGenerating EusLisp code from caato2_stm/change_robot_state.srv[0m
+[2.090s] ERROR:  /home/dimsum/caato2_ws/src/caato2/caato2_stm/msg/docking_state.msg: _docking_state_code is not a legal message field name
+[2.102s] make[2]: *** [CMakeFiles/caato2_stm_generate_messages_eus.dir/build.make:72: devel/share/roseus/ros/caato2_stm/msg/navigation_state.l] Error 1
+[2.102s] make[2]: *** Waiting for unfinished jobs....
+[2.104s] ERROR:  /home/dimsum/caato2_ws/src/caato2/caato2_stm/msg/docking_state.msg: _docking_state_code is not a legal message field name
+[2.114s] [ 41%] [34m[1mGenerating C++ code from caato2_stm/navigation_state.msg[0m
+[2.115s] make[2]: *** [CMakeFiles/caato2_stm_generate_messages_eus.dir/build.make:67: devel/share/roseus/ros/caato2_stm/msg/caato_state.l] Error 1
+[2.123s] ERROR:  /home/dimsum/caato2_ws/src/caato2/caato2_stm/msg/docking_state.msg: _docking_state_code is not a legal message field name
+[2.128s] [ 44%] [34m[1mGenerating C++ code from caato2_stm/change_robot_state.srv[0m
+[2.131s] make[2]: *** [CMakeFiles/caato2_stm_generate_messages_nodejs.dir/build.make:71: devel/share/gennodejs/ros/caato2_stm/msg/navigation_state.js] Error 1
+[2.131s] make[1]: *** [CMakeFiles/Makefile2:1883: CMakeFiles/caato2_stm_generate_messages_nodejs.dir/all] Error 2
+[2.148s] [ 47%] [34m[1mGenerating C++ code from caato2_stm/navigate_sequence.srv[0m
+[2.176s] [ 50%] [34m[1mGenerating C++ code from caato2_stm/navigate_goal.srv[0m
+[2.205s] make[1]: *** [CMakeFiles/Makefile2:488: CMakeFiles/caato2_stm_generate_messages_eus.dir/all] Error 2
+[2.263s] [ 52%] [34m[1mGenerating Python msg __init__.py for caato2_stm[0m
+[2.263s] [ 55%] [34m[1mGenerating Python srv __init__.py for caato2_stm[0m
+[2.420s] [ 55%] Built target caato2_stm_generate_messages_cpp
+[2.507s] [ 55%] Built target caato2_stm_generate_messages_py
+[3.756s] make[2]: *** [CMakeFiles/navigation_manager.dir/build.make:63: CMakeFiles/navigation_manager.dir/src/navigation_manager.cpp.o] Interrupt
+[3.756s] make[2]: *** [CMakeFiles/caato2_stm.dir/build.make:63: CMakeFiles/caato2_stm.dir/src/cmd_vel_mux.cpp.o] Interrupt
+[3.756s] make[1]: *** [CMakeFiles/Makefile2:515: CMakeFiles/navigation_manager.dir/all] Interrupt
+[3.757s] make[1]: *** [CMakeFiles/Makefile2:373: CMakeFiles/caato2_stm.dir/all] Interrupt
+[3.758s] make: *** [Makefile:141: all] Interrupt

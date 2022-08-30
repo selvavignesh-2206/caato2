@@ -1,0 +1,68 @@
+[0.069s] Invoking command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_bringup': CMAKE_PREFIX_PATH=/home/dimsum/caato2_ws/src/caato2/install/caato2_description:${CMAKE_PREFIX_PATH} PKG_CONFIG_PATH=/home/dimsum/caato2_ws/src/caato2/install/caato2_description/lib/x86_64-linux-gnu/pkgconfig:/home/dimsum/caato2_ws/src/caato2/install/caato2_description/lib/pkgconfig:${PKG_CONFIG_PATH} ROS_PACKAGE_PATH=/home/dimsum/caato2_ws/src/caato2/install/caato2_description/share:${ROS_PACKAGE_PATH} /usr/bin/cmake /home/dimsum/caato2_ws/src/caato2/caato2_bringup -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/dimsum/caato2_ws/src/caato2/install/caato2_bringup
+[0.159s] -- The C compiler identification is GNU 9.4.0
+[0.304s] -- The CXX compiler identification is GNU 9.4.0
+[0.324s] -- Check for working C compiler: /usr/bin/cc
+[0.488s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.489s] -- Detecting C compiler ABI info
+[0.571s] -- Detecting C compiler ABI info - done
+[0.591s] -- Detecting C compile features
+[0.591s] -- Detecting C compile features - done
+[0.596s] -- Check for working CXX compiler: /usr/bin/c++
+[0.674s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.675s] -- Detecting CXX compiler ABI info
+[0.744s] -- Detecting CXX compiler ABI info - done
+[0.757s] -- Detecting CXX compile features
+[0.758s] -- Detecting CXX compile features - done
+[0.763s] -- Using CATKIN_DEVEL_PREFIX: /home/dimsum/caato2_ws/src/caato2/build/caato2_bringup/devel
+[0.763s] -- Using CMAKE_PREFIX_PATH: /home/dimsum/caato2_ws/src/caato2/install/caato2_description;/home/dimsum/caato2_ws/install/xnergy_charger_rcu;/home/dimsum/caato2_ws/install/trolley_arm;/home/dimsum/caato2_ws/install/teleop_twist_joy;/home/dimsum/caato2_ws/install/rviz_atc_plugins;/home/dimsum/caato2_ws/install/rosserial_xbee;/home/dimsum/caato2_ws/install/rosserial_windows;/home/dimsum/caato2_ws/install/rosserial_vex_v5;/home/dimsum/caato2_ws/install/rosserial_vex_cortex;/home/dimsum/caato2_ws/install/rosserial_tivac;/home/dimsum/caato2_ws/install/rosserial_test;/home/dimsum/caato2_ws/install/rosserial_server;/home/dimsum/caato2_ws/install/rosserial_arduino;/home/dimsum/caato2_ws/install/rosserial_python;/home/dimsum/caato2_ws/install/rosserial_mbed;/home/dimsum/caato2_ws/install/rosserial_embeddedlinux;/home/dimsum/caato2_ws/install/rosserial_chibios;/home/dimsum/caato2_ws/install/rosserial_client;/home/dimsum/caato2_ws/install/rosserial_msgs;/home/dimsum/caato2_ws/install/caato_teleop;/home/dimsum/caato2_ws/install/caato_slam;/home/dimsum/caato2_ws/install/caato_navigation;/home/dimsum/caato2_ws/install/caato_bringup;/home/dimsum/caato2_ws/install/caato2_navigation;/home/dimsum/caato2_ws/install/caato2_examples;/home/dimsum/caato2_ws/install/caato2_bringup;/home/dimsum/caato2_ws/install/roboteq_diff_driver;/home/dimsum/caato2_ws/install/roboteq_diff_msgs;/home/dimsum/caato2_ws/install/realsense_gazebo_plugin;/home/dimsum/caato2_ws/install/realsense2_description;/home/dimsum/caato2_ws/install/realsense2_camera;/home/dimsum/caato2_ws/install/plc_modbus_node;/home/dimsum/caato2_ws/install/ouster_example;/home/dimsum/caato2_ws/install/ouster-gazebo-simulation;/home/dimsum/caato2_ws/install/map_server;/home/dimsum/caato2_ws/install/laser_filters;/home/dimsum/caato2_ws/install/ira_laser_tools;/home/dimsum/caato2_ws/install/eband_local_planner;/home/dimsum/caato2_ws/install/ds4_driver;/home/dimsum/caato2_ws/install/device_diagnostics;/home/dimsum/caato2_ws/install/decada_sim_assets;/home/dimsum/caato2_ws/install/caato_gazebo;/home/dimsum/caato2_ws/install/caato_fleet_client;/home/dimsum/caato2_ws/install/caato_description;/home/dimsum/caato2_ws/install/caato_alexa;/home/dimsum/caato2_ws/install/caato2_reverse_docker;/home/dimsum/caato2_ws/install/caato2_stm;/home/dimsum/caato2_ws/install/caato2_gazebo;/home/dimsum/caato2_ws/install/caato2_description;/home/dimsum/caato2_ws/install/atc_waypoints;/home/dimsum/caato2_ws/install/atc_stm;/home/dimsum/caato2_ws/install/atc_utils;/home/dimsum/caato2_ws/install/atc_msgs;/home/dimsum/caato2_ws/install/apriltag_ros;/home/dimsum/caato2_ws/install/apriltag;/home/dimsum/caato2_ws/install/Project;/opt/ros/noetic
+[0.765s] -- This workspace overlays: /home/dimsum/caato2_ws/src/caato2/install/caato2_description;/home/dimsum/caato2_ws/install/xnergy_charger_rcu;/home/dimsum/caato2_ws/install/trolley_arm;/home/dimsum/caato2_ws/install/teleop_twist_joy;/home/dimsum/caato2_ws/install/rviz_atc_plugins;/home/dimsum/caato2_ws/install/rosserial_xbee;/home/dimsum/caato2_ws/install/rosserial_windows;/home/dimsum/caato2_ws/install/rosserial_vex_v5;/home/dimsum/caato2_ws/install/rosserial_vex_cortex;/home/dimsum/caato2_ws/install/rosserial_tivac;/home/dimsum/caato2_ws/install/rosserial_test;/home/dimsum/caato2_ws/install/rosserial_server;/home/dimsum/caato2_ws/install/rosserial_arduino;/home/dimsum/caato2_ws/install/rosserial_python;/home/dimsum/caato2_ws/install/rosserial_mbed;/home/dimsum/caato2_ws/install/rosserial_embeddedlinux;/home/dimsum/caato2_ws/install/rosserial_chibios;/home/dimsum/caato2_ws/install/rosserial_client;/home/dimsum/caato2_ws/install/rosserial_msgs;/home/dimsum/caato2_ws/install/caato_teleop;/home/dimsum/caato2_ws/install/caato_slam;/home/dimsum/caato2_ws/install/caato_navigation;/home/dimsum/caato2_ws/install/caato_bringup;/home/dimsum/caato2_ws/install/caato2_navigation;/home/dimsum/caato2_ws/install/caato2_examples;/home/dimsum/caato2_ws/install/caato2_bringup;/home/dimsum/caato2_ws/install/roboteq_diff_driver;/home/dimsum/caato2_ws/install/roboteq_diff_msgs;/home/dimsum/caato2_ws/install/realsense_gazebo_plugin;/home/dimsum/caato2_ws/install/realsense2_description;/home/dimsum/caato2_ws/install/realsense2_camera;/home/dimsum/caato2_ws/install/plc_modbus_node;/home/dimsum/caato2_ws/install/ouster_example;/home/dimsum/caato2_ws/install/ouster-gazebo-simulation;/home/dimsum/caato2_ws/install/map_server;/home/dimsum/caato2_ws/install/laser_filters;/home/dimsum/caato2_ws/install/ira_laser_tools;/home/dimsum/caato2_ws/install/eband_local_planner;/home/dimsum/caato2_ws/install/ds4_driver;/home/dimsum/caato2_ws/install/device_diagnostics;/home/dimsum/caato2_ws/install/decada_sim_assets;/home/dimsum/caato2_ws/install/caato_gazebo;/home/dimsum/caato2_ws/install/caato_fleet_client;/home/dimsum/caato2_ws/install/caato_description;/home/dimsum/caato2_ws/install/caato_alexa;/home/dimsum/caato2_ws/install/caato2_reverse_docker;/home/dimsum/caato2_ws/install/caato2_stm;/home/dimsum/caato2_ws/install/caato2_gazebo;/home/dimsum/caato2_ws/install/caato2_description;/home/dimsum/caato2_ws/install/atc_waypoints;/home/dimsum/caato2_ws/install/atc_stm;/home/dimsum/caato2_ws/install/atc_utils;/home/dimsum/caato2_ws/install/atc_msgs;/home/dimsum/caato2_ws/install/apriltag_ros;/home/dimsum/caato2_ws/install/Project;/opt/ros/noetic
+[0.789s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.789s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.789s] -- Using Debian Python package layout
+[0.827s] -- Found PY_em: /usr/lib/python3/dist-packages/em.py  
+[0.827s] -- Using empy: /usr/lib/python3/dist-packages/em.py
+[0.928s] -- Using CATKIN_ENABLE_TESTING: ON
+[0.928s] -- Call enable_testing()
+[0.930s] -- Using CATKIN_TEST_RESULTS_DIR: /home/dimsum/caato2_ws/src/caato2/build/caato2_bringup/test_results
+[1.193s] -- Forcing gtest/gmock from source, though one was otherwise available.
+[1.194s] -- Found gtest sources under '/usr/src/googletest': gtests will be built
+[1.194s] -- Found gmock sources under '/usr/src/googletest': gmock will be built
+[1.218s] -- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+[1.219s] -- Found Threads: TRUE  
+[1.224s] -- Using Python nosetests: /usr/bin/nosetests3
+[1.281s] -- catkin 0.8.10
+[1.281s] -- BUILD_SHARED_LIBS is on
+[1.587s] -- Using these message generators: gencpp;geneus;genlisp;gennodejs;genpy
+[1.904s] -- Configuring done
+[1.926s] -- Generating done
+[1.930s] -- Build files have been written to: /home/dimsum/caato2_ws/src/caato2/build/caato2_bringup
+[1.937s] Invoked command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_bringup' returned '0': CMAKE_PREFIX_PATH=/home/dimsum/caato2_ws/src/caato2/install/caato2_description:${CMAKE_PREFIX_PATH} PKG_CONFIG_PATH=/home/dimsum/caato2_ws/src/caato2/install/caato2_description/lib/x86_64-linux-gnu/pkgconfig:/home/dimsum/caato2_ws/src/caato2/install/caato2_description/lib/pkgconfig:${PKG_CONFIG_PATH} ROS_PACKAGE_PATH=/home/dimsum/caato2_ws/src/caato2/install/caato2_description/share:${ROS_PACKAGE_PATH} /usr/bin/cmake /home/dimsum/caato2_ws/src/caato2/caato2_bringup -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/dimsum/caato2_ws/src/caato2/install/caato2_bringup
+[1.939s] Invoking command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_bringup': CMAKE_PREFIX_PATH=/home/dimsum/caato2_ws/src/caato2/install/caato2_description:${CMAKE_PREFIX_PATH} PKG_CONFIG_PATH=/home/dimsum/caato2_ws/src/caato2/install/caato2_description/lib/x86_64-linux-gnu/pkgconfig:/home/dimsum/caato2_ws/src/caato2/install/caato2_description/lib/pkgconfig:${PKG_CONFIG_PATH} ROS_PACKAGE_PATH=/home/dimsum/caato2_ws/src/caato2/install/caato2_description/share:${ROS_PACKAGE_PATH} /usr/bin/cmake --build /home/dimsum/caato2_ws/src/caato2/build/caato2_bringup -- -j12 -l12
+[1.978s] [35m[1mScanning dependencies of target std_msgs_generate_messages_lisp[0m
+[1.978s] [35m[1mScanning dependencies of target actionlib_generate_messages_cpp[0m
+[1.979s] [35m[1mScanning dependencies of target sensor_msgs_generate_messages_nodejs[0m
+[1.979s] [35m[1mScanning dependencies of target roscpp_generate_messages_lisp[0m
+[1.980s] [35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_nodejs[0m
+[1.980s] [35m[1mScanning dependencies of target actionlib_generate_messages_lisp[0m
+[1.981s] [35m[1mScanning dependencies of target actionlib_msgs_generate_messages_py[0m
+[1.985s] [35m[1mScanning dependencies of target sensor_msgs_generate_messages_cpp[0m
+[1.986s] [35m[1mScanning dependencies of target actionlib_msgs_generate_messages_eus[0m
+[1.991s] [35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_lisp[0m
+[1.991s] make[1]: *** wait: No child processes.  Stop.
+[1.991s] make[1]: *** Waiting for unfinished jobs....
+[1.991s] make[1]: *** wait: No child processes.  Stop.
+[1.991s] make[1]: *** [CMakeFiles/Makefile2:382: CMakeFiles/actionlib_generate_messages_cpp.dir/all] Interrupt
+[1.992s] make[1]: *** [CMakeFiles/Makefile2:436: CMakeFiles/roscpp_generate_messages_lisp.dir/all] Interrupt
+[1.992s] make[1]: *** [CMakeFiles/Makefile2:651: CMakeFiles/sensor_msgs_generate_messages_cpp.dir/all] Error 2
+[1.992s] make[1]: *** [CMakeFiles/Makefile2:490: CMakeFiles/actionlib_generate_messages_lisp.dir/all] Interrupt
+[1.993s] make[1]: *** [CMakeFiles/Makefile2:1803: CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/all] Interrupt
+[1.993s] make[2]: *** [CMakeFiles/diagnostic_msgs_generate_messages_py.dir/build.make:70: CMakeFiles/diagnostic_msgs_generate_messages_py.dir/depend] Interrupt
+[1.993s] make[2]: *** [CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make:70: CMakeFiles/nav_msgs_generate_messages_nodejs.dir/depend] Interrupt
+[1.993s] make[1]: *** [CMakeFiles/Makefile2:517: CMakeFiles/std_msgs_generate_messages_lisp.dir/all] Interrupt
+[1.993s] make[1]: *** [CMakeFiles/Makefile2:623: CMakeFiles/diagnostic_msgs_generate_messages_py.dir/all] Interrupt
+[1.993s] make[1]: *** [CMakeFiles/Makefile2:677: CMakeFiles/nav_msgs_generate_messages_nodejs.dir/all] Interrupt
+[1.993s] make[1]: *** [CMakeFiles/Makefile2:355: CMakeFiles/actionlib_msgs_generate_messages_py.dir/all] Interrupt
+[1.993s] make[2]: *** [CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make:70: CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/depend] Interrupt
+[1.993s] make[1]: *** [CMakeFiles/Makefile2:328: CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/all] Interrupt
+[1.993s] make[1]: *** [CMakeFiles/Makefile2:569: CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/all] Interrupt
+[1.994s] make: *** [Makefile:141: all] Interrupt

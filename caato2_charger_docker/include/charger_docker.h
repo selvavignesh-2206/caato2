@@ -3,37 +3,39 @@
 
 #include <ros/ros.h>
 #include <actionlib/server/simple_action_server.h>
-#include "caato2_reverse_docker/ReverseDockAction.h"
+#include "caato2_charger_docker/ReverseDockAction.h"
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
-#include "caato2_stm/navigate_goal.h"
+//  #include "caato2_stm/navigate_goal.h"    !!!!!TODO!!!!
 #include <move_base_msgs/MoveBaseAction.h>
 #include <string>
 #include "caato2_changer_docking/PID.h"
 #include <dynamic_reconfigure/server.h>
-#include "caato2_reverse_docker/PIDConfig.h"
+#include "caato2_charger_docker/PIDConfig.h"
 
 class ChargerDocker
 {
 public:
 
-    ChargerDocker(std::)
+    ChargerDocker(std::string name);
+
+    ~ChargerDocker();
+
 
     void move();
 
     void actual_angle (const nav_msgs::Odometry& msg);
 
-    void linearApproach(const );
-
-    void driveForward (double distance);
-
-    void frontalDocking(....);
-
+    // Functions to manipulate various other topics and their data
     void poseSubscriberCB(const geometry_msgs::PoseWithCovarianceStamped& msg);
+    void executeCB(const caato2_charger_docker::ChargerDockGoalConstPtr& goal);
 
+    // For dynamic reconfiguration of parameters
     void dynamicReconfigureCB(caato2_charger_docker::PIDConfig& config, uint32_t level);
 
-
-    // TODO: More functions
+    // Functions for the actual docking logic portion
+    void linearApproach(const );
+    void driveForward (double distance);
+    void frontalDocking(....);
 
 private:
 
@@ -59,9 +61,12 @@ private:
 
     double yaw_current;
 
-
-
-
+    // Functions to calculate and manipulate the cmd_vel 
+    double calculateAngularVel(double orientationGoal);
+    double calculateLinearVel(double distToGoal);
+    void stopVel();
+    double calculateOrientationGoal();
+    double calculateDistanceToGoal();
 
     /* Initial Code
     ros::Publisher cmd_vel_pub;

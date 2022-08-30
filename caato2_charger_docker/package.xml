@@ -2,7 +2,7 @@
 <package format="2">
   <name>caato2_charger_docking</name>
   <version>0.0.0</version>
-  <description>The caato2_charger_dockerpackage</description>
+  <description>The caato2_charger_docker package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->

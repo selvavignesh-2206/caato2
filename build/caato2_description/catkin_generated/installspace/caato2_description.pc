@@ -1,8 +1,0 @@
-prefix=/home/dimsum/caato2_ws/src/caato2/install/caato2_description
-
-Name: caato2_description
-Description: Description of caato2_description
-Version: 1.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

@@ -1,4 +1,0 @@
-/home/dimsum/caato2_ws/src/caato2/install/caato2_examples/lib/pkgconfig/caato2_examples.pc
-/home/dimsum/caato2_ws/src/caato2/install/caato2_examples/share/caato2_examples/cmake/caato2_examplesConfig.cmake
-/home/dimsum/caato2_ws/src/caato2/install/caato2_examples/share/caato2_examples/cmake/caato2_examplesConfig-version.cmake
-/home/dimsum/caato2_ws/src/caato2/install/caato2_examples/share/caato2_examples/package.xml

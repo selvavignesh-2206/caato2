@@ -1,8 +1,0 @@
-prefix=/home/dimsum/caato2_ws/src/caato2/build/caato2_bringup/devel
-
-Name: caato2_bringup
-Description: Description of caato2_bringup
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: geometry_msgs roscpp std_msgs tf2 tf2_ros nav_msgs

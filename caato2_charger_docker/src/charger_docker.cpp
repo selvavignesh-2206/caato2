@@ -1,6 +1,6 @@
 /**
  * @file charger_docker.cpp
- * @author your name (you@domain.com)
+ * @author Selva 
  * @brief 
  * @version 0.1
  * @date 2022-08-30
@@ -26,7 +26,35 @@ void ChargerDocker::poseSubscriberCB(const geometry_msgs::PoseWithCovarianceStam
     current_pose = msg.pose.pose;
 }
 
-void ReverseDocker::stopVel() 
+void ChargerDocker::dynamicReconfigureCB(caato2_charger_docker::PIDConfig& config, uint32_t level)
+{
+  angle_pid.setValues(config.AnglePID_dt, config.AnglePID_max_angular_vel, config.AnglePID_min_angular_vel,
+                      config.AnglePID_Kp, config.AnglePID_Kd, config.AnglePID_Ki);
+  vel_x_pid.setValues(config.XVelPID_dt, config.XVelPID_max_x_vel, config.XVelPID_min_x_vel, config.XVelPID_Kp,
+                      config.XVelPID_Kd, config.XVelPID_Ki);
+  ROS_INFO("Kp is %f", angle_pid.getDt());
+  ROS_INFO("Kp for X is %f", vel_x_pid.getDt());
+}
+
+//-------------------Tranform Functions----------------------
+double ChargerDocker::calculateOrientationGoal()
+{
+  double yaw_goal = atan2((current_pose.position.y - goal_pose.position.y), 
+                          (current_pose.position.x - goal_pose.position.x));
+
+  return yaw_goal;
+}
+
+double ChargerDocker::calculateDistanceToGoal()
+{
+    double dist_to_goal = sqrt(pow((goal_pose.position.x - current_pose.position.x), 2.0) 
+                            + pow((goal_pose.position.y - current_pose.position.y), 2.0));
+    
+    return dist_to_goal;
+}
+
+//-----------------Kinematics Functions----------------------
+void ChargerDocker::stopVel() 
 {
   geometry_msgs::Twist cmd_vel_msg;
   cmd_vel_msg.angular.z = 0;
@@ -35,8 +63,7 @@ void ReverseDocker::stopVel()
   ros::spinOnce();
 }
 
-//-----------------------------------------------------------
-void DockingLogic::moveForward(ros::Publisher& cmd_vel_pub) \
+void DockingLogic::moveForward(ros::Publisher& cmd_vel_pub) 
 {
     
     geometry_msgs::Twist cmd_vel_msg;
@@ -55,12 +82,6 @@ void DockingLogic::moveAngular(ros::Publisher& cmd_vel_pub) {
         N = (int) goal_angle/M_PI;
 
         rest = goal_angle - ((float)N * M_PI);
-
-        if ((rest > 0) && (N >0)) 
-        {
-            /// TODO 
-
-        }
 
         rad_velocity = (alpha_rad < 0) ? -0.5 : 0.5;
 
@@ -92,7 +113,7 @@ void DockingLogic::moveAngular(ros::Publisher& cmd_vel_pub) {
     }
 }
 
-// ---------------------------------------------------------------------
+// --------------------Main Docking Logic------------------------------
 void DockingLogic::actualAngle (const nav_msgs::Odometry& msg) {
 
     tf2::Quaternion q;
@@ -103,7 +124,6 @@ void DockingLogic::actualAngle (const nav_msgs::Odometry& msg) {
     msg->pose.pose.orientation.x
 }
 
-// ---------------------------------------------------------------------
 void DockingLogic::driveForward (double distance) {
 
     velocity = 0.15;
@@ -145,7 +165,6 @@ void DockingLogic::driveForward (double distance) {
     }
 }
 
-// ---------------------------------------------------------------------
 void DockingLogic::linearApproach (const ) {
 
     geometry_msgs::Pose current_pose = 

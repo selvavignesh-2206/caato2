@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf2_ros
   geometry_msgs
   nav_msgs
+  std_srvs
 )
 
 ################################################################################
@@ -32,7 +33,7 @@ find_package(catkin REQUIRED COMPONENTS
 # Declare catkin specific configuration to be passed to dependent projects
 ################################################################################
 catkin_package(
-  CATKIN_DEPENDS geometry_msgs roscpp std_msgs tf2 tf2_ros nav_msgs
+  CATKIN_DEPENDS geometry_msgs roscpp std_msgs tf2 tf2_ros nav_msgs std_srvs
 )
 
 include_directories(

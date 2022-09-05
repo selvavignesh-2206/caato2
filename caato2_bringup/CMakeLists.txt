@@ -54,10 +54,16 @@ add_dependencies(odom_to_tfstamped ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_
 
 target_link_libraries(odom_to_tfstamped  ${catkin_LIBRARIES} )
 
+add_executable(ds4_trigger src/ds4_trigger.cpp)
+
+add_dependencies(ds4_trigger ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(ds4_trigger ${catkin_LIBRARIES} )
+
 ################################################################################
 # Install
 ################################################################################
-install(TARGETS static_ouster_broadcaster odom_to_tfstamped
+install(TARGETS static_ouster_broadcaster odom_to_tfstamped ds4_trigger
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

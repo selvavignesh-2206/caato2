@@ -1,0 +1,6 @@
+</launch>
+
+<node pkg="caato2_bringup" type="ds4_trigger" name="ds4_trigger" />
+</node>
+
+</launch>

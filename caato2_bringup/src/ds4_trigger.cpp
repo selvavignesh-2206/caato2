@@ -30,19 +30,19 @@ class DS4_Trigger
             //Subscriber
             this->sub = n.subscribe<ds4_driver::Status>("/status", 10, &DS4_Trigger::subscribeDS4, this);
             
-            //ros::ServiceClient client = n.serviceClient<beginner_tutorials::AddTwoInts>("trolley_lifting_arm_srv");
+            this->serv= n.serviceClient<std_srvs::SetBool::Request, std_srvs::SetBool::Response>("trolley_lifting_arm_srv", &DS4_Trigger::printTrigger);
         }
 
-        ~DS4_Trigger() 
+        ~DS4_Trigger()  
         {
         }
 
-        void run() 
-        {
+        // void run() 
+        // {
             
-            this->printTrigger();
+        //     this->printTrigger();
 
-        }
+        // }
 
         void subscribeDS4(const ds4_driver::Status::ConstPtr &status) 
         {
@@ -52,17 +52,17 @@ class DS4_Trigger
 
         }
         
-        bool printTrigger()
+        bool printTrigger(std_srvs::SetBool::Request & req, std_srvs::SetBool::Response & res)
         {
 
-            if (this->l2 == 1) 
+            if (this->l2 == 1)  
             {
-                //res.success = false;
+                res.success = false;
                 ROS_INFO("Trigger L2 activated: %i", this->l2);
             }
             else if (this->r2 == 1)
             {
-                //res.success = true;
+                res.success = true;
                 ROS_INFO("Trigger R2 activated: %i", this->r2);
             }
 
@@ -73,7 +73,7 @@ class DS4_Trigger
 
         ros::Subscriber sub;
 
-        //ros::ServiceServer serv;
+        ros::ServiceClient serv;
 
         int32_t l2, r2;
 
@@ -92,7 +92,7 @@ int main(int argc, char **argv) {
     
     while (ros::ok())
     {
-        ds4_trigger->run();
+        //ds4_trigger->run();
         ros::spinOnce();
         loop_rate.sleep();
     }

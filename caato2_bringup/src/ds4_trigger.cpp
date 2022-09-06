@@ -16,6 +16,7 @@
 #include <geometry_msgs/Twist.h>
 #include <std_srvs/SetBool.h>
 #include <std_msgs/Int32.h>
+#include <ds4_driver/Status.h>
 
 class DS4_Trigger 
 {
@@ -27,7 +28,7 @@ class DS4_Trigger
             ros::NodeHandle private_nh("~");
 
             //Subscriber
-            this->sub = n.subscribe<sensor_msgs::Joy>("/joy", 10, &DS4_Trigger::subscribeDS4, this);
+            this->sub = n.subscribe<sensor_msgs::Joy>("/status", 10, &DS4_Trigger::subscribeDS4, this);
             
             //ros::ServiceClient client = n.serviceClient<beginner_tutorials::AddTwoInts>("trolley_lifting_arm_srv");
         }
@@ -43,26 +44,26 @@ class DS4_Trigger
 
         }
 
-        void subscribeDS4(const sensor_msgs::Joy::ConstPtr &joy) 
+        void subscribeDS4(const ds4_driver::Status::ConstPtr &status) 
         {
 
-            this->l2 = joy->axes[3];
-            this->r2 = joy->axes[4];
+            this->l2 = status->button_l2
+            this->r2 = status->button_r2
 
         }
         
         bool printTrigger()
         {
 
-            if (this->l2 > 0) 
+            if (this->l2 == 1) 
             {
                 //res.success = false;
-                ROS_INFO("Trigger L2 activated: %d", this->l2);
+                ROS_INFO("Trigger L2 activated: %i", this->l2);
             }
-            else if (this->r2 >0)
+            else if (this->r2 == 1)
             {
                 //res.success = true;
-                ROS_INFO("Trigger R2 activated: %d", this->r2);
+                ROS_INFO("Trigger R2 activated: %i", this->r2);
             }
 
             return true;
@@ -74,7 +75,7 @@ class DS4_Trigger
 
         //ros::ServiceServer serv;
 
-        double l2, r2;
+        int32_t l2, r2;
 
 };
 

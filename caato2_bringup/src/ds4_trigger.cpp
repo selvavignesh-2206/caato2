@@ -21,45 +21,47 @@ class DS4_Trigger
 {
     public:
 
-        DS4_Trigger(ros::NodeHandle &n) {
+        DS4_Trigger(ros::NodeHandle &n) 
+        {
 
             ros::NodeHandle private_nh("~");
 
             //Subscriber
             this->sub = n.subscribe<sensor_msgs::Joy>("/joy", 10, &DS4_Trigger::subscribeDS4, this);
             
-            //Service
-            this->serv= n.advertiseService("/trolley_....", printTrigger);
-
+            //ros::ServiceClient client = n.serviceClient<beginner_tutorials::AddTwoInts>("trolley_lifting_arm_srv");
         }
 
-        ~DS4_Trigger() {
+        ~DS4_Trigger() 
+        {
         }
 
-        void run() {
+        void run() 
+        {
             
             this->printTrigger();
 
         }
 
-        void subscribeDS4(const sensor_msgs::Joy::ConstPtr &joy) {
+        void subscribeDS4(const sensor_msgs::Joy::ConstPtr &joy) 
+        {
 
             this->l2 = joy->axes[3];
             this->r2 = joy->axes[4];
 
         }
-
-        bool printTrigger(std_srvs::SetBool::Request &req, std_srvs::SetBool::Response &res) 
+        
+        bool printTrigger()
         {
 
             if (this->l2 > 0) 
             {
-                res.success = false;
+                //res.success = false;
                 ROS_INFO("Trigger L2 activated: %d", this->l2);
             }
             else if (this->r2 >0)
             {
-                res.success = true;
+                //res.success = true;
                 ROS_INFO("Trigger R2 activated: %d", this->r2);
             }
 
@@ -70,7 +72,7 @@ class DS4_Trigger
 
         ros::Subscriber sub;
 
-        ros::ServiceServer serv;
+        //ros::ServiceServer serv;
 
         double l2, r2;
 

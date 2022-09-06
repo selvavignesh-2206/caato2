@@ -59,13 +59,24 @@ class DS4_Trigger
 
             if (this->l2 == 1)  
             {
-                res.success = false;
+                req.data = false;
                 ROS_INFO("Trigger L2 activated: %i", this->l2);
             }
             else if (this->r2 == 1)
             {
-                res.success = true;
+                req.data = true;
                 ROS_INFO("Trigger R2 activated: %i", this->r2);
+            }
+
+            std_srvs::SetBool srv_info;
+            srv_info.request.data = req.data;
+
+            if (this->serv.call(srv_info))
+            {
+                ROS_INFO("Good call");
+            }
+            else{
+                ROS_INFO("Bad call");
             }
 
             return true;

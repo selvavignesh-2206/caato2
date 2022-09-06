@@ -19,5 +19,10 @@
   <!-- launch 3d lidars -->
   <!-- <include file="$(find caato2_bringup)/launch/include/caato2_3d_lasers.launch" /> -->
 
+  <!--Launch arm-->
+  <include file="$(find caato2_bringup)/launch/include/arm.launch" />
+
+  <!--Launch DS4 Trigger-->
+  <include file="$(find caato2_bringup)/launch/include/ds4_trigger.launch" />
 
 </launch>

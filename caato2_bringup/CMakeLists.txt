@@ -14,6 +14,8 @@ find_package(catkin REQUIRED COMPONENTS
   tf2_ros
   geometry_msgs
   nav_msgs
+  std_srvs
+  ds4_driver
 )
 
 ################################################################################
@@ -31,8 +33,9 @@ find_package(catkin REQUIRED COMPONENTS
 ################################################################################
 # Declare catkin specific configuration to be passed to dependent projects
 ################################################################################
+
 catkin_package(
-  CATKIN_DEPENDS geometry_msgs roscpp std_msgs tf2 tf2_ros nav_msgs
+  CATKIN_DEPENDS geometry_msgs roscpp std_msgs tf2 tf2_ros nav_msgs std_srvs
 )
 
 include_directories(
@@ -54,10 +57,16 @@ add_dependencies(odom_to_tfstamped ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_
 
 target_link_libraries(odom_to_tfstamped  ${catkin_LIBRARIES} )
 
+add_executable(ds4_trigger src/ds4_trigger.cpp)
+
+add_dependencies(ds4_trigger ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+target_link_libraries(ds4_trigger ${catkin_LIBRARIES} )
+
 ################################################################################
 # Install
 ################################################################################
-install(TARGETS static_ouster_broadcaster odom_to_tfstamped
+install(TARGETS static_ouster_broadcaster odom_to_tfstamped ds4_trigger
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 

@@ -80,7 +80,7 @@
     <include file="$(find caato2_bringup)/launch/include/caato2_realsense.launch" />
     
     <!-- atc -->
-    <!-- <include file="$(find atc_stm)/launch/astm.frontbackAT.noGDB.launch"/> -->
+    <include file="$(find atc_stm)/launch/astm.frontbackAT.noGDB.launch"/> 
 
     <!-- Arm launch -->
     <!-- <include file="$(find caato2_bringup)/launch/include/arm.launch"/> -->

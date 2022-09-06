@@ -17,9 +17,11 @@
   <depend>tf2_ros</depend>
   <depend>geometry_msgs</depend>
   <depend>nav_msgs</depend>
+  <depend>std_srvs</depend>
   <exec_depend>roboteq_diff_driver</exec_depend>
   <exec_depend>urg_node</exec_depend>
   <exec_depend>ira_laser_tools</exec_depend>
+  <!-- <exec_depend>std_srvs</exec_depend> -->
   <!-- <exec_depend>tf2</exec_depend> -->
   <!-- <exec_depend>tf2_ros</exec_depend> -->
   <exec_depend>laser_proc</exec_depend>

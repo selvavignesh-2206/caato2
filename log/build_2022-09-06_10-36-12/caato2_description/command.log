@@ -1,8 +1,0 @@
-Invoking command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_description': /usr/bin/cmake /home/dimsum/caato2_ws/src/caato2/caato2_description -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/dimsum/caato2_ws/src/caato2/install/caato2_description
-Invoked command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_description' returned '0': /usr/bin/cmake /home/dimsum/caato2_ws/src/caato2/caato2_description -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/dimsum/caato2_ws/src/caato2/install/caato2_description
-Invoking command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_description': /usr/bin/cmake --build /home/dimsum/caato2_ws/src/caato2/build/caato2_description -- -j12 -l12
-Invoked command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_description' returned '0': /usr/bin/cmake --build /home/dimsum/caato2_ws/src/caato2/build/caato2_description -- -j12 -l12
-Invoking command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_description': /usr/bin/cmake --build /home/dimsum/caato2_ws/src/caato2/build/caato2_description --target tests -- -j12 -l12
-Invoked command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_description' returned '0': /usr/bin/cmake --build /home/dimsum/caato2_ws/src/caato2/build/caato2_description --target tests -- -j12 -l12
-Invoking command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_description': /usr/bin/cmake --install /home/dimsum/caato2_ws/src/caato2/build/caato2_description
-Invoked command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_description' returned '0': /usr/bin/cmake --install /home/dimsum/caato2_ws/src/caato2/build/caato2_description

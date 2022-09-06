@@ -1,3 +1,0 @@
-Invoking command in '/home/dimsum/caato2_ws/src/caato2/build/check_charging': /usr/bin/cmake /home/dimsum/caato2_ws/src/caato2/check_charging -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/dimsum/caato2_ws/src/caato2/install/check_charging
-Invoked command in '/home/dimsum/caato2_ws/src/caato2/build/check_charging' returned '0': /usr/bin/cmake /home/dimsum/caato2_ws/src/caato2/check_charging -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/dimsum/caato2_ws/src/caato2/install/check_charging
-Invoking command in '/home/dimsum/caato2_ws/src/caato2/build/check_charging': /usr/bin/cmake --build /home/dimsum/caato2_ws/src/caato2/build/check_charging -- -j12 -l12

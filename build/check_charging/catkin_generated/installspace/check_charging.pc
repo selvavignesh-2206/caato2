@@ -1,8 +1,0 @@
-prefix=/home/dimsum/caato2_ws/src/caato2/install/check_charging
-
-Name: check_charging
-Description: Description of check_charging
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

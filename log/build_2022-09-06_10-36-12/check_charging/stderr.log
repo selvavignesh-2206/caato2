@@ -1,3 +1,0 @@
-make[2]: *** [CMakeFiles/batter_state_node.dir/build.make:63: CMakeFiles/batter_state_node.dir/src/battery_state.cpp.o] Interrupt
-make[1]: *** [CMakeFiles/Makefile2:1675: CMakeFiles/batter_state_node.dir/all] Interrupt
-make: *** [Makefile:141: all] Interrupt

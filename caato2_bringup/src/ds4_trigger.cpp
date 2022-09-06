@@ -5,9 +5,9 @@
  * R2 buttons in DS4
  * @version 0.1
  * @date 2022-09-05
- * 
+ *
  * @copyright Copyright (c) 2022
- * 
+ *
  */
 
 #include <string>
@@ -18,91 +18,86 @@
 #include <std_msgs/Int32.h>
 #include <ds4_driver/Status.h>
 
-class DS4_Trigger 
+class DS4_Trigger
 {
-    public:
+public:
+    DS4_Trigger(ros::NodeHandle &n)
+    {
 
-        DS4_Trigger(ros::NodeHandle &n) 
+        ros::NodeHandle private_nh("~");
+
+        // Subscriber
+        this->sub = n.subscribe<ds4_driver::Status>("/status", 10, &DS4_Trigger::subscribeDS4, this);
+
+        this->serv = n.serviceClient<std_srvs::SetBool::Request, std_srvs::SetBool::Response>("trolley_lifting_arm_srv", &DS4_Trigger::printTrigger);
+    }
+
+    ~DS4_Trigger()
+    {
+    }
+
+    void run()
+    {
+        this->printTrigger();
+    }
+
+    void subscribeDS4(const ds4_driver::Status::ConstPtr &status)
+    {
+
+        this->l2 = status->button_l2;
+        this->r2 = status->button_r2;
+    }
+
+    bool printTrigger()
+    {
+        std_srvs::SetBool srv_info;
+        if (this->l2 == 1)
         {
-
-            ros::NodeHandle private_nh("~");
-
-            //Subscriber
-            this->sub = n.subscribe<ds4_driver::Status>("/status", 10, &DS4_Trigger::subscribeDS4, this);
-            
-            this->serv= n.serviceClient<std_srvs::SetBool::Request, std_srvs::SetBool::Response>("trolley_lifting_arm_srv", &DS4_Trigger::printTrigger);
+            srv_info.request.data = false;
+            ROS_INFO("Trigger L2 activated: %i", this->l2);
+        }
+        else if (this->r2 == 1)
+        {
+            srv_info.request.data = true;
+            ROS_INFO("Trigger R2 activated: %i", this->r2);
+        }
+        else
+        {
+            return false;
         }
 
-        ~DS4_Trigger()  
+        if (this->serv.call(srv_info))
         {
+            ROS_INFO("Good call");
+        }
+        else
+        {
+            ROS_INFO("Bad call");
         }
 
-        void run() 
-        {
-            std_srvs::SetBool::Request req_input;
-            req_input.data = true;
-            std_srvs::SetBool::Response res_input;
-            this->printTrigger(req_input, res_input);
+        return true;
+    }
 
-        }
+private:
+    ros::Subscriber sub;
 
-        void subscribeDS4(const ds4_driver::Status::ConstPtr &status) 
-        {
+    ros::ServiceClient serv;
 
-            this->l2 = status->button_l2;
-            this->r2 = status->button_r2;
-
-        }
-        
-        bool printTrigger(std_srvs::SetBool::Request & req, std_srvs::SetBool::Response & res)
-        {
-
-            if (this->l2 == 1)  
-            {
-                req.data = false;
-                ROS_INFO("Trigger L2 activated: %i", this->l2);
-            }
-            else if (this->r2 == 1)
-            {
-                req.data = true;
-                ROS_INFO("Trigger R2 activated: %i", this->r2);
-            }
-
-            std_srvs::SetBool srv_info;
-            srv_info.request.data = req.data;
-
-            if (this->serv.call(srv_info))
-            {
-                ROS_INFO("Good call");
-            }
-            else{
-                ROS_INFO("Bad call");
-            }
-
-            return true;
-        }
-
-    private:
-
-        ros::Subscriber sub;
-
-        ros::ServiceClient serv;
-
-        int32_t l2, r2;
-
+    int32_t l2, r2;
 };
 
-int main(int argc, char **argv) {
+int main(int argc, char **argv)
+{
 
     ros::init(argc, argv, "DS4_Trigger");
 
     ros::NodeHandle n;
 
-    //Create DS4_Trigger Object
+    // Create DS4_Trigger Object
     DS4_Trigger *ds4_trigger = new DS4_Trigger(n);
 
     ros::Rate loop_rate(10);
-    
+
     while (ros::ok())
     {
         ds4_trigger->run();

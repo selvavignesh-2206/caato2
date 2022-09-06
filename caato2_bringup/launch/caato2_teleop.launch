@@ -23,6 +23,6 @@
   <include file="$(find caato2_bringup)/launch/include/arm.launch" />
 
   <!--Launch DS4 Trigger-->
-  <include file="$(find caato2_bringup)/launch/include/ds4_trigger.launch" />
+  <!-- <include file="$(find caato2_bringup)/launch/include/ds4_trigger.launch" /> -->
 
 </launch>

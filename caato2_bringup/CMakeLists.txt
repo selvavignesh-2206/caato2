@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   nav_msgs
   std_srvs
+  ds4_driver
 )
 
 ################################################################################
@@ -32,6 +33,7 @@ find_package(catkin REQUIRED COMPONENTS
 ################################################################################
 # Declare catkin specific configuration to be passed to dependent projects
 ################################################################################
+
 catkin_package(
   CATKIN_DEPENDS geometry_msgs roscpp std_msgs tf2 tf2_ros nav_msgs std_srvs
 )

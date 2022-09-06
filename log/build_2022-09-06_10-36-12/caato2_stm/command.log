@@ -1,0 +1,3 @@
+Invoking command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_stm': /usr/bin/cmake /home/dimsum/caato2_ws/src/caato2/caato2_stm -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/dimsum/caato2_ws/src/caato2/install/caato2_stm
+Invoked command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_stm' returned '0': /usr/bin/cmake /home/dimsum/caato2_ws/src/caato2/caato2_stm -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/dimsum/caato2_ws/src/caato2/install/caato2_stm
+Invoking command in '/home/dimsum/caato2_ws/src/caato2/build/caato2_stm': /usr/bin/cmake --build /home/dimsum/caato2_ws/src/caato2/build/caato2_stm -- -j12 -l12

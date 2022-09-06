@@ -28,7 +28,7 @@ class DS4_Trigger
             ros::NodeHandle private_nh("~");
 
             //Subscriber
-            this->sub = n.subscribe<sensor_msgs::Joy>("/status", 10, &DS4_Trigger::subscribeDS4, this);
+            this->sub = n.subscribe<ds4_driver::Status>("/status", 10, &DS4_Trigger::subscribeDS4, this);
             
             //ros::ServiceClient client = n.serviceClient<beginner_tutorials::AddTwoInts>("trolley_lifting_arm_srv");
         }
@@ -47,8 +47,8 @@ class DS4_Trigger
         void subscribeDS4(const ds4_driver::Status::ConstPtr &status) 
         {
 
-            this->l2 = status->button_l2
-            this->r2 = status->button_r2
+            this->l2 = status->button_l2;
+            this->r2 = status->button_r2;
 
         }
         

@@ -1,0 +1,8 @@
+prefix=/home/dimsum/caato2_ws/src/caato2/install/caato2_stm
+
+Name: caato2_stm
+Description: Description of caato2_stm
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib -lcaato2_stm -lnavigation_manager
+Requires: geometry_msgs roscpp std_msgs actionlib_msgs move_base_msgs actionlib message_runtime

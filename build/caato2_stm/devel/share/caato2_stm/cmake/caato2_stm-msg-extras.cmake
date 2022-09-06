@@ -1,0 +1,2 @@
+set(caato2_stm_MESSAGE_FILES "/home/dimsum/caato2_ws/src/caato2/caato2_stm/msg/caato_state.msg;/home/dimsum/caato2_ws/src/caato2/caato2_stm/msg/navigation_state.msg")
+set(caato2_stm_SERVICE_FILES "/home/dimsum/caato2_ws/src/caato2/caato2_stm/srv/change_robot_state.srv;/home/dimsum/caato2_ws/src/caato2/caato2_stm/srv/navigate_sequence.srv;/home/dimsum/caato2_ws/src/caato2/caato2_stm/srv/navigate_goal.srv")

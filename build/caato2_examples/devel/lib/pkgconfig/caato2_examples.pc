@@ -1,0 +1,8 @@
+prefix=/home/dimsum/caato2_ws/src/caato2/build/caato2_examples/devel
+
+Name: caato2_examples
+Description: Description of caato2_examples
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

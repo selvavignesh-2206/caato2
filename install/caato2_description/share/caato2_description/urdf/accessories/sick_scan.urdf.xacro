@@ -1,0 +1,108 @@
+<!-- currently not used in caato, was used in unodopo, here purely for reference -->
+
+
+<?xml version="1.0"?>
+<robot xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
+  xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+  xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
+  xmlns:xacro="http://ros.org/wiki/xacro">
+
+
+  <xacro:macro name="sick_tim_57x" params="wheel_offset name ros_topic visualize min_angle:=-2.357 max_angle:=2.357 gaussian_noise:=0.01 samples:=811">
+    <xacro:sick_tim name="${name}" ros_topic="${ros_topic}"
+      length="0.06" width="0.06" height="0.079" mass="0.150" z_offset="0.05595" visualize="${visualize}"
+      min_angle="${min_angle}" max_angle="${max_angle}"
+      min_range="0.05" max_range="25.0" gaussian_noise="${gaussian_noise}" samples="${samples}"
+      mesh="package://unodopo_description/meshes/accessories/sick_tim571.stl" 
+      scale="0.001 0.001 0.001"
+      wheel_offset="${wheel_offset}" /> <!-- edited for unodopo-->
+  </xacro:macro>
+
+  <xacro:macro name="sick_tim" params="name ros_topic length width height mass z_offset visualize min_angle max_angle min_range max_range gaussian_noise samples mesh scale wheel_offset">
+    <!-- z_offset: distance between base plate and laser center (= center of mesh) -->
+    <joint name="{name}_mount_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="${name}_mount_link"/>
+      <origin xyz="-0.2775 0 0.320"/>
+    </joint>
+    
+    <!-- note that in this case, mount_link is actually not necessary since I made the origin of the lidar to be offset already in the STL file-->
+    <link name="${name}_mount_link">
+      <visual>
+        <geometry>
+          <mesh filename="${mesh}" scale="${scale}" />
+        </geometry>
+        <origin xyz="0 0 0"/>
+        <material name="blue" >
+          <color rgba="0 0 1 1" />
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="${mesh}" scale="${scale}" />
+        </geometry>
+        <origin xyz="0 0 0"/>
+      </collision>
+      <inertial>
+        <mass value="0.001" />
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.000001" ixy="0.0" ixz="0.0"
+          iyy="0.000001" iyz="0.0" izz="0.000001" />
+      </inertial>
+    </link>
+
+    <joint name="${name}_joint" type="fixed">
+      <parent link="${name}_mount_link" />
+      <child link="${name}" />
+      <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
+    </joint>
+
+    <link name="${name}">
+      <inertial>
+        <mass value="${mass}" />
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="${0.0833333 * mass * (width * width + height * height)}" ixy="0.0" ixz="0.0"
+          iyy="${0.0833333 * mass * (length * length + height * height)}" iyz="0.0"
+          izz="${0.0833333 * mass * (length * length + width * width)}" />
+      </inertial>
+    </link>
+    <xacro:sick_tim_laser_gazebo_v0 name="${name}" link="${name}" ros_topic="${ros_topic}" update_rate="15.0" visualize="${visualize}" min_angle="${min_angle}" max_angle="${max_angle}" min_range="${min_range}" max_range="${max_range}" gaussian_noise="${gaussian_noise}" samples="${samples}" />
+  </xacro:macro>
+
+
+  <xacro:macro name="sick_tim_laser_gazebo_v0" params="name link ros_topic update_rate visualize min_angle max_angle min_range max_range gaussian_noise samples">
+    <gazebo reference="${link}">
+      <material value="Gazebo/Blue" />
+      <sensor type="ray" name="${name}">
+        <always_on>true</always_on>
+        <update_rate>${update_rate}</update_rate>
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>${visualize}</visualize>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>${samples}</samples>
+              <resolution>1</resolution>
+              <min_angle>${min_angle}</min_angle>
+              <max_angle>${max_angle}</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>${min_range}</min>
+            <max>${max_range}</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>${gaussian_noise}</stddev>
+          </noise>
+        </ray>
+        <plugin name="gazebo_ros_${name}_controller" filename="libgazebo_ros_laser.so">
+          <topicName>${ros_topic}</topicName>
+          <frameName>${link}</frameName>
+        </plugin>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
+</robot>

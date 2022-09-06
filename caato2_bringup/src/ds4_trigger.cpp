@@ -37,12 +37,14 @@ class DS4_Trigger
         {
         }
 
-        // void run() 
-        // {
-            
-        //     this->printTrigger();
+        void run() 
+        {
+            std_srvs::SetBool::Request req_input;
+            req_input.data = true;
+            std_srvs::SetBool::Response res_input;
+            this->printTrigger(req_input, res_input);
 
-        // }
+        }
 
         void subscribeDS4(const ds4_driver::Status::ConstPtr &status) 
         {
@@ -92,7 +94,7 @@ int main(int argc, char **argv) {
     
     while (ros::ok())
     {
-        //ds4_trigger->run();
+        ds4_trigger->run();
         ros::spinOnce();
         loop_rate.sleep();
     }
